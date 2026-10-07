@@ -3,7 +3,7 @@ import { TabBar } from './ds';
 import { Ctx, type AppCtx, type Tab } from './ctx';
 import { LANGS, LANG_NAMES, detectLang, makeT, type Lang } from './i18n';
 import { completeRedirect, signOut as fbSignOut, watchUser, type AppUser, type SignInResult } from './lib/firebase';
-import { usePref, useUserData } from './lib/store';
+import { seedDemo, usePref, useUserData } from './lib/store';
 import { Home } from './screens/Home';
 import { Login } from './screens/Login';
 import { Pantry } from './screens/Pantry';
@@ -52,7 +52,7 @@ export function App() {
   if (current === null) {
     return (
       <>
-        <Login t={t} lang={lang} setLang={setLang} onSignedIn={onSignedIn} onDemo={() => { try { localStorage.setItem('restofrigo:demo', '1'); } catch { /* ignore */ } setDemo(true); }} />
+        <Login t={t} lang={lang} setLang={setLang} onSignedIn={onSignedIn} onDemo={() => { seedDemo(); try { localStorage.setItem('restofrigo:demo', '1'); } catch { /* ignore */ } setDemo(true); }} />
         {toastEl}
       </>
     );

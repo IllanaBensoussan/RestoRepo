@@ -62,6 +62,8 @@ export const ingredientById = (id: string) => BY_ID.get(id);
 /** Receipt lines that never go in the fridge. */
 export const NON_FOOD = ['sac', 'consigne', 'lessive', 'essuie tout', 'papier toilette', 'bag', 'deposit', 'detergent', 'שקית', 'פיקדון', 'פקדון', 'סבון', 'נייר טואלט', 'אקונומיקה', 'מגבונים'];
 
+const IMG = `${import.meta.env.BASE_URL}recipes/`;
+
 export interface Recipe {
   id: string;
   title: L10n;
@@ -77,7 +79,7 @@ export const RECIPES: Recipe[] = [
   {
     id: 'shakshuka',
     title: { fr: 'Shakshuka aux poivrons', en: 'Pepper shakshuka', he: 'שקשוקה עם פלפלים' },
-    image: '/recipes/shakshuka.svg',
+    image: IMG + 'shakshuka.svg',
     minutes: 25,
     difficulty: 'easy',
     ingredients: ['egg', 'tomato', 'pepper', 'onion', 'garlic', 'olive-oil'],
@@ -90,7 +92,7 @@ export const RECIPES: Recipe[] = [
   {
     id: 'lentil-soup',
     title: { fr: 'Soupe de lentilles', en: 'Lentil soup', he: 'מרק עדשים' },
-    image: '/recipes/soupe-lentilles.svg',
+    image: IMG + 'soupe-lentilles.svg',
     minutes: 40,
     difficulty: 'easy',
     ingredients: ['lentils', 'carrot', 'onion', 'garlic', 'olive-oil', 'lemon'],
@@ -103,7 +105,7 @@ export const RECIPES: Recipe[] = [
   {
     id: 'tomato-pasta',
     title: { fr: 'Pâtes tomate basilic', en: 'Tomato basil pasta', he: 'פסטה עגבניות ובזיליקום' },
-    image: '/recipes/pates-tomate.svg',
+    image: IMG + 'pates-tomate.svg',
     minutes: 20,
     difficulty: 'easy',
     ingredients: ['pasta', 'tomato', 'garlic', 'olive-oil', 'basil'],
@@ -116,7 +118,7 @@ export const RECIPES: Recipe[] = [
   {
     id: 'greek-salad',
     title: { fr: 'Salade grecque', en: 'Greek salad', he: 'סלט יווני' },
-    image: '/recipes/salade-grecque.svg',
+    image: IMG + 'salade-grecque.svg',
     minutes: 10,
     difficulty: 'easy',
     ingredients: ['tomato', 'cucumber', 'onion', 'pepper', 'feta', 'olives'],
