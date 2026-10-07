@@ -1,0 +1,92 @@
+/* RestoFrigo components — from the RestoFrigo design system (bundle.css) */
+.rf-btn, .rf-badge, .rf-chip, .rf-item, .rf-scan, .rf-line, .rf-meter, .rf-recipe, .rf-tabs, .rf-preview {
+  font-family: var(--font-sans); color: var(--ink); box-sizing: border-box;
+}
+.rf-preview { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); background: var(--surface); }
+.rf-row { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.rf-num { font-variant-numeric: tabular-nums; }
+.rf-icon { flex: none; }
+
+/* Button */
+.rf-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); border: 1px solid transparent; border-radius: var(--radius-md); font-size: 15px; line-height: 20px; font-weight: 500; cursor: pointer; transition: transform .08s ease; }
+.rf-btn-md { min-height: var(--space-12); padding: 0 var(--space-4); }
+.rf-btn-sm { min-height: 36px; padding: 0 var(--space-3); font-size: 13px; }
+.rf-btn-block { inline-size: 100%; }
+.rf-btn:active { transform: scale(.96); }
+.rf-btn:disabled { opacity: .4; cursor: default; }
+.rf-btn:focus-visible, .rf-check:focus-visible, .rf-tab:focus-visible, .rf-tab-scan:focus-visible, .rf-chip-x:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.rf-btn-primary { background: var(--brand); color: var(--on-brand); }
+.rf-btn-secondary { background: var(--surface-raised); color: var(--ink); border-color: var(--border-strong); }
+.rf-btn-ghost { background: transparent; color: var(--ink); }
+.rf-btn-scan { background: var(--accent); color: var(--on-accent); }
+
+/* Badge */
+.rf-badge { display: inline-flex; align-items: center; gap: var(--space-1); padding: 2px var(--space-2); border-radius: var(--radius-sm); font-size: 12px; line-height: 18px; font-weight: 500; white-space: nowrap; }
+.rf-badge-fresh { background: var(--brand-soft); color: var(--brand-strong); }
+.rf-badge-soon, .rf-badge-today, .rf-badge-review { background: var(--warn-soft); color: var(--warn); }
+.rf-badge-today { font-weight: 600; }
+.rf-badge-expired { background: var(--danger-soft); color: var(--danger); }
+.rf-badge-receipt { background: var(--info-soft); color: var(--info); }
+
+/* Chip */
+.rf-chip { display: inline-flex; align-items: center; gap: var(--space-1); min-height: 32px; padding: 0 var(--space-3); border-radius: var(--radius-pill); font-size: 13px; line-height: 18px; font-weight: 500; border: 1px solid transparent; }
+.rf-chip-have { background: var(--brand-soft); color: var(--brand-strong); }
+.rf-chip-missing { background: var(--surface-raised); color: var(--ink); border: 1px dashed var(--border-strong); }
+.rf-chip-low { background: var(--warn-soft); color: var(--warn); }
+.rf-chip-qty { color: inherit; opacity: .8; font-variant-numeric: tabular-nums; }
+.rf-chip-x { display: inline-flex; border: 0; background: none; color: inherit; padding: 2px; margin-inline-end: -6px; border-radius: var(--radius-pill); cursor: pointer; }
+
+/* Pantry item */
+.rf-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-md); }
+.rf-item-tile { display: inline-flex; align-items: center; justify-content: center; inline-size: 40px; block-size: 40px; border-radius: var(--radius-sm); flex: none; }
+.rf-item-tile-receipt { background: var(--info-soft); color: var(--info); }
+.rf-item-tile-manual { background: var(--surface-muted); color: var(--ink-muted); }
+.rf-item-main { flex: 1; min-inline-size: 0; }
+.rf-item-name { font-size: 17px; line-height: 24px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rf-item-meta { display: flex; gap: var(--space-2); font-size: 12px; line-height: 16px; color: var(--ink-muted); }
+
+/* Receipt scan */
+.rf-scan { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-3); padding: var(--space-8) var(--space-4); background: var(--surface-muted); border: 1.5px dashed var(--border-strong); border-radius: var(--radius-lg); }
+.rf-scan-mark { display: inline-flex; align-items: center; justify-content: center; inline-size: 56px; block-size: 56px; border-radius: var(--radius-pill); background: var(--accent); color: var(--on-accent); }
+.rf-scan-title { font-size: 22px; line-height: 28px; font-weight: 600; }
+.rf-scan-hint { margin: 0; max-inline-size: 36ch; font-size: 15px; line-height: 22px; color: var(--ink-muted); }
+.rf-scan-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); margin-block-start: var(--space-1); }
+
+/* Receipt line */
+.rf-line { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); background: var(--surface-raised); border-block-end: 1px solid var(--border); }
+.rf-check { display: inline-flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; flex: none; border-radius: var(--radius-sm); border: 1.5px solid var(--border-strong); background: var(--surface-raised); color: var(--on-brand); cursor: pointer; padding: 0; }
+.rf-check[aria-checked="true"] { background: var(--brand); border-color: var(--brand); }
+.rf-line-main { flex: 1; min-inline-size: 0; }
+.rf-line-name { font-size: 17px; line-height: 24px; font-weight: 600; }
+.rf-line-raw { font-size: 12px; line-height: 16px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .02em; }
+.rf-line-nums { display: flex; flex-direction: column; align-items: flex-end; font-size: 15px; line-height: 22px; font-weight: 500; }
+.rf-line-qty { font-size: 12px; line-height: 16px; color: var(--ink-muted); font-weight: 400; }
+.rf-line-ignored .rf-line-name, .rf-line-ignored .rf-line-nums { color: var(--ink-muted); text-decoration: line-through; }
+
+/* Match meter */
+.rf-meter { display: flex; align-items: center; gap: var(--space-2); }
+.rf-meter-track { flex: 1; block-size: 8px; border-radius: var(--radius-pill); background: var(--surface-muted); border: 1px solid var(--border); overflow: hidden; }
+.rf-meter-fill { block-size: 100%; background: var(--brand); border-radius: var(--radius-pill); }
+.rf-meter-text { font-size: 13px; line-height: 18px; font-weight: 500; color: var(--ink-muted); white-space: nowrap; }
+.rf-meter-full .rf-meter-text { color: var(--ink); }
+
+/* Recipe card */
+.rf-recipe { display: flex; flex-direction: column; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; max-inline-size: 360px; }
+.rf-recipe-media { position: relative; }
+.rf-recipe-img { display: block; inline-size: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--surface-muted); }
+.rf-recipe-loading { animation: rf-pulse 1.4s ease-in-out infinite; }
+@keyframes rf-pulse { 50% { opacity: .55; } }
+.rf-recipe-ready { position: absolute; inset-block-start: var(--space-3); inset-inline-start: var(--space-3); display: inline-flex; align-items: center; gap: var(--space-1); padding: 4px var(--space-2); border-radius: var(--radius-pill); background: var(--brand); color: var(--on-brand); font-size: 12px; line-height: 16px; font-weight: 600; box-shadow: var(--shadow-card); }
+.rf-recipe-sm .rf-recipe-body { padding: var(--space-3); }
+.rf-recipe-sm .rf-recipe-title { font-size: 15px; line-height: 20px; }
+.rf-recipe-body { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4); }
+.rf-recipe-title { font-size: 17px; line-height: 24px; font-weight: 600; }
+.rf-recipe-meta { display: flex; align-items: center; gap: var(--space-1); font-size: 12px; line-height: 16px; color: var(--ink-muted); }
+.rf-recipe-missing { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin-block-start: var(--space-1); }
+.rf-recipe-missing-label { font-size: 12px; line-height: 16px; color: var(--ink-muted); inline-size: 100%; }
+
+/* Tab bar */
+.rf-tabs { display: flex; align-items: center; justify-content: space-around; padding: var(--space-2) var(--space-2) var(--space-3); background: var(--surface-raised); border-block-start: 1px solid var(--border); box-shadow: var(--shadow-raised); }
+.rf-tab { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; min-inline-size: 56px; padding: var(--space-1); border: 0; background: none; color: var(--ink-muted); font: 500 12px/16px var(--font-sans); cursor: pointer; border-radius: var(--radius-sm); }
+.rf-tab-active { color: var(--brand); }
+.rf-tab-scan { display: inline-flex; align-items: center; justify-content: center; inline-size: 56px; block-size: 56px; margin-block-start: -28px; border: 0; border-radius: var(--radius-pill); background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow-raised); cursor: pointer; }
