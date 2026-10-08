@@ -1,12 +1,14 @@
 import { initializeApp, type FirebaseApp } from 'firebase/app';
 import {
   GoogleAuthProvider,
+  connectAuthEmulator,
   browserLocalPersistence,
   getAdditionalUserInfo,
   getAuth,
   getRedirectResult,
   onAuthStateChanged,
   setPersistence,
+  signInWithCredential,
   signInWithPopup,
   signInWithRedirect,
   signOut as fbSignOut,
@@ -21,16 +23,32 @@ const config = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
+/** Local Firebase emulators (npm run emulators) instead of the real project. */
+export const useEmulators = import.meta.env.VITE_FIREBASE_EMULATORS === '1';
+
 export const firebaseConfigured = Boolean(config.apiKey && config.authDomain && config.appId);
 
 let app: FirebaseApp | null = null;
 let auth: Auth | null = null;
 
-function getAuthInstance() {
+export function getApp() {
   if (!firebaseConfigured) return null;
+  if (!app) app = initializeApp(config);
+  return app;
+}
+
+function getAuthInstance() {
+  const a = getApp();
+  if (!a) return null;
   if (!auth) {
-    app = initializeApp(config);
-    auth = getAuth(app);
+    auth = getAuth(a);
+    if (useEmulators) {
+      connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });
+      // Emulator only: sign in as a fake Google account from automated tests, without the popup.
+      const emu = auth;
+      (window as unknown as Record<string, unknown>).__emulatorGoogleSignIn = (email: string, name: string) =>
+        signInWithCredential(emu, GoogleAuthProvider.credential(JSON.stringify({ sub: email, email, name, email_verified: true })));
+    }
     void setPersistence(auth, browserLocalPersistence);
   }
   return auth;

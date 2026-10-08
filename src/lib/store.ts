@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { cloudAvailable, saveDiff, subscribeUserData } from './cloud';
 import type { PantryEntry, ShoppingEntry } from './pantry';
 
 export interface UserData {
@@ -19,12 +20,28 @@ function load(uid: string): UserData {
   }
 }
 
-/** Each signed-in account keeps its own fridge and shopping list on this device. */
-export function useUserData(uid: string) {
-  const [data, setData] = useState<UserData>(() => load(uid));
-  useEffect(() => setData(load(uid)), [uid]);
-  const update = useCallback(
-    (fn: (d: UserData) => UserData) =>
+export type SyncStatus = 'loading' | 'ready' | 'error';
+type Update = (fn: (d: UserData) => UserData) => void;
+
+/**
+ * The signed-in user's fridge, shopping list and last receipt date.
+ * Google accounts are stored in Firestore (synced across devices, usable offline);
+ * the demo account, or an app without Firebase keys, stays in this browser.
+ */
+export function useUserData(uid: string): readonly [UserData, Update, SyncStatus] {
+  const cloud = uid !== 'demo' && cloudAvailable();
+  const local = useLocalData(uid, !cloud);
+  const remote = useCloudData(uid, cloud);
+  return cloud ? remote : local;
+}
+
+function useLocalData(uid: string, active: boolean): readonly [UserData, Update, SyncStatus] {
+  const [data, setData] = useState<UserData>(() => (active ? load(uid) : EMPTY));
+  useEffect(() => {
+    if (active) setData(load(uid));
+  }, [uid, active]);
+  const update = useCallback<Update>(
+    (fn) =>
       setData((d) => {
         const next = fn(d);
         try {
@@ -36,7 +53,63 @@ export function useUserData(uid: string) {
       }),
     [uid],
   );
-  return [data, update] as const;
+  return [data, update, 'ready'] as const;
+}
+
+function useCloudData(uid: string, active: boolean): readonly [UserData, Update, SyncStatus] {
+  const [data, setData] = useState<UserData>(EMPTY);
+  const [status, setStatus] = useState<SyncStatus>('loading');
+  const current = useRef<UserData>(EMPTY);
+
+  useEffect(() => {
+    if (!active) return;
+    setStatus('loading');
+    let migrating = false;
+    // Offline on a device that never synced: stop waiting for the server and show the cache.
+    const giveUp = window.setTimeout(() => setStatus((st) => (st === 'loading' ? 'ready' : st)), 4000);
+    const unsub = subscribeUserData(
+      uid,
+      (d, fromCache) => {
+        if (d === null && !fromCache && !migrating) {
+          // First sign-in with Firestore: bring over what this browser already had.
+          const saved = load(uid);
+          if (saved.pantry.length || saved.shopping.length) {
+            migrating = true;
+            void saveDiff(uid, EMPTY, saved).then(() => {
+              try { localStorage.removeItem(keyFor(uid)); } catch { /* ignore */ }
+            });
+          }
+        }
+        if (d === null && fromCache) return; // wait for the server before showing an empty fridge
+        current.current = d ?? EMPTY;
+        setData(current.current);
+        setStatus('ready');
+      },
+      (err) => {
+        console.error(err);
+        setStatus('error');
+      },
+    );
+    return () => {
+      window.clearTimeout(giveUp);
+      unsub();
+    };
+  }, [uid, active]);
+
+  const update = useCallback<Update>(
+    (fn) => {
+      const prev = current.current;
+      const next = fn(prev);
+      current.current = next;
+      setData(next);
+      saveDiff(uid, prev, next).catch((err) => {
+        console.error(err);
+        setStatus('error');
+      });
+    },
+    [uid],
+  );
+  return [data, update, status] as const;
 }
 
 export function usePref<T extends string>(key: string, initial: T) {

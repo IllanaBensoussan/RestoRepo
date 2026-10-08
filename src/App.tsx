@@ -72,7 +72,7 @@ export function App() {
 }
 
 function Shell({ user, lang, setLang, t, toast, signOut, children }: Pick<AppCtx, 'user' | 'lang' | 'setLang' | 't' | 'toast' | 'signOut'> & { children: React.ReactNode }) {
-  const [data, update] = useUserData(user.uid);
+  const [data, update, sync] = useUserData(user.uid);
   const [tab, setTab] = useState<Tab>('home');
   const [recipe, setRecipe] = useState<string | undefined>();
   const [manual, setManual] = useState(false);
@@ -95,12 +95,15 @@ function Shell({ user, lang, setLang, t, toast, signOut, children }: Pick<AppCtx
         <button type="button" className="avatar" onClick={() => setAccount(true)} aria-label={t('account')}>
           {user.photoURL ? <img src={user.photoURL} alt="" referrerPolicy="no-referrer" /> : <span>{initials}</span>}
         </button>
+        {sync === 'error' && <div className="syncbar" role="alert">{t('syncError')}</div>}
         <main ref={main} className="main">
+          {sync === 'loading' ? <div className="screen"><p className="muted" aria-busy="true">{t('loading')}</p></div> : <>
           {tab === 'home' && <Home />}
           {tab === 'pantry' && <Pantry />}
           {tab === 'scan' && <Scan manual={manual} onManualClose={() => setManual(false)} />}
           {tab === 'recipes' && <Recipes openId={recipe} onOpen={(id) => { setRecipe(id); main.current?.scrollTo({ top: 0 }); }} />}
           {tab === 'list' && <Shopping />}
+          </>}
         </main>
         <TabBar
           label={t('nav')}

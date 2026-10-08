@@ -41,10 +41,30 @@ VITE_FIREBASE_APP_ID=...
 
 Avec Google, se connecter et s'inscrire passent par le même bouton : Firebase crée le compte à la première connexion, et l'app affiche alors « Ton compte est créé ». Si le navigateur bloque la pop-up, l'app passe par une redirection.
 
+### Activer la base de données (Firestore)
+
+5. **Build > Firestore Database** : clique sur **Créer une base de données**, choisis une région proche (par exemple `europe-west1` ou `me-west1` pour Israël), en **mode production**.
+6. Onglet **Règles** : remplace le contenu par celui du fichier `firestore.rules` du projet, puis **Publier**. Ou bien, depuis le terminal : `npx firebase-tools deploy --only firestore:rules --project <id-du-projet>`.
+
 Tant que les clés ne sont pas renseignées, l'écran de connexion le signale et propose un **mode démo** sans compte.
 
 ## Notes techniques
 
 - Vite + React 18 + TypeScript, Firebase Auth.
 - Lecture des tickets : les PDF passent par `pdfjs-dist` (texte du PDF), les photos par `tesseract.js` (OCR français, anglais et hébreu). Les deux bibliothèques ne se chargent qu'au moment d'un scan. Tesseract télécharge son moteur et ses langues depuis un CDN au premier scan.
-- Les données (frigo, courses) sont enregistrées dans le navigateur, séparément pour chaque compte Google. Pour synchroniser entre appareils, la prochaine étape serait de les déplacer dans Firestore.
+- **Données** : avec un compte Google, le frigo, les courses et la date du dernier ticket sont dans Firestore :
+  - `users/{uid}` contient `lastReceiptAt` ;
+  - `users/{uid}/pantry/{id}` contient un document par produit du frigo ;
+  - `users/{uid}/shopping/{id}` contient un document par article de courses.
+
+  Tout se synchronise en direct entre les appareils, et l'app continue de marcher hors ligne grâce au cache de Firestore, puis rattrape à la reconnexion. Les règles (`firestore.rules`) n'autorisent chaque personne qu'à lire et écrire ses propres données. À la première connexion, ce qui était déjà enregistré dans le navigateur est envoyé dans Firestore. Le mode démo reste dans le navigateur.
+- Les recettes et les ingrédients connus sont dans le code (`src/data.ts`).
+
+## Tester en local avec les émulateurs Firebase
+
+Sans toucher au vrai projet : il faut Java et `firebase-tools` (`npm i -g firebase-tools`).
+
+```bash
+npm run emulators       # Auth + Firestore en local, avec les règles de firestore.rules
+npm run dev:emulators   # l'app branchée sur ces émulateurs
+```
