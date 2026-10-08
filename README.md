@@ -60,6 +60,10 @@ Tant que les clés ne sont pas renseignées, l'écran de connexion le signale et
   Tout se synchronise en direct entre les appareils, et l'app continue de marcher hors ligne grâce au cache de Firestore, puis rattrape à la reconnexion. Les règles (`firestore.rules`) n'autorisent chaque personne qu'à lire et écrire ses propres données. À la première connexion, ce qui était déjà enregistré dans le navigateur est envoyé dans Firestore. Le mode démo reste dans le navigateur.
 - Les recettes et les ingrédients connus sont dans le code (`src/data.ts`).
 
+## Mise en ligne
+
+Chaque push sur la branche principale construit l'app et la publie sur **https://resto-frigo.web.app** (`.github/workflows/deploy.yml`). Il faut une seule fois le secret GitHub `FIREBASE_SERVICE_ACCOUNT` : la clé JSON d'un compte de service Google Cloud qui a le rôle **Administrateur Firebase Hosting**.
+
 ## Tester en local avec les émulateurs Firebase
 
 Sans toucher au vrai projet : il faut Java et `firebase-tools` (`npm i -g firebase-tools`).
