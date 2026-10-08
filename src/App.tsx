@@ -3,6 +3,8 @@ import { TabBar } from './ds';
 import { Ctx, type AppCtx, type Tab } from './ctx';
 import { LANGS, LANG_NAMES, detectLang, makeT, type Lang } from './i18n';
 import { completeRedirect, signOut as fbSignOut, watchUser, type AppUser, type SignInResult } from './lib/firebase';
+import { useCatalog } from './catalog';
+import { cloudAvailable, subscribeCatalog } from './lib/cloud';
 import { seedDemo, usePref, useUserData } from './lib/store';
 import { Home } from './screens/Home';
 import { Login } from './screens/Login';
@@ -73,6 +75,9 @@ export function App() {
 
 function Shell({ user, lang, setLang, t, toast, signOut, children }: Pick<AppCtx, 'user' | 'lang' | 'setLang' | 't' | 'toast' | 'signOut'> & { children: React.ReactNode }) {
   const [data, update, sync] = useUserData(user.uid);
+  // Re-render the screens when the catalogue arrives from Firestore.
+  useCatalog();
+  useEffect(() => (user.demo || !cloudAvailable() ? undefined : subscribeCatalog()), [user.demo]);
   const [tab, setTab] = useState<Tab>('home');
   const [recipe, setRecipe] = useState<string | undefined>();
   const [manual, setManual] = useState(false);

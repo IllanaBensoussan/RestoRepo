@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { Button, IngredientChip, ReceiptLine, ReceiptScan } from '../ds';
 import { useApp } from '../ctx';
-import { INGREDIENTS } from '../data';
+import { ingredientById, useCatalog } from '../catalog';
 import { formatPrice } from '../i18n';
 import { newEntry } from '../lib/pantry';
 import { normalize, parseReceipt, type ParsedLine } from '../lib/receipt';
@@ -76,7 +76,7 @@ export function Scan({ manual, onManualClose }: { manual: boolean; onManualClose
         <p className="muted">{t('reviewHint')}</p>
         <div className="lines">
           {phase.lines.map((l) => {
-            const ing = l.ingredientId ? INGREDIENTS.find((i) => i.id === l.ingredientId) : undefined;
+            const ing = l.ingredientId ? ingredientById(l.ingredientId) : undefined;
             return (
               <ReceiptLine
                 key={l.id}
@@ -140,11 +140,12 @@ export function Scan({ manual, onManualClose }: { manual: boolean; onManualClose
 
 function useSearch(q: string) {
   const { lang } = useApp();
+  const catalog = useCatalog();
   return useMemo(() => {
     const n = normalize(q).trim();
-    const list = INGREDIENTS.slice().sort((a, b) => a.name[lang].localeCompare(b.name[lang], lang));
+    const list = catalog.ingredients.slice().sort((a, b) => a.name[lang].localeCompare(b.name[lang], lang));
     return n ? list.filter((i) => normalize(Object.values(i.name).join(' ') + ' ' + i.keywords.join(' ')).includes(n)) : list;
-  }, [q, lang]);
+  }, [q, lang, catalog]);
 }
 
 function IngredientPicker({ onPick, onClose }: { onPick: (id: string) => void; onClose: () => void }) {
@@ -167,7 +168,7 @@ function ManualAdd({ onClose }: { onClose: () => void }) {
   const [picked, setPicked] = useState<string | null>(null);
   const [qty, setQty] = useState('');
   const list = useSearch(q);
-  const ing = picked ? INGREDIENTS.find((i) => i.id === picked) : undefined;
+  const ing = picked ? ingredientById(picked) : undefined;
 
   function add() {
     const name = q.trim();

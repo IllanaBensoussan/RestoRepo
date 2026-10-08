@@ -115,3 +115,5 @@ h1, h2, p { margin: 0; }
 .toast { position: fixed; z-index: 30; inset-inline: var(--space-4); inset-block-end: 104px; max-inline-size: 448px; margin: 0 auto; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--ink); color: var(--surface); font-size: 15px; line-height: 22px; box-shadow: var(--shadow-raised); }
 .screen > input + input + .rf-scan { margin-block-start: var(--space-8); }
 .syncbar { padding: var(--space-2) var(--space-4); padding-inline-end: 64px; background: var(--warn-soft); color: var(--warn); font-size: 13px; line-height: 18px; }
+.rf-recipe-noimg { display: flex; align-items: center; justify-content: center; background: var(--brand-soft); color: var(--brand-strong); }
+.rf-chip-btn .rf-chip-qty, .rf-chip .rf-chip-qty { margin-inline-start: 2px; }

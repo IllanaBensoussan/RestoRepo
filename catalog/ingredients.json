@@ -1,0 +1,1762 @@
+[
+ {
+  "id": "tomato",
+  "name": {
+   "fr": "Tomates",
+   "en": "Tomatoes",
+   "he": "עגבניות"
+  },
+  "category": "veg",
+  "shelfDays": 6,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "tomate",
+   "tomato",
+   "עגבני"
+  ]
+ },
+ {
+  "id": "cherry-tomato",
+  "name": {
+   "fr": "Tomates cerises",
+   "en": "Cherry tomatoes",
+   "he": "עגבניות שרי"
+  },
+  "category": "veg",
+  "shelfDays": 5,
+  "defaultQty": "250 g",
+  "keywords": [
+   "tomate cerise",
+   "tomates cerises",
+   "cherry tomato",
+   "שרי"
+  ],
+  "group": "tomato"
+ },
+ {
+  "id": "pepper",
+  "name": {
+   "fr": "Poivrons",
+   "en": "Bell peppers",
+   "he": "פלפלים"
+  },
+  "category": "veg",
+  "shelfDays": 7,
+  "defaultQty": "3",
+  "keywords": [
+   "poivron",
+   "bell pepper",
+   "פלפל"
+  ]
+ },
+ {
+  "id": "onion",
+  "name": {
+   "fr": "Oignons",
+   "en": "Onions",
+   "he": "בצל"
+  },
+  "category": "veg",
+  "shelfDays": 30,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "oignon",
+   "onion",
+   "בצל"
+  ]
+ },
+ {
+  "id": "red-onion",
+  "name": {
+   "fr": "Oignons rouges",
+   "en": "Red onions",
+   "he": "בצל סגול"
+  },
+  "category": "veg",
+  "shelfDays": 30,
+  "defaultQty": "500 g",
+  "keywords": [
+   "oignon rouge",
+   "red onion",
+   "בצל סגול"
+  ],
+  "group": "onion"
+ },
+ {
+  "id": "green-onion",
+  "name": {
+   "fr": "Oignons verts",
+   "en": "Spring onions",
+   "he": "בצל ירוק"
+  },
+  "category": "veg",
+  "shelfDays": 7,
+  "defaultQty": "1",
+  "keywords": [
+   "oignon vert",
+   "cebette",
+   "ciboule",
+   "spring onion",
+   "scallion",
+   "green onion",
+   "בצל ירוק"
+  ]
+ },
+ {
+  "id": "garlic",
+  "name": {
+   "fr": "Ail",
+   "en": "Garlic",
+   "he": "שום"
+  },
+  "category": "veg",
+  "shelfDays": 30,
+  "defaultQty": "1",
+  "keywords": [
+   "ail",
+   "garlic",
+   "שום"
+  ]
+ },
+ {
+  "id": "cucumber",
+  "name": {
+   "fr": "Concombre",
+   "en": "Cucumber",
+   "he": "מלפפון"
+  },
+  "category": "veg",
+  "shelfDays": 7,
+  "defaultQty": "4",
+  "keywords": [
+   "concombre",
+   "cucumber",
+   "מלפפון",
+   "מלפפונים"
+  ]
+ },
+ {
+  "id": "carrot",
+  "name": {
+   "fr": "Carottes",
+   "en": "Carrots",
+   "he": "גזר"
+  },
+  "category": "veg",
+  "shelfDays": 21,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "carotte",
+   "carrot",
+   "גזר"
+  ]
+ },
+ {
+  "id": "potato",
+  "name": {
+   "fr": "Pommes de terre",
+   "en": "Potatoes",
+   "he": "תפוחי אדמה"
+  },
+  "category": "veg",
+  "shelfDays": 30,
+  "defaultQty": "2 kg",
+  "keywords": [
+   "pomme de terre",
+   "pommes de terre",
+   "potato",
+   "תפוחי אדמה",
+   "תפוא"
+  ]
+ },
+ {
+  "id": "sweet-potato",
+  "name": {
+   "fr": "Patates douces",
+   "en": "Sweet potatoes",
+   "he": "בטטה"
+  },
+  "category": "veg",
+  "shelfDays": 21,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "patate douce",
+   "sweet potato",
+   "בטטה"
+  ]
+ },
+ {
+  "id": "zucchini",
+  "name": {
+   "fr": "Courgettes",
+   "en": "Zucchini",
+   "he": "קישואים"
+  },
+  "category": "veg",
+  "shelfDays": 7,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "courgette",
+   "zucchini",
+   "קישוא",
+   "קישואים"
+  ]
+ },
+ {
+  "id": "eggplant",
+  "name": {
+   "fr": "Aubergine",
+   "en": "Eggplant",
+   "he": "חציל"
+  },
+  "category": "veg",
+  "shelfDays": 7,
+  "defaultQty": "2",
+  "keywords": [
+   "aubergine",
+   "eggplant",
+   "חציל"
+  ]
+ },
+ {
+  "id": "lettuce",
+  "name": {
+   "fr": "Salade verte",
+   "en": "Lettuce",
+   "he": "חסה"
+  },
+  "category": "veg",
+  "shelfDays": 5,
+  "defaultQty": "1",
+  "keywords": [
+   "laitue",
+   "salade verte",
+   "romaine",
+   "lettuce",
+   "חסה"
+  ]
+ },
+ {
+  "id": "cabbage",
+  "name": {
+   "fr": "Chou",
+   "en": "Cabbage",
+   "he": "כרוב"
+  },
+  "category": "veg",
+  "shelfDays": 21,
+  "defaultQty": "1",
+  "keywords": [
+   "chou blanc",
+   "chou rouge",
+   "cabbage",
+   "כרוב"
+  ]
+ },
+ {
+  "id": "spinach",
+  "name": {
+   "fr": "Épinards",
+   "en": "Spinach",
+   "he": "תרד"
+  },
+  "category": "veg",
+  "shelfDays": 4,
+  "defaultQty": "250 g",
+  "keywords": [
+   "epinard",
+   "spinach",
+   "תרד"
+  ]
+ },
+ {
+  "id": "broccoli",
+  "name": {
+   "fr": "Brocoli",
+   "en": "Broccoli",
+   "he": "ברוקולי"
+  },
+  "category": "veg",
+  "shelfDays": 6,
+  "defaultQty": "1",
+  "keywords": [
+   "brocoli",
+   "broccoli",
+   "ברוקולי"
+  ]
+ },
+ {
+  "id": "cauliflower",
+  "name": {
+   "fr": "Chou-fleur",
+   "en": "Cauliflower",
+   "he": "כרובית"
+  },
+  "category": "veg",
+  "shelfDays": 7,
+  "defaultQty": "1",
+  "keywords": [
+   "chou fleur",
+   "cauliflower",
+   "כרובית"
+  ]
+ },
+ {
+  "id": "mushroom",
+  "name": {
+   "fr": "Champignons",
+   "en": "Mushrooms",
+   "he": "פטריות"
+  },
+  "category": "veg",
+  "shelfDays": 5,
+  "defaultQty": "250 g",
+  "keywords": [
+   "champignon",
+   "mushroom",
+   "פטריות",
+   "פטריה"
+  ]
+ },
+ {
+  "id": "leek",
+  "name": {
+   "fr": "Poireaux",
+   "en": "Leeks",
+   "he": "כרישה"
+  },
+  "category": "veg",
+  "shelfDays": 10,
+  "defaultQty": "2",
+  "keywords": [
+   "poireau",
+   "leek",
+   "כרישה"
+  ]
+ },
+ {
+  "id": "celery",
+  "name": {
+   "fr": "Céleri",
+   "en": "Celery",
+   "he": "סלרי"
+  },
+  "category": "veg",
+  "shelfDays": 14,
+  "defaultQty": "1",
+  "keywords": [
+   "celeri",
+   "celery",
+   "סלרי"
+  ]
+ },
+ {
+  "id": "green-beans",
+  "name": {
+   "fr": "Haricots verts",
+   "en": "Green beans",
+   "he": "שעועית ירוקה"
+  },
+  "category": "veg",
+  "shelfDays": 5,
+  "defaultQty": "500 g",
+  "keywords": [
+   "haricot vert",
+   "green bean",
+   "שעועית ירוקה"
+  ]
+ },
+ {
+  "id": "corn",
+  "name": {
+   "fr": "Maïs",
+   "en": "Sweetcorn",
+   "he": "תירס"
+  },
+  "category": "veg",
+  "shelfDays": 5,
+  "defaultQty": "2",
+  "keywords": [
+   "mais",
+   "sweetcorn",
+   "corn",
+   "תירס"
+  ]
+ },
+ {
+  "id": "pumpkin",
+  "name": {
+   "fr": "Courge",
+   "en": "Pumpkin",
+   "he": "דלעת"
+  },
+  "category": "veg",
+  "shelfDays": 30,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "courge",
+   "potiron",
+   "potimarron",
+   "butternut",
+   "pumpkin",
+   "squash",
+   "דלעת"
+  ]
+ },
+ {
+  "id": "beetroot",
+  "name": {
+   "fr": "Betterave",
+   "en": "Beetroot",
+   "he": "סלק"
+  },
+  "category": "veg",
+  "shelfDays": 14,
+  "defaultQty": "500 g",
+  "keywords": [
+   "betterave",
+   "beetroot",
+   "beet",
+   "סלק"
+  ]
+ },
+ {
+  "id": "avocado",
+  "name": {
+   "fr": "Avocat",
+   "en": "Avocado",
+   "he": "אבוקדו"
+  },
+  "category": "veg",
+  "shelfDays": 4,
+  "defaultQty": "2",
+  "keywords": [
+   "avocat",
+   "avocado",
+   "אבוקדו"
+  ]
+ },
+ {
+  "id": "radish",
+  "name": {
+   "fr": "Radis",
+   "en": "Radishes",
+   "he": "צנון"
+  },
+  "category": "veg",
+  "shelfDays": 7,
+  "defaultQty": "1",
+  "keywords": [
+   "radis",
+   "radish",
+   "צנון",
+   "צנונית"
+  ]
+ },
+ {
+  "id": "chili",
+  "name": {
+   "fr": "Piment",
+   "en": "Chili",
+   "he": "פלפל חריף"
+  },
+  "category": "veg",
+  "shelfDays": 10,
+  "defaultQty": "2",
+  "keywords": [
+   "piment",
+   "chili",
+   "chilli",
+   "פלפל חריף",
+   "צ'ילי"
+  ]
+ },
+ {
+  "id": "ginger",
+  "name": {
+   "fr": "Gingembre",
+   "en": "Ginger",
+   "he": "ג׳ינג׳ר"
+  },
+  "category": "veg",
+  "shelfDays": 21,
+  "defaultQty": "1",
+  "keywords": [
+   "gingembre",
+   "ginger",
+   "גינגר",
+   "ג'ינג'ר"
+  ]
+ },
+ {
+  "id": "lemon",
+  "name": {
+   "fr": "Citron",
+   "en": "Lemon",
+   "he": "לימון"
+  },
+  "category": "fruit",
+  "shelfDays": 21,
+  "defaultQty": "3",
+  "keywords": [
+   "citron",
+   "lemon",
+   "לימון"
+  ]
+ },
+ {
+  "id": "apple",
+  "name": {
+   "fr": "Pommes",
+   "en": "Apples",
+   "he": "תפוחים"
+  },
+  "category": "fruit",
+  "shelfDays": 21,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "pomme",
+   "apple",
+   "תפוח עץ",
+   "תפוחים"
+  ]
+ },
+ {
+  "id": "banana",
+  "name": {
+   "fr": "Bananes",
+   "en": "Bananas",
+   "he": "בננות"
+  },
+  "category": "fruit",
+  "shelfDays": 5,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "banane",
+   "banana",
+   "בננה",
+   "בננות"
+  ]
+ },
+ {
+  "id": "orange",
+  "name": {
+   "fr": "Oranges",
+   "en": "Oranges",
+   "he": "תפוזים"
+  },
+  "category": "fruit",
+  "shelfDays": 14,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "orange",
+   "תפוז",
+   "תפוזים"
+  ]
+ },
+ {
+  "id": "pear",
+  "name": {
+   "fr": "Poires",
+   "en": "Pears",
+   "he": "אגסים"
+  },
+  "category": "fruit",
+  "shelfDays": 7,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "poire",
+   "pear",
+   "אגס",
+   "אגסים"
+  ]
+ },
+ {
+  "id": "strawberry",
+  "name": {
+   "fr": "Fraises",
+   "en": "Strawberries",
+   "he": "תותים"
+  },
+  "category": "fruit",
+  "shelfDays": 3,
+  "defaultQty": "500 g",
+  "keywords": [
+   "fraise",
+   "strawberr",
+   "תות"
+  ]
+ },
+ {
+  "id": "grapes",
+  "name": {
+   "fr": "Raisin",
+   "en": "Grapes",
+   "he": "ענבים"
+  },
+  "category": "fruit",
+  "shelfDays": 7,
+  "defaultQty": "500 g",
+  "keywords": [
+   "raisin blanc",
+   "raisin noir",
+   "grapes",
+   "ענבים"
+  ]
+ },
+ {
+  "id": "watermelon",
+  "name": {
+   "fr": "Pastèque",
+   "en": "Watermelon",
+   "he": "אבטיח"
+  },
+  "category": "fruit",
+  "shelfDays": 7,
+  "defaultQty": "1",
+  "keywords": [
+   "pasteque",
+   "watermelon",
+   "אבטיח"
+  ]
+ },
+ {
+  "id": "mango",
+  "name": {
+   "fr": "Mangue",
+   "en": "Mango",
+   "he": "מנגו"
+  },
+  "category": "fruit",
+  "shelfDays": 5,
+  "defaultQty": "2",
+  "keywords": [
+   "mangue",
+   "mango",
+   "מנגו"
+  ]
+ },
+ {
+  "id": "dates",
+  "name": {
+   "fr": "Dattes",
+   "en": "Dates",
+   "he": "תמרים"
+  },
+  "category": "fruit",
+  "shelfDays": 60,
+  "defaultQty": "500 g",
+  "keywords": [
+   "datte",
+   "dates",
+   "תמר",
+   "תמרים"
+  ]
+ },
+ {
+  "id": "pomegranate",
+  "name": {
+   "fr": "Grenade",
+   "en": "Pomegranate",
+   "he": "רימון"
+  },
+  "category": "fruit",
+  "shelfDays": 21,
+  "defaultQty": "2",
+  "keywords": [
+   "grenade",
+   "pomegranate",
+   "רימון"
+  ]
+ },
+ {
+  "id": "basil",
+  "name": {
+   "fr": "Basilic",
+   "en": "Basil",
+   "he": "בזיליקום"
+  },
+  "category": "herbs",
+  "shelfDays": 5,
+  "defaultQty": "1",
+  "keywords": [
+   "basilic",
+   "basil",
+   "בזיליקום"
+  ]
+ },
+ {
+  "id": "parsley",
+  "name": {
+   "fr": "Persil",
+   "en": "Parsley",
+   "he": "פטרוזיליה"
+  },
+  "category": "herbs",
+  "shelfDays": 6,
+  "defaultQty": "1",
+  "keywords": [
+   "persil",
+   "parsley",
+   "פטרוזיליה"
+  ]
+ },
+ {
+  "id": "coriander",
+  "name": {
+   "fr": "Coriandre",
+   "en": "Coriander",
+   "he": "כוסברה"
+  },
+  "category": "herbs",
+  "shelfDays": 6,
+  "defaultQty": "1",
+  "keywords": [
+   "coriandre",
+   "coriander",
+   "cilantro",
+   "כוסברה"
+  ]
+ },
+ {
+  "id": "mint",
+  "name": {
+   "fr": "Menthe",
+   "en": "Mint",
+   "he": "נענע"
+  },
+  "category": "herbs",
+  "shelfDays": 6,
+  "defaultQty": "1",
+  "keywords": [
+   "menthe",
+   "mint",
+   "נענע"
+  ]
+ },
+ {
+  "id": "dill",
+  "name": {
+   "fr": "Aneth",
+   "en": "Dill",
+   "he": "שמיר"
+  },
+  "category": "herbs",
+  "shelfDays": 6,
+  "defaultQty": "1",
+  "keywords": [
+   "aneth",
+   "dill",
+   "שמיר"
+  ]
+ },
+ {
+  "id": "thyme",
+  "name": {
+   "fr": "Thym",
+   "en": "Thyme",
+   "he": "טימין"
+  },
+  "category": "herbs",
+  "shelfDays": 10,
+  "defaultQty": "1",
+  "keywords": [
+   "thym",
+   "thyme",
+   "טימין"
+  ]
+ },
+ {
+  "id": "rosemary",
+  "name": {
+   "fr": "Romarin",
+   "en": "Rosemary",
+   "he": "רוזמרין"
+  },
+  "category": "herbs",
+  "shelfDays": 10,
+  "defaultQty": "1",
+  "keywords": [
+   "romarin",
+   "rosemary",
+   "רוזמרין"
+  ]
+ },
+ {
+  "id": "egg",
+  "name": {
+   "fr": "Œufs",
+   "en": "Eggs",
+   "he": "ביצים"
+  },
+  "category": "dairy",
+  "shelfDays": 21,
+  "defaultQty": "12",
+  "keywords": [
+   "oeuf",
+   "oeufs",
+   "egg",
+   "eggs",
+   "ביצים",
+   "ביצה"
+  ]
+ },
+ {
+  "id": "milk",
+  "name": {
+   "fr": "Lait",
+   "en": "Milk",
+   "he": "חלב"
+  },
+  "category": "dairy",
+  "shelfDays": 6,
+  "defaultQty": "1 L",
+  "keywords": [
+   "lait",
+   "milk",
+   "חלב"
+  ]
+ },
+ {
+  "id": "yogurt",
+  "name": {
+   "fr": "Yaourt",
+   "en": "Yogurt",
+   "he": "יוגורט"
+  },
+  "category": "dairy",
+  "shelfDays": 14,
+  "defaultQty": "4",
+  "keywords": [
+   "yaourt",
+   "yogourt",
+   "yogurt",
+   "יוגורט"
+  ]
+ },
+ {
+  "id": "cheese",
+  "name": {
+   "fr": "Fromage",
+   "en": "Cheese",
+   "he": "גבינה"
+  },
+  "category": "dairy",
+  "shelfDays": 14,
+  "defaultQty": "200 g",
+  "keywords": [
+   "fromage",
+   "cheese",
+   "גבינה צהובה",
+   "גבינת",
+   "גבינה"
+  ]
+ },
+ {
+  "id": "feta",
+  "name": {
+   "fr": "Feta",
+   "en": "Feta",
+   "he": "פטה"
+  },
+  "category": "dairy",
+  "shelfDays": 14,
+  "defaultQty": "200 g",
+  "keywords": [
+   "feta",
+   "פטה",
+   "בולגרית"
+  ],
+  "group": "cheese"
+ },
+ {
+  "id": "mozzarella",
+  "name": {
+   "fr": "Mozzarella",
+   "en": "Mozzarella",
+   "he": "מוצרלה"
+  },
+  "category": "dairy",
+  "shelfDays": 7,
+  "defaultQty": "250 g",
+  "keywords": [
+   "mozzarella",
+   "מוצרלה"
+  ],
+  "group": "cheese"
+ },
+ {
+  "id": "parmesan",
+  "name": {
+   "fr": "Parmesan",
+   "en": "Parmesan",
+   "he": "פרמזן"
+  },
+  "category": "dairy",
+  "shelfDays": 30,
+  "defaultQty": "100 g",
+  "keywords": [
+   "parmesan",
+   "parmigiano",
+   "פרמזן"
+  ],
+  "group": "cheese"
+ },
+ {
+  "id": "white-cheese",
+  "name": {
+   "fr": "Fromage blanc",
+   "en": "Soft white cheese",
+   "he": "גבינה לבנה"
+  },
+  "category": "dairy",
+  "shelfDays": 10,
+  "defaultQty": "250 g",
+  "keywords": [
+   "fromage blanc",
+   "gvina levana",
+   "soft cheese",
+   "cream cheese",
+   "גבינה לבנה",
+   "קוטג"
+  ]
+ },
+ {
+  "id": "labneh",
+  "name": {
+   "fr": "Labneh",
+   "en": "Labneh",
+   "he": "לבנה"
+  },
+  "category": "dairy",
+  "shelfDays": 14,
+  "defaultQty": "250 g",
+  "keywords": [
+   "labneh",
+   "labne",
+   "לבנה"
+  ]
+ },
+ {
+  "id": "cream",
+  "name": {
+   "fr": "Crème",
+   "en": "Cream",
+   "he": "שמנת"
+  },
+  "category": "dairy",
+  "shelfDays": 10,
+  "defaultQty": "250 ml",
+  "keywords": [
+   "creme fraiche",
+   "creme liquide",
+   "cream",
+   "שמנת"
+  ]
+ },
+ {
+  "id": "butter",
+  "name": {
+   "fr": "Beurre",
+   "en": "Butter",
+   "he": "חמאה"
+  },
+  "category": "dairy",
+  "shelfDays": 30,
+  "defaultQty": "200 g",
+  "keywords": [
+   "beurre",
+   "butter",
+   "חמאה"
+  ]
+ },
+ {
+  "id": "chicken",
+  "name": {
+   "fr": "Poulet",
+   "en": "Chicken",
+   "he": "עוף"
+  },
+  "category": "meat",
+  "shelfDays": 2,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "poulet",
+   "chicken",
+   "עוף",
+   "פרגית",
+   "שוקיים"
+  ]
+ },
+ {
+  "id": "chicken-breast",
+  "name": {
+   "fr": "Blanc de poulet",
+   "en": "Chicken breast",
+   "he": "חזה עוף"
+  },
+  "category": "meat",
+  "shelfDays": 2,
+  "defaultQty": "500 g",
+  "keywords": [
+   "blanc de poulet",
+   "escalope de poulet",
+   "filet de poulet",
+   "chicken breast",
+   "חזה עוף"
+  ],
+  "group": "chicken"
+ },
+ {
+  "id": "ground-beef",
+  "name": {
+   "fr": "Bœuf haché",
+   "en": "Ground beef",
+   "he": "בשר טחון"
+  },
+  "category": "meat",
+  "shelfDays": 2,
+  "defaultQty": "500 g",
+  "keywords": [
+   "boeuf hache",
+   "viande hachee",
+   "steak hache",
+   "ground beef",
+   "minced beef",
+   "בשר טחון"
+  ]
+ },
+ {
+  "id": "beef",
+  "name": {
+   "fr": "Bœuf",
+   "en": "Beef",
+   "he": "בקר"
+  },
+  "category": "meat",
+  "shelfDays": 3,
+  "defaultQty": "500 g",
+  "keywords": [
+   "boeuf",
+   "beef",
+   "בקר",
+   "אנטריקוט"
+  ]
+ },
+ {
+  "id": "turkey",
+  "name": {
+   "fr": "Dinde",
+   "en": "Turkey",
+   "he": "הודו"
+  },
+  "category": "meat",
+  "shelfDays": 2,
+  "defaultQty": "500 g",
+  "keywords": [
+   "dinde",
+   "turkey",
+   "הודו"
+  ]
+ },
+ {
+  "id": "salmon",
+  "name": {
+   "fr": "Saumon",
+   "en": "Salmon",
+   "he": "סלמון"
+  },
+  "category": "meat",
+  "shelfDays": 2,
+  "defaultQty": "400 g",
+  "keywords": [
+   "saumon",
+   "salmon",
+   "סלמון",
+   "סלומון"
+  ]
+ },
+ {
+  "id": "white-fish",
+  "name": {
+   "fr": "Poisson blanc",
+   "en": "White fish",
+   "he": "דג לבן"
+  },
+  "category": "meat",
+  "shelfDays": 2,
+  "defaultQty": "400 g",
+  "keywords": [
+   "cabillaud",
+   "merlu",
+   "colin",
+   "lieu",
+   "dorade",
+   "bar",
+   "cod",
+   "hake",
+   "denis",
+   "לברק",
+   "אמנון",
+   "מוסר ים",
+   "בקלה"
+  ]
+ },
+ {
+  "id": "sausage",
+  "name": {
+   "fr": "Saucisses",
+   "en": "Sausages",
+   "he": "נקניקיות"
+  },
+  "category": "meat",
+  "shelfDays": 7,
+  "defaultQty": "1",
+  "keywords": [
+   "saucisse",
+   "merguez",
+   "sausage",
+   "נקניקיות",
+   "נקניק"
+  ]
+ },
+ {
+  "id": "bread",
+  "name": {
+   "fr": "Pain",
+   "en": "Bread",
+   "he": "לחם"
+  },
+  "category": "bakery",
+  "shelfDays": 3,
+  "defaultQty": "1",
+  "keywords": [
+   "pain",
+   "baguette",
+   "bread",
+   "לחם",
+   "חלה"
+  ]
+ },
+ {
+  "id": "pita",
+  "name": {
+   "fr": "Pitas",
+   "en": "Pita",
+   "he": "פיתות"
+  },
+  "category": "bakery",
+  "shelfDays": 4,
+  "defaultQty": "10",
+  "keywords": [
+   "pita",
+   "pitta",
+   "פיתה",
+   "פיתות"
+  ],
+  "group": "bread"
+ },
+ {
+  "id": "tortilla",
+  "name": {
+   "fr": "Tortillas",
+   "en": "Tortillas",
+   "he": "טורטיות"
+  },
+  "category": "bakery",
+  "shelfDays": 14,
+  "defaultQty": "8",
+  "keywords": [
+   "tortilla",
+   "wrap",
+   "טורטיה",
+   "טורטיות",
+   "לאפה"
+  ]
+ },
+ {
+  "id": "pasta",
+  "name": {
+   "fr": "Pâtes",
+   "en": "Pasta",
+   "he": "פסטה"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "500 g",
+  "keywords": [
+   "pates",
+   "spaghetti",
+   "penne",
+   "fusilli",
+   "tagliatelle",
+   "pasta",
+   "פסטה",
+   "ספגטי"
+  ]
+ },
+ {
+  "id": "rice",
+  "name": {
+   "fr": "Riz",
+   "en": "Rice",
+   "he": "אורז"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "riz",
+   "rice",
+   "אורז"
+  ]
+ },
+ {
+  "id": "lentils",
+  "name": {
+   "fr": "Lentilles",
+   "en": "Lentils",
+   "he": "עדשים"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "500 g",
+  "keywords": [
+   "lentille",
+   "lentil",
+   "עדשים"
+  ]
+ },
+ {
+  "id": "chickpeas",
+  "name": {
+   "fr": "Pois chiches",
+   "en": "Chickpeas",
+   "he": "חומוס גרגרים"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "400 g",
+  "keywords": [
+   "pois chiche",
+   "chickpea",
+   "גרגרי חומוס",
+   "חומוס גרגרים"
+  ]
+ },
+ {
+  "id": "white-beans",
+  "name": {
+   "fr": "Haricots blancs",
+   "en": "White beans",
+   "he": "שעועית לבנה"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "400 g",
+  "keywords": [
+   "haricot blanc",
+   "white bean",
+   "cannellini",
+   "שעועית לבנה"
+  ]
+ },
+ {
+  "id": "couscous",
+  "name": {
+   "fr": "Couscous",
+   "en": "Couscous",
+   "he": "קוסקוס"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "500 g",
+  "keywords": [
+   "couscous",
+   "semoule",
+   "קוסקוס"
+  ]
+ },
+ {
+  "id": "bulgur",
+  "name": {
+   "fr": "Boulgour",
+   "en": "Bulgur",
+   "he": "בורגול"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "500 g",
+  "keywords": [
+   "boulgour",
+   "bulgur",
+   "burghul",
+   "בורגול"
+  ]
+ },
+ {
+  "id": "quinoa",
+  "name": {
+   "fr": "Quinoa",
+   "en": "Quinoa",
+   "he": "קינואה"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "500 g",
+  "keywords": [
+   "quinoa",
+   "קינואה"
+  ]
+ },
+ {
+  "id": "oats",
+  "name": {
+   "fr": "Flocons d’avoine",
+   "en": "Oats",
+   "he": "שיבולת שועל"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "500 g",
+  "keywords": [
+   "flocons d avoine",
+   "avoine",
+   "oats",
+   "porridge",
+   "שיבולת שועל"
+  ]
+ },
+ {
+  "id": "flour",
+  "name": {
+   "fr": "Farine",
+   "en": "Flour",
+   "he": "קמח"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "farine",
+   "flour",
+   "קמח"
+  ]
+ },
+ {
+  "id": "sugar",
+  "name": {
+   "fr": "Sucre",
+   "en": "Sugar",
+   "he": "סוכר"
+  },
+  "category": "grocery",
+  "shelfDays": 730,
+  "defaultQty": "1 kg",
+  "keywords": [
+   "sucre",
+   "sugar",
+   "סוכר"
+  ]
+ },
+ {
+  "id": "honey",
+  "name": {
+   "fr": "Miel",
+   "en": "Honey",
+   "he": "דבש"
+  },
+  "category": "grocery",
+  "shelfDays": 730,
+  "defaultQty": "1",
+  "keywords": [
+   "miel",
+   "honey",
+   "דבש"
+  ]
+ },
+ {
+  "id": "breadcrumbs",
+  "name": {
+   "fr": "Chapelure",
+   "en": "Breadcrumbs",
+   "he": "פירורי לחם"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "defaultQty": "1",
+  "keywords": [
+   "chapelure",
+   "breadcrumbs",
+   "panko",
+   "פירורי לחם"
+  ]
+ },
+ {
+  "id": "olive-oil",
+  "name": {
+   "fr": "Huile d’olive",
+   "en": "Olive oil",
+   "he": "שמן זית"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "1 L",
+  "keywords": [
+   "huile olive",
+   "huile d olive",
+   "olive oil",
+   "שמן זית"
+  ]
+ },
+ {
+  "id": "oil",
+  "name": {
+   "fr": "Huile",
+   "en": "Cooking oil",
+   "he": "שמן"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "1 L",
+  "keywords": [
+   "huile tournesol",
+   "huile colza",
+   "huile vegetale",
+   "sunflower oil",
+   "canola",
+   "vegetable oil",
+   "שמן קנולה",
+   "שמן חמניות"
+  ]
+ },
+ {
+  "id": "olives",
+  "name": {
+   "fr": "Olives",
+   "en": "Olives",
+   "he": "זיתים"
+  },
+  "category": "grocery",
+  "shelfDays": 60,
+  "defaultQty": "1",
+  "keywords": [
+   "olive noire",
+   "olive verte",
+   "olives",
+   "זיתים"
+  ]
+ },
+ {
+  "id": "tahini",
+  "name": {
+   "fr": "Tahini",
+   "en": "Tahini",
+   "he": "טחינה"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "defaultQty": "1",
+  "keywords": [
+   "tahini",
+   "tahin",
+   "טחינה"
+  ]
+ },
+ {
+  "id": "hummus",
+  "name": {
+   "fr": "Houmous",
+   "en": "Hummus",
+   "he": "חומוס"
+  },
+  "category": "grocery",
+  "shelfDays": 7,
+  "defaultQty": "1",
+  "keywords": [
+   "houmous",
+   "hummus",
+   "חומוס"
+  ]
+ },
+ {
+  "id": "canned-tomatoes",
+  "name": {
+   "fr": "Tomates en conserve",
+   "en": "Canned tomatoes",
+   "he": "עגבניות מרוסקות"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "400 g",
+  "keywords": [
+   "tomates concassees",
+   "pulpe de tomate",
+   "coulis",
+   "passata",
+   "canned tomato",
+   "crushed tomato",
+   "עגבניות מרוסקות",
+   "רסק עגבניות"
+  ]
+ },
+ {
+  "id": "tomato-paste",
+  "name": {
+   "fr": "Concentré de tomate",
+   "en": "Tomato paste",
+   "he": "רסק"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "1",
+  "keywords": [
+   "concentre de tomate",
+   "tomato paste",
+   "רסק"
+  ]
+ },
+ {
+  "id": "coconut-milk",
+  "name": {
+   "fr": "Lait de coco",
+   "en": "Coconut milk",
+   "he": "חלב קוקוס"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "400 ml",
+  "keywords": [
+   "lait de coco",
+   "coconut milk",
+   "חלב קוקוס"
+  ]
+ },
+ {
+  "id": "stock",
+  "name": {
+   "fr": "Bouillon",
+   "en": "Stock",
+   "he": "ציר"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "1",
+  "keywords": [
+   "bouillon",
+   "stock cube",
+   "broth",
+   "אבקת מרק",
+   "ציר",
+   "מרק עוף"
+  ]
+ },
+ {
+  "id": "soy-sauce",
+  "name": {
+   "fr": "Sauce soja",
+   "en": "Soy sauce",
+   "he": "רוטב סויה"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "1",
+  "keywords": [
+   "sauce soja",
+   "soy sauce",
+   "רוטב סויה",
+   "סויה"
+  ]
+ },
+ {
+  "id": "vinegar",
+  "name": {
+   "fr": "Vinaigre",
+   "en": "Vinegar",
+   "he": "חומץ"
+  },
+  "category": "grocery",
+  "shelfDays": 730,
+  "defaultQty": "1",
+  "keywords": [
+   "vinaigre",
+   "vinegar",
+   "חומץ"
+  ]
+ },
+ {
+  "id": "mustard",
+  "name": {
+   "fr": "Moutarde",
+   "en": "Mustard",
+   "he": "חרדל"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "1",
+  "keywords": [
+   "moutarde",
+   "mustard",
+   "חרדל"
+  ]
+ },
+ {
+  "id": "tuna",
+  "name": {
+   "fr": "Thon en boîte",
+   "en": "Canned tuna",
+   "he": "טונה"
+  },
+  "category": "grocery",
+  "shelfDays": 730,
+  "defaultQty": "4",
+  "keywords": [
+   "thon",
+   "tuna",
+   "טונה"
+  ]
+ },
+ {
+  "id": "cumin",
+  "name": {
+   "fr": "Cumin",
+   "en": "Cumin",
+   "he": "כמון"
+  },
+  "category": "grocery",
+  "shelfDays": 730,
+  "defaultQty": "1",
+  "keywords": [
+   "cumin",
+   "כמון"
+  ]
+ },
+ {
+  "id": "paprika",
+  "name": {
+   "fr": "Paprika",
+   "en": "Paprika",
+   "he": "פפריקה"
+  },
+  "category": "grocery",
+  "shelfDays": 730,
+  "defaultQty": "1",
+  "keywords": [
+   "paprika",
+   "פפריקה"
+  ]
+ },
+ {
+  "id": "cinnamon",
+  "name": {
+   "fr": "Cannelle",
+   "en": "Cinnamon",
+   "he": "קינמון"
+  },
+  "category": "grocery",
+  "shelfDays": 730,
+  "defaultQty": "1",
+  "keywords": [
+   "cannelle",
+   "cinnamon",
+   "קינמון"
+  ]
+ },
+ {
+  "id": "turmeric",
+  "name": {
+   "fr": "Curcuma",
+   "en": "Turmeric",
+   "he": "כורכום"
+  },
+  "category": "grocery",
+  "shelfDays": 730,
+  "defaultQty": "1",
+  "keywords": [
+   "curcuma",
+   "turmeric",
+   "כורכום"
+  ]
+ },
+ {
+  "id": "curry",
+  "name": {
+   "fr": "Curry",
+   "en": "Curry powder",
+   "he": "קארי"
+  },
+  "category": "grocery",
+  "shelfDays": 730,
+  "defaultQty": "1",
+  "keywords": [
+   "curry",
+   "קארי"
+  ]
+ },
+ {
+  "id": "chocolate",
+  "name": {
+   "fr": "Chocolat",
+   "en": "Chocolate",
+   "he": "שוקולד"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "100 g",
+  "keywords": [
+   "chocolat",
+   "chocolate",
+   "שוקולד"
+  ]
+ },
+ {
+  "id": "almonds",
+  "name": {
+   "fr": "Amandes",
+   "en": "Almonds",
+   "he": "שקדים"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "defaultQty": "200 g",
+  "keywords": [
+   "amande",
+   "almond",
+   "שקדים"
+  ]
+ },
+ {
+  "id": "raisins",
+  "name": {
+   "fr": "Raisins secs",
+   "en": "Raisins",
+   "he": "צימוקים"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "defaultQty": "200 g",
+  "keywords": [
+   "raisins secs",
+   "raisin sec",
+   "raisins",
+   "צימוקים"
+  ]
+ },
+ {
+  "id": "frozen-peas",
+  "name": {
+   "fr": "Petits pois",
+   "en": "Peas",
+   "he": "אפונה"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "defaultQty": "500 g",
+  "keywords": [
+   "petits pois",
+   "petit pois",
+   "peas",
+   "אפונה"
+  ]
+ }
+]

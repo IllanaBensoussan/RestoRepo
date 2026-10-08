@@ -58,11 +58,16 @@ Tant que les clés ne sont pas renseignées, l'écran de connexion le signale et
   - `users/{uid}/shopping/{id}` contient un document par article de courses.
 
   Tout se synchronise en direct entre les appareils, et l'app continue de marcher hors ligne grâce au cache de Firestore, puis rattrape à la reconnexion. Les règles (`firestore.rules`) n'autorisent chaque personne qu'à lire et écrire ses propres données. À la première connexion, ce qui était déjà enregistré dans le navigateur est envoyé dans Firestore. Le mode démo reste dans le navigateur.
-- Les recettes et les ingrédients connus sont dans le code (`src/data.ts`).
+- **Catalogue** : les ingrédients et les recettes sont dans Firestore, dans les collections `ingredients` et `recipes`. Tout compte connecté peut les lire, et seul le script d'import peut les modifier. Leur source est dans le dépôt, dans `catalog/ingredients.json` et `catalog/recipes.json` :
+  - pour ajouter ou corriger une recette ou un ingrédient, modifie ces fichiers et pousse ;
+  - le workflow `.github/workflows/catalog.yml` vérifie le catalogue (`src/catalog.test.ts`), puis l'envoie dans Firestore ;
+  - l'app lit Firestore, suit les changements en direct et garde une copie du catalogue intégrée pour démarrer ou en cas de problème.
+
+  Pour une recette, `image` peut être un chemin du site (`recipes/x.svg`) ou une URL. Sans photo (`null`), l'app affiche un cadre provisoire.
 
 ## Mise en ligne
 
-Chaque push sur la branche principale construit l'app et la publie sur **https://resto-frigo.web.app** (`.github/workflows/deploy.yml`). Il faut une seule fois le secret GitHub `FIREBASE_SERVICE_ACCOUNT` : la clé JSON d'un compte de service Google Cloud qui a le rôle **Administrateur Firebase Hosting**.
+Chaque push sur la branche principale construit l'app et la publie sur **https://resto-frigo.web.app** (`.github/workflows/deploy.yml`). Il faut une seule fois le secret GitHub `FIREBASE_SERVICE_ACCOUNT` : la clé JSON d'un compte de service Google Cloud qui a les rôles **Administrateur Firebase Hosting** (pour la mise en ligne) et **Utilisateur Cloud Datastore** (pour l'envoi du catalogue).
 
 ## Tester en local avec les émulateurs Firebase
 

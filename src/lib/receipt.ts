@@ -1,4 +1,5 @@
-import { INGREDIENTS, NON_FOOD } from '../data';
+import { getCatalog, type Catalog } from '../catalog';
+import { NON_FOOD } from '../data';
 
 export interface ParsedLine {
   id: string;
@@ -21,7 +22,17 @@ export function normalize(s: string) {
     .trim()} `;
 }
 
-const KEYWORDS = INGREDIENTS.flatMap((i) => i.keywords.map((k) => ({ id: i.id, k: normalize(k).trim() }))).sort((a, b) => b.k.length - a.k.length);
+// Receipt keywords, longest first, rebuilt when the catalogue changes.
+let keywordsFor: Catalog | null = null;
+let KEYWORDS: { id: string; k: string }[] = [];
+function keywords() {
+  const c = getCatalog();
+  if (c !== keywordsFor) {
+    keywordsFor = c;
+    KEYWORDS = c.ingredients.flatMap((i) => i.keywords.map((k) => ({ id: i.id, k: normalize(k).trim() }))).sort((a, b) => b.k.length - a.k.length);
+  }
+  return KEYWORDS;
+}
 const NON_FOOD_N = NON_FOOD.map((k) => normalize(k).trim());
 
 // A keyword matches at the start of a word, so "tomates" finds "tomate" but "maillot" does not find "ail".
@@ -31,7 +42,7 @@ function hasWord(text: string, kw: string) {
 
 export function matchIngredient(text: string): string | null {
   const n = normalize(text);
-  for (const { id, k } of KEYWORDS) if (hasWord(n, k)) return id;
+  for (const { id, k } of keywords()) if (hasWord(n, k)) return id;
   return null;
 }
 

@@ -1,5 +1,6 @@
 import { Button, Icon, PantryItem, RecipeCard } from '../ds';
 import { useApp } from '../ctx';
+import { recipeImage } from '../catalog';
 import { CATEGORIES } from '../data';
 import { formatDate } from '../i18n';
 import { daysLeft, entryName, expiry, ingredientName, matchRecipes, startOfDay } from '../lib/pantry';
@@ -28,7 +29,7 @@ export function Home() {
     <RecipeCard
       key={m.recipe.id}
       size={size}
-      image={m.recipe.image}
+      image={recipeImage(m.recipe)}
       imageAlt={m.recipe.title[lang]}
       title={m.recipe.title[lang]}
       time={`${m.recipe.minutes} ${t('min')}${size === 'md' ? ` · ${t(m.recipe.difficulty)}` : ''}`}

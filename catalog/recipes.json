@@ -1,0 +1,1599 @@
+[
+ {
+  "id": "shakshuka",
+  "title": {
+   "fr": "Shakshuka aux poivrons",
+   "en": "Pepper shakshuka",
+   "he": "שקשוקה עם פלפלים"
+  },
+  "image": "recipes/shakshuka.svg",
+  "minutes": 25,
+  "difficulty": "easy",
+  "servings": 2,
+  "tags": [
+   "veggie",
+   "israeli"
+  ],
+  "ingredients": [
+   {
+    "ref": "egg",
+    "qty": "4"
+   },
+   {
+    "ref": "tomato",
+    "qty": "4"
+   },
+   {
+    "ref": "pepper",
+    "qty": "2"
+   },
+   {
+    "ref": "onion",
+    "qty": "1"
+   },
+   {
+    "ref": "garlic",
+    "qty": "2"
+   },
+   {
+    "ref": "olive-oil"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Fais revenir l’oignon et les poivrons émincés dans l’huile d’olive, 8 minutes.",
+    "Ajoute l’ail et les tomates coupées, sale, poivre, laisse compoter 10 minutes.",
+    "Creuse des puits, casse les œufs dedans, couvre et cuis 5 à 6 minutes."
+   ],
+   "en": [
+    "Soften the sliced onion and peppers in olive oil for 8 minutes.",
+    "Add the garlic and chopped tomatoes, season, and simmer for 10 minutes.",
+    "Make wells, crack in the eggs, cover and cook for 5 to 6 minutes."
+   ],
+   "he": [
+    "מטגנים את הבצל והפלפלים הפרוסים בשמן זית, 8 דקות.",
+    "מוסיפים שום ועגבניות קצוצות, מתבלים ומבשלים 10 דקות.",
+    "יוצרים גומות, שוברים לתוכן את הביצים, מכסים ומבשלים 5–6 דקות."
+   ]
+  }
+ },
+ {
+  "id": "lentil-soup",
+  "title": {
+   "fr": "Soupe de lentilles",
+   "en": "Lentil soup",
+   "he": "מרק עדשים"
+  },
+  "image": "recipes/soupe-lentilles.svg",
+  "minutes": 40,
+  "difficulty": "easy",
+  "servings": 4,
+  "tags": [
+   "veggie",
+   "soup"
+  ],
+  "ingredients": [
+   {
+    "ref": "lentils",
+    "qty": "300 g"
+   },
+   {
+    "ref": "carrot",
+    "qty": "2"
+   },
+   {
+    "ref": "onion",
+    "qty": "1"
+   },
+   {
+    "ref": "garlic",
+    "qty": "2"
+   },
+   {
+    "ref": "olive-oil"
+   },
+   {
+    "ref": "lemon",
+    "qty": "1"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Fais suer l’oignon, l’ail et les carottes en dés dans l’huile d’olive.",
+    "Ajoute les lentilles rincées et 1,5 L d’eau, cuis 30 minutes.",
+    "Mixe à moitié, sale, et sers avec un filet de citron."
+   ],
+   "en": [
+    "Sweat the onion, garlic and diced carrots in olive oil.",
+    "Add the rinsed lentils and 1.5 L of water, cook for 30 minutes.",
+    "Blend half of it, season, and serve with a squeeze of lemon."
+   ],
+   "he": [
+    "מאדים בצל, שום וגזר חתוך לקוביות בשמן זית.",
+    "מוסיפים עדשים שטופות ו־1.5 ליטר מים, מבשלים 30 דקות.",
+    "טוחנים חצי, מתבלים ומגישים עם מעט לימון."
+   ]
+  }
+ },
+ {
+  "id": "tomato-pasta",
+  "title": {
+   "fr": "Pâtes tomate basilic",
+   "en": "Tomato basil pasta",
+   "he": "פסטה עגבניות ובזיליקום"
+  },
+  "image": "recipes/pates-tomate.svg",
+  "minutes": 20,
+  "difficulty": "easy",
+  "servings": 2,
+  "tags": [
+   "veggie",
+   "pasta"
+  ],
+  "ingredients": [
+   {
+    "ref": "pasta",
+    "qty": "250 g"
+   },
+   {
+    "ref": "tomato",
+    "qty": "4"
+   },
+   {
+    "ref": "garlic",
+    "qty": "2"
+   },
+   {
+    "ref": "olive-oil"
+   },
+   {
+    "ref": "basil"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Cuis les pâtes dans une grande casserole d’eau salée.",
+    "Pendant ce temps, fais revenir l’ail dans l’huile, ajoute les tomates et laisse réduire 10 minutes.",
+    "Mélange les pâtes à la sauce et ajoute le basilic au moment de servir."
+   ],
+   "en": [
+    "Cook the pasta in a large pot of salted water.",
+    "Meanwhile, fry the garlic in oil, add the tomatoes and reduce for 10 minutes.",
+    "Toss the pasta in the sauce and add the basil just before serving."
+   ],
+   "he": [
+    "מבשלים את הפסטה בסיר גדול של מים רותחים ומומלחים.",
+    "בינתיים מטגנים שום בשמן, מוסיפים עגבניות ומצמצמים 10 דקות.",
+    "מערבבים את הפסטה ברוטב ומוסיפים בזיליקום לפני ההגשה."
+   ]
+  }
+ },
+ {
+  "id": "greek-salad",
+  "title": {
+   "fr": "Salade grecque",
+   "en": "Greek salad",
+   "he": "סלט יווני"
+  },
+  "image": "recipes/salade-grecque.svg",
+  "minutes": 10,
+  "difficulty": "easy",
+  "servings": 2,
+  "tags": [
+   "veggie",
+   "salad"
+  ],
+  "ingredients": [
+   {
+    "ref": "tomato",
+    "qty": "3"
+   },
+   {
+    "ref": "cucumber",
+    "qty": "1"
+   },
+   {
+    "ref": "onion",
+    "qty": "1"
+   },
+   {
+    "ref": "pepper",
+    "qty": "1"
+   },
+   {
+    "ref": "feta",
+    "qty": "200 g"
+   },
+   {
+    "ref": "olives"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Coupe les tomates, le concombre et le poivron en gros morceaux.",
+    "Ajoute l’oignon en fines lamelles et les olives.",
+    "Pose la feta sur le dessus, arrose d’huile d’olive et sers."
+   ],
+   "en": [
+    "Cut the tomatoes, cucumber and pepper into large chunks.",
+    "Add thinly sliced onion and the olives.",
+    "Top with the feta, drizzle with olive oil and serve."
+   ],
+   "he": [
+    "חותכים עגבניות, מלפפון ופלפל לחתיכות גדולות.",
+    "מוסיפים בצל פרוס דק וזיתים.",
+    "מניחים מעל את הפטה, מזלפים שמן זית ומגישים."
+   ]
+  }
+ },
+ {
+  "id": "israeli-salad",
+  "title": {
+   "fr": "Salade israélienne",
+   "en": "Israeli salad",
+   "he": "סלט ישראלי"
+  },
+  "image": null,
+  "minutes": 10,
+  "difficulty": "easy",
+  "servings": 2,
+  "tags": [
+   "veggie",
+   "salad",
+   "israeli"
+  ],
+  "ingredients": [
+   {
+    "ref": "tomato",
+    "qty": "3"
+   },
+   {
+    "ref": "cucumber",
+    "qty": "3"
+   },
+   {
+    "ref": "onion",
+    "qty": "1"
+   },
+   {
+    "ref": "parsley"
+   },
+   {
+    "ref": "lemon",
+    "qty": "1"
+   },
+   {
+    "ref": "olive-oil"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Coupe les tomates, les concombres et l’oignon en tout petits dés.",
+    "Ajoute le persil haché.",
+    "Assaisonne de jus de citron, d’huile d’olive et de sel juste avant de servir."
+   ],
+   "en": [
+    "Dice the tomatoes, cucumbers and onion very finely.",
+    "Add the chopped parsley.",
+    "Dress with lemon juice, olive oil and salt just before serving."
+   ],
+   "he": [
+    "קוצצים דק מאוד עגבניות, מלפפונים ובצל.",
+    "מוסיפים פטרוזיליה קצוצה.",
+    "מתבלים במיץ לימון, שמן זית ומלח רגע לפני ההגשה."
+   ]
+  }
+ },
+ {
+  "id": "mushroom-omelette",
+  "title": {
+   "fr": "Omelette aux champignons",
+   "en": "Mushroom omelette",
+   "he": "חביתת פטריות"
+  },
+  "image": null,
+  "minutes": 15,
+  "difficulty": "easy",
+  "servings": 1,
+  "tags": [
+   "veggie",
+   "quick"
+  ],
+  "ingredients": [
+   {
+    "ref": "egg",
+    "qty": "3"
+   },
+   {
+    "ref": "mushroom",
+    "qty": "150 g"
+   },
+   {
+    "ref": "butter"
+   },
+   {
+    "ref": "cheese",
+    "qty": "40 g"
+   },
+   {
+    "ref": "parsley"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Fais dorer les champignons émincés dans le beurre, 5 minutes.",
+    "Bats les œufs avec du sel et verse-les sur les champignons.",
+    "Ajoute le fromage râpé et le persil, replie l’omelette dès qu’elle est prise."
+   ],
+   "en": [
+    "Brown the sliced mushrooms in butter for 5 minutes.",
+    "Beat the eggs with salt and pour them over the mushrooms.",
+    "Add the grated cheese and parsley, and fold the omelette as soon as it sets."
+   ],
+   "he": [
+    "מזהיבים את הפטריות הפרוסות בחמאה, 5 דקות.",
+    "טורפים את הביצים עם מלח ושופכים על הפטריות.",
+    "מוסיפים גבינה מגוררת ופטרוזיליה, ומקפלים את החביתה כשהיא מתייצבת."
+   ]
+  }
+ },
+ {
+  "id": "roast-chicken",
+  "title": {
+   "fr": "Poulet rôti aux pommes de terre",
+   "en": "Roast chicken with potatoes",
+   "he": "עוף צלוי עם תפוחי אדמה"
+  },
+  "image": null,
+  "minutes": 75,
+  "difficulty": "medium",
+  "servings": 4,
+  "tags": [
+   "oven"
+  ],
+  "ingredients": [
+   {
+    "ref": "chicken",
+    "qty": "1 kg"
+   },
+   {
+    "ref": "potato",
+    "qty": "800 g"
+   },
+   {
+    "ref": "garlic",
+    "qty": "4"
+   },
+   {
+    "ref": "rosemary"
+   },
+   {
+    "ref": "olive-oil"
+   },
+   {
+    "ref": "lemon",
+    "qty": "1"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Préchauffe le four à 200 °C. Coupe les pommes de terre en quartiers.",
+    "Dispose le poulet et les pommes de terre dans un plat avec l’ail, le romarin, le citron en quartiers, l’huile, du sel et du poivre.",
+    "Enfourne 1 heure en arrosant à mi-cuisson, jusqu’à ce que la peau soit dorée."
+   ],
+   "en": [
+    "Heat the oven to 200 °C. Cut the potatoes into wedges.",
+    "Put the chicken and potatoes in a dish with the garlic, rosemary, lemon wedges, oil, salt and pepper.",
+    "Roast for 1 hour, basting halfway, until the skin is golden."
+   ],
+   "he": [
+    "מחממים תנור ל־200 מעלות. חותכים את תפוחי האדמה לפלחים.",
+    "מסדרים בתבנית את העוף ותפוחי האדמה עם שום, רוזמרין, פלחי לימון, שמן, מלח ופלפל.",
+    "אופים שעה ומזלפים מהנוזלים באמצע, עד שהעור מוזהב."
+   ]
+  }
+ },
+ {
+  "id": "fried-rice",
+  "title": {
+   "fr": "Riz sauté aux légumes",
+   "en": "Vegetable fried rice",
+   "he": "אורז מוקפץ עם ירקות"
+  },
+  "image": null,
+  "minutes": 20,
+  "difficulty": "easy",
+  "servings": 2,
+  "tags": [
+   "quick",
+   "asian"
+  ],
+  "ingredients": [
+   {
+    "ref": "rice",
+    "qty": "250 g"
+   },
+   {
+    "ref": "egg",
+    "qty": "2"
+   },
+   {
+    "ref": "carrot",
+    "qty": "1"
+   },
+   {
+    "ref": "frozen-peas",
+    "qty": "100 g"
+   },
+   {
+    "ref": "green-onion"
+   },
+   {
+    "ref": "soy-sauce"
+   },
+   {
+    "ref": "oil"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Utilise du riz cuit et refroidi, idéalement de la veille.",
+    "Fais sauter la carotte en dés et les petits pois dans l’huile bien chaude, 3 minutes.",
+    "Ajoute le riz, puis les œufs battus, mélange jusqu’à ce qu’ils soient cuits. Termine avec la sauce soja et l’oignon vert."
+   ],
+   "en": [
+    "Use cooked, cooled rice, ideally from the day before.",
+    "Stir-fry the diced carrot and peas in very hot oil for 3 minutes.",
+    "Add the rice, then the beaten eggs, and stir until they are cooked. Finish with soy sauce and spring onion."
+   ],
+   "he": [
+    "משתמשים באורז מבושל וקר, רצוי מאתמול.",
+    "מקפיצים גזר קצוץ ואפונה בשמן חם מאוד, 3 דקות.",
+    "מוסיפים את האורז ואז את הביצים הטרופות, ומערבבים עד שהן מתבשלות. מסיימים ברוטב סויה ובצל ירוק."
+   ]
+  }
+ },
+ {
+  "id": "chickpea-curry",
+  "title": {
+   "fr": "Curry de pois chiches",
+   "en": "Chickpea curry",
+   "he": "קארי חומוס"
+  },
+  "image": null,
+  "minutes": 30,
+  "difficulty": "easy",
+  "servings": 4,
+  "tags": [
+   "veggie",
+   "vegan"
+  ],
+  "ingredients": [
+   {
+    "ref": "chickpeas",
+    "qty": "400 g"
+   },
+   {
+    "ref": "coconut-milk",
+    "qty": "400 ml"
+   },
+   {
+    "ref": "canned-tomatoes",
+    "qty": "400 g"
+   },
+   {
+    "ref": "onion",
+    "qty": "1"
+   },
+   {
+    "ref": "garlic",
+    "qty": "2"
+   },
+   {
+    "ref": "spinach",
+    "qty": "150 g"
+   },
+   {
+    "ref": "curry"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Fais revenir l’oignon et l’ail hachés avec le curry, 5 minutes.",
+    "Ajoute les tomates, le lait de coco et les pois chiches égouttés, laisse mijoter 15 minutes.",
+    "Incorpore les épinards jusqu’à ce qu’ils tombent, sale et sers avec du riz."
+   ],
+   "en": [
+    "Fry the chopped onion and garlic with the curry powder for 5 minutes.",
+    "Add the tomatoes, coconut milk and drained chickpeas, and simmer for 15 minutes.",
+    "Stir in the spinach until it wilts, season and serve with rice."
+   ],
+   "he": [
+    "מטגנים בצל ושום קצוצים עם הקארי, 5 דקות.",
+    "מוסיפים עגבניות, חלב קוקוס וחומוס מסונן, ומבשלים על אש קטנה 15 דקות.",
+    "מוסיפים תרד עד שהוא מתרכך, מתבלים ומגישים עם אורז."
+   ]
+  }
+ },
+ {
+  "id": "homemade-hummus",
+  "title": {
+   "fr": "Houmous maison",
+   "en": "Homemade hummus",
+   "he": "חומוס ביתי"
+  },
+  "image": null,
+  "minutes": 10,
+  "difficulty": "easy",
+  "servings": 4,
+  "tags": [
+   "veggie",
+   "vegan",
+   "israeli"
+  ],
+  "ingredients": [
+   {
+    "ref": "chickpeas",
+    "qty": "400 g"
+   },
+   {
+    "ref": "tahini",
+    "qty": "100 g"
+   },
+   {
+    "ref": "lemon",
+    "qty": "1"
+   },
+   {
+    "ref": "garlic",
+    "qty": "1"
+   },
+   {
+    "ref": "olive-oil"
+   },
+   {
+    "ref": "cumin"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Égoutte les pois chiches en gardant un peu de leur eau.",
+    "Mixe-les avec le tahini, le jus de citron, l’ail, le cumin et du sel, en ajoutant l’eau jusqu’à obtenir une crème lisse.",
+    "Sers avec un filet d’huile d’olive et des pitas."
+   ],
+   "en": [
+    "Drain the chickpeas, keeping a little of their liquid.",
+    "Blend with the tahini, lemon juice, garlic, cumin and salt, adding liquid until smooth.",
+    "Serve with a drizzle of olive oil and pita."
+   ],
+   "he": [
+    "מסננים את גרגרי החומוס ושומרים מעט מהנוזל.",
+    "טוחנים עם טחינה, מיץ לימון, שום, כמון ומלח, ומוסיפים נוזל עד שמתקבל מרקם חלק.",
+    "מגישים עם שמן זית ופיתות."
+   ]
+  }
+ },
+ {
+  "id": "vegetable-couscous",
+  "title": {
+   "fr": "Couscous aux légumes",
+   "en": "Vegetable couscous",
+   "he": "קוסקוס ירקות"
+  },
+  "image": null,
+  "minutes": 45,
+  "difficulty": "medium",
+  "servings": 4,
+  "tags": [
+   "veggie"
+  ],
+  "ingredients": [
+   {
+    "ref": "couscous",
+    "qty": "300 g"
+   },
+   {
+    "ref": "carrot",
+    "qty": "3"
+   },
+   {
+    "ref": "zucchini",
+    "qty": "2"
+   },
+   {
+    "ref": "chickpeas",
+    "qty": "400 g"
+   },
+   {
+    "ref": "onion",
+    "qty": "1"
+   },
+   {
+    "ref": "stock"
+   },
+   {
+    "ref": "cumin"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Fais revenir l’oignon, ajoute les carottes en tronçons, le cumin et 1 L de bouillon, cuis 15 minutes.",
+    "Ajoute les courgettes et les pois chiches, cuis encore 15 minutes.",
+    "Verse de l’eau bouillante salée sur la semoule, couvre 5 minutes, égraine et sers avec les légumes et leur bouillon."
+   ],
+   "en": [
+    "Fry the onion, add the carrots in chunks, the cumin and 1 L of stock, and cook for 15 minutes.",
+    "Add the zucchini and chickpeas and cook for 15 more minutes.",
+    "Pour salted boiling water over the couscous, cover for 5 minutes, fluff and serve with the vegetables and broth."
+   ],
+   "he": [
+    "מטגנים בצל, מוסיפים גזר חתוך, כמון וליטר ציר, ומבשלים 15 דקות.",
+    "מוסיפים קישואים וגרגרי חומוס ומבשלים עוד 15 דקות.",
+    "יוצקים מים רותחים ומומלחים על הקוסקוס, מכסים 5 דקות, מפוררים ומגישים עם הירקות והמרק."
+   ]
+  }
+ },
+ {
+  "id": "tabbouleh",
+  "title": {
+   "fr": "Taboulé",
+   "en": "Tabbouleh",
+   "he": "טבולה"
+  },
+  "image": null,
+  "minutes": 20,
+  "difficulty": "easy",
+  "servings": 4,
+  "tags": [
+   "veggie",
+   "vegan",
+   "salad"
+  ],
+  "ingredients": [
+   {
+    "ref": "bulgur",
+    "qty": "150 g"
+   },
+   {
+    "ref": "tomato",
+    "qty": "3"
+   },
+   {
+    "ref": "cucumber",
+    "qty": "1"
+   },
+   {
+    "ref": "parsley"
+   },
+   {
+    "ref": "mint"
+   },
+   {
+    "ref": "lemon",
+    "qty": "2"
+   },
+   {
+    "ref": "olive-oil"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Fais gonfler le boulgour 15 minutes dans de l’eau bouillante, puis égoutte-le.",
+    "Hache finement le persil et la menthe, coupe les tomates et le concombre en petits dés.",
+    "Mélange le tout avec le jus de citron, l’huile d’olive et du sel."
+   ],
+   "en": [
+    "Soak the bulgur in boiling water for 15 minutes, then drain.",
+    "Finely chop the parsley and mint, and dice the tomatoes and cucumber.",
+    "Mix everything with lemon juice, olive oil and salt."
+   ],
+   "he": [
+    "משרים את הבורגול במים רותחים 15 דקות ומסננים.",
+    "קוצצים דק פטרוזיליה ונענע, וחותכים עגבניות ומלפפון לקוביות קטנות.",
+    "מערבבים הכול עם מיץ לימון, שמן זית ומלח."
+   ]
+  }
+ },
+ {
+  "id": "pumpkin-soup",
+  "title": {
+   "fr": "Velouté de courge",
+   "en": "Pumpkin soup",
+   "he": "מרק דלעת"
+  },
+  "image": null,
+  "minutes": 35,
+  "difficulty": "easy",
+  "servings": 4,
+  "tags": [
+   "veggie",
+   "soup"
+  ],
+  "ingredients": [
+   {
+    "ref": "pumpkin",
+    "qty": "1 kg"
+   },
+   {
+    "ref": "onion",
+    "qty": "1"
+   },
+   {
+    "ref": "carrot",
+    "qty": "1"
+   },
+   {
+    "ref": "cream",
+    "qty": "100 ml"
+   },
+   {
+    "ref": "stock"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Coupe la courge et la carotte en morceaux, émince l’oignon.",
+    "Fais revenir l’oignon, ajoute les légumes et couvre de bouillon, cuis 25 minutes.",
+    "Mixe avec la crème, sale et poivre."
+   ],
+   "en": [
+    "Cut the pumpkin and carrot into chunks and slice the onion.",
+    "Fry the onion, add the vegetables and cover with stock, then cook for 25 minutes.",
+    "Blend with the cream and season."
+   ],
+   "he": [
+    "חותכים דלעת וגזר לחתיכות ופורסים בצל.",
+    "מטגנים את הבצל, מוסיפים את הירקות, מכסים בציר ומבשלים 25 דקות.",
+    "טוחנים עם השמנת ומתבלים."
+   ]
+  }
+ },
+ {
+  "id": "crepes",
+  "title": {
+   "fr": "Crêpes",
+   "en": "Crêpes",
+   "he": "קרפים"
+  },
+  "image": null,
+  "minutes": 30,
+  "difficulty": "easy",
+  "servings": 4,
+  "tags": [
+   "veggie",
+   "sweet"
+  ],
+  "ingredients": [
+   {
+    "ref": "flour",
+    "qty": "250 g"
+   },
+   {
+    "ref": "egg",
+    "qty": "3"
+   },
+   {
+    "ref": "milk",
+    "qty": "500 ml"
+   },
+   {
+    "ref": "butter",
+    "qty": "30 g"
+   },
+   {
+    "ref": "sugar"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Mélange la farine et le sucre, ajoute les œufs puis le lait petit à petit pour éviter les grumeaux.",
+    "Ajoute le beurre fondu et laisse reposer 30 minutes si tu as le temps.",
+    "Cuis les crêpes dans une poêle chaude légèrement beurrée, 1 minute de chaque côté."
+   ],
+   "en": [
+    "Mix the flour and sugar, add the eggs, then the milk a little at a time to avoid lumps.",
+    "Add the melted butter and let it rest for 30 minutes if you have time.",
+    "Cook the crêpes in a hot, lightly buttered pan, 1 minute per side."
+   ],
+   "he": [
+    "מערבבים קמח וסוכר, מוסיפים ביצים ואז חלב בהדרגה כדי שלא ייווצרו גושים.",
+    "מוסיפים חמאה מומסת ומניחים לבלילה לנוח 30 דקות אם יש זמן.",
+    "מטגנים במחבת חמה משומנת קלות, דקה מכל צד."
+   ]
+  }
+ },
+ {
+  "id": "creamy-mushroom-pasta",
+  "title": {
+   "fr": "Pâtes crème et champignons",
+   "en": "Creamy mushroom pasta",
+   "he": "פסטה שמנת ופטריות"
+  },
+  "image": null,
+  "minutes": 20,
+  "difficulty": "easy",
+  "servings": 2,
+  "tags": [
+   "veggie",
+   "pasta",
+   "quick"
+  ],
+  "ingredients": [
+   {
+    "ref": "pasta",
+    "qty": "250 g"
+   },
+   {
+    "ref": "mushroom",
+    "qty": "250 g"
+   },
+   {
+    "ref": "cream",
+    "qty": "200 ml"
+   },
+   {
+    "ref": "garlic",
+    "qty": "1"
+   },
+   {
+    "ref": "parmesan",
+    "qty": "40 g"
+   },
+   {
+    "ref": "parsley"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Cuis les pâtes dans de l’eau salée.",
+    "Fais dorer les champignons et l’ail, ajoute la crème et laisse épaissir 3 minutes.",
+    "Mélange avec les pâtes, le parmesan râpé et le persil."
+   ],
+   "en": [
+    "Cook the pasta in salted water.",
+    "Brown the mushrooms and garlic, add the cream and let it thicken for 3 minutes.",
+    "Toss with the pasta, grated parmesan and parsley."
+   ],
+   "he": [
+    "מבשלים את הפסטה במים מומלחים.",
+    "מזהיבים פטריות ושום, מוסיפים שמנת ומצמצמים 3 דקות.",
+    "מערבבים עם הפסטה, פרמזן מגורר ופטרוזיליה."
+   ]
+  }
+ },
+ {
+  "id": "lemon-salmon",
+  "title": {
+   "fr": "Saumon au four, citron et aneth",
+   "en": "Baked salmon with lemon and dill",
+   "he": "סלמון בתנור עם לימון ושמיר"
+  },
+  "image": null,
+  "minutes": 25,
+  "difficulty": "easy",
+  "servings": 2,
+  "tags": [
+   "fish",
+   "oven"
+  ],
+  "ingredients": [
+   {
+    "ref": "salmon",
+    "qty": "400 g"
+   },
+   {
+    "ref": "lemon",
+    "qty": "1"
+   },
+   {
+    "ref": "dill"
+   },
+   {
+    "ref": "potato",
+    "qty": "500 g"
+   },
+   {
+    "ref": "olive-oil"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Préchauffe le four à 200 °C et fais cuire les pommes de terre en rondelles 10 minutes avec un peu d’huile.",
+    "Pose le saumon dessus avec des rondelles de citron, l’aneth, du sel et un filet d’huile.",
+    "Enfourne 12 à 15 minutes, jusqu’à ce que le saumon se détache en lamelles."
+   ],
+   "en": [
+    "Heat the oven to 200 °C and roast the sliced potatoes with a little oil for 10 minutes.",
+    "Lay the salmon on top with lemon slices, dill, salt and a drizzle of oil.",
+    "Bake for 12 to 15 minutes, until the salmon flakes."
+   ],
+   "he": [
+    "מחממים תנור ל־200 מעלות ואופים פרוסות תפוחי אדמה עם מעט שמן 10 דקות.",
+    "מניחים מעל את הסלמון עם פרוסות לימון, שמיר, מלח ושמן.",
+    "אופים 12–15 דקות, עד שהסלמון מתפרק לפתיתים."
+   ]
+  }
+ },
+ {
+  "id": "meatballs-tomato",
+  "title": {
+   "fr": "Boulettes à la sauce tomate",
+   "en": "Meatballs in tomato sauce",
+   "he": "קציצות ברוטב עגבניות"
+  },
+  "image": null,
+  "minutes": 40,
+  "difficulty": "medium",
+  "servings": 4,
+  "tags": [
+   "meat"
+  ],
+  "ingredients": [
+   {
+    "ref": "ground-beef",
+    "qty": "500 g"
+   },
+   {
+    "ref": "onion",
+    "qty": "1"
+   },
+   {
+    "ref": "egg",
+    "qty": "1"
+   },
+   {
+    "ref": "breadcrumbs",
+    "qty": "50 g"
+   },
+   {
+    "ref": "canned-tomatoes",
+    "qty": "800 g"
+   },
+   {
+    "ref": "parsley"
+   },
+   {
+    "ref": "garlic",
+    "qty": "2"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Mélange la viande avec l’oignon râpé, l’œuf, la chapelure, le persil, du sel et du poivre, puis forme des boulettes.",
+    "Fais revenir l’ail, ajoute les tomates et porte à frémissement.",
+    "Plonge les boulettes dans la sauce, couvre et laisse mijoter 25 minutes."
+   ],
+   "en": [
+    "Mix the meat with the grated onion, egg, breadcrumbs, parsley, salt and pepper, then shape into balls.",
+    "Fry the garlic, add the tomatoes and bring to a simmer.",
+    "Add the meatballs to the sauce, cover and simmer for 25 minutes."
+   ],
+   "he": [
+    "מערבבים את הבשר עם בצל מגורר, ביצה, פירורי לחם, פטרוזיליה, מלח ופלפל, ויוצרים קציצות.",
+    "מטגנים שום, מוסיפים עגבניות ומביאים לרתיחה עדינה.",
+    "מכניסים את הקציצות לרוטב, מכסים ומבשלים 25 דקות."
+   ]
+  }
+ },
+ {
+  "id": "sabich",
+  "title": {
+   "fr": "Sabich",
+   "en": "Sabich",
+   "he": "סביח"
+  },
+  "image": null,
+  "minutes": 30,
+  "difficulty": "easy",
+  "servings": 2,
+  "tags": [
+   "veggie",
+   "israeli"
+  ],
+  "ingredients": [
+   {
+    "ref": "pita",
+    "qty": "2"
+   },
+   {
+    "ref": "eggplant",
+    "qty": "1"
+   },
+   {
+    "ref": "egg",
+    "qty": "2"
+   },
+   {
+    "ref": "tahini"
+   },
+   {
+    "ref": "tomato",
+    "qty": "1"
+   },
+   {
+    "ref": "cucumber",
+    "qty": "1"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Coupe l’aubergine en tranches, sale-les et fais-les dorer à l’huile ou au four.",
+    "Fais cuire les œufs durs 9 minutes, puis coupe-les en rondelles.",
+    "Garnis les pitas d’aubergine, d’œuf, de tomate et concombre en dés, et de tahini."
+   ],
+   "en": [
+    "Slice the eggplant, salt it and fry or roast until golden.",
+    "Hard-boil the eggs for 9 minutes, then slice them.",
+    "Fill the pitas with eggplant, egg, diced tomato and cucumber, and tahini."
+   ],
+   "he": [
+    "פורסים את החציל, ממליחים ומטגנים או אופים עד הזהבה.",
+    "מבשלים ביצים קשות 9 דקות ופורסים.",
+    "ממלאים את הפיתות בחציל, ביצה, עגבנייה ומלפפון קצוצים וטחינה."
+   ]
+  }
+ },
+ {
+  "id": "schnitzel",
+  "title": {
+   "fr": "Escalopes panées",
+   "en": "Chicken schnitzel",
+   "he": "שניצל"
+  },
+  "image": null,
+  "minutes": 30,
+  "difficulty": "easy",
+  "servings": 4,
+  "tags": [
+   "meat",
+   "israeli"
+  ],
+  "ingredients": [
+   {
+    "ref": "chicken-breast",
+    "qty": "600 g"
+   },
+   {
+    "ref": "egg",
+    "qty": "2"
+   },
+   {
+    "ref": "breadcrumbs",
+    "qty": "150 g"
+   },
+   {
+    "ref": "flour",
+    "qty": "50 g"
+   },
+   {
+    "ref": "oil"
+   },
+   {
+    "ref": "lemon",
+    "qty": "1"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Aplatis les blancs de poulet et sale-les.",
+    "Passe-les dans la farine, puis l’œuf battu, puis la chapelure.",
+    "Fais-les frire 3 minutes de chaque côté dans l’huile chaude et sers avec du citron."
+   ],
+   "en": [
+    "Flatten the chicken breasts and season them.",
+    "Coat them in flour, then beaten egg, then breadcrumbs.",
+    "Fry for 3 minutes per side in hot oil and serve with lemon."
+   ],
+   "he": [
+    "משטחים את חזה העוף וממליחים.",
+    "טובלים בקמח, אחר כך בביצה טרופה ואז בפירורי לחם.",
+    "מטגנים 3 דקות מכל צד בשמן חם ומגישים עם לימון."
+   ]
+  }
+ },
+ {
+  "id": "ratatouille",
+  "title": {
+   "fr": "Ratatouille",
+   "en": "Ratatouille",
+   "he": "רטטוי"
+  },
+  "image": null,
+  "minutes": 60,
+  "difficulty": "medium",
+  "servings": 4,
+  "tags": [
+   "veggie",
+   "vegan"
+  ],
+  "ingredients": [
+   {
+    "ref": "eggplant",
+    "qty": "1"
+   },
+   {
+    "ref": "zucchini",
+    "qty": "2"
+   },
+   {
+    "ref": "pepper",
+    "qty": "2"
+   },
+   {
+    "ref": "tomato",
+    "qty": "4"
+   },
+   {
+    "ref": "onion",
+    "qty": "1"
+   },
+   {
+    "ref": "garlic",
+    "qty": "3"
+   },
+   {
+    "ref": "olive-oil"
+   },
+   {
+    "ref": "thyme"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Coupe tous les légumes en dés.",
+    "Fais revenir l’oignon et les poivrons, puis l’aubergine et les courgettes, 10 minutes.",
+    "Ajoute les tomates, l’ail et le thym, couvre et laisse mijoter 40 minutes."
+   ],
+   "en": [
+    "Dice all the vegetables.",
+    "Fry the onion and peppers, then the eggplant and zucchini, for 10 minutes.",
+    "Add the tomatoes, garlic and thyme, cover and simmer for 40 minutes."
+   ],
+   "he": [
+    "חותכים את כל הירקות לקוביות.",
+    "מטגנים בצל ופלפלים, אחר כך חציל וקישואים, 10 דקות.",
+    "מוסיפים עגבניות, שום וטימין, מכסים ומבשלים 40 דקות."
+   ]
+  }
+ },
+ {
+  "id": "caprese",
+  "title": {
+   "fr": "Salade caprese",
+   "en": "Caprese salad",
+   "he": "סלט קפרזה"
+  },
+  "image": null,
+  "minutes": 5,
+  "difficulty": "easy",
+  "servings": 2,
+  "tags": [
+   "veggie",
+   "salad",
+   "quick"
+  ],
+  "ingredients": [
+   {
+    "ref": "tomato",
+    "qty": "3"
+   },
+   {
+    "ref": "mozzarella",
+    "qty": "250 g"
+   },
+   {
+    "ref": "basil"
+   },
+   {
+    "ref": "olive-oil"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Coupe les tomates et la mozzarella en tranches.",
+    "Alterne-les sur une assiette avec les feuilles de basilic.",
+    "Arrose d’huile d’olive, sale et poivre."
+   ],
+   "en": [
+    "Slice the tomatoes and mozzarella.",
+    "Layer them on a plate with the basil leaves.",
+    "Drizzle with olive oil and season."
+   ],
+   "he": [
+    "פורסים את העגבניות והמוצרלה.",
+    "מסדרים לסירוגין בצלחת עם עלי בזיליקום.",
+    "מזלפים שמן זית ומתבלים."
+   ]
+  }
+ },
+ {
+  "id": "banana-smoothie",
+  "title": {
+   "fr": "Smoothie banane",
+   "en": "Banana smoothie",
+   "he": "שייק בננה"
+  },
+  "image": null,
+  "minutes": 5,
+  "difficulty": "easy",
+  "servings": 2,
+  "tags": [
+   "veggie",
+   "sweet",
+   "quick"
+  ],
+  "ingredients": [
+   {
+    "ref": "banana",
+    "qty": "2"
+   },
+   {
+    "ref": "milk",
+    "qty": "300 ml"
+   },
+   {
+    "ref": "yogurt",
+    "qty": "1"
+   },
+   {
+    "ref": "honey"
+   },
+   {
+    "ref": "oats",
+    "qty": "30 g"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Coupe les bananes en morceaux.",
+    "Mixe-les avec le lait, le yaourt, le miel et les flocons d’avoine.",
+    "Sers aussitôt, bien frais."
+   ],
+   "en": [
+    "Cut the bananas into pieces.",
+    "Blend with the milk, yogurt, honey and oats.",
+    "Serve straight away, well chilled."
+   ],
+   "he": [
+    "חותכים את הבננות לחתיכות.",
+    "טוחנים עם החלב, היוגורט, הדבש ושיבולת השועל.",
+    "מגישים מיד, קר."
+   ]
+  }
+ },
+ {
+  "id": "yogurt-cake",
+  "title": {
+   "fr": "Gâteau au yaourt",
+   "en": "Yogurt cake",
+   "he": "עוגת יוגורט"
+  },
+  "image": null,
+  "minutes": 45,
+  "difficulty": "easy",
+  "servings": 8,
+  "tags": [
+   "veggie",
+   "sweet",
+   "oven"
+  ],
+  "ingredients": [
+   {
+    "ref": "yogurt",
+    "qty": "1"
+   },
+   {
+    "ref": "flour",
+    "qty": "250 g"
+   },
+   {
+    "ref": "sugar",
+    "qty": "150 g"
+   },
+   {
+    "ref": "egg",
+    "qty": "3"
+   },
+   {
+    "ref": "oil",
+    "qty": "100 ml"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Préchauffe le four à 180 °C.",
+    "Mélange le yaourt, le sucre et les œufs, puis la farine (avec un sachet de levure) et l’huile.",
+    "Verse dans un moule huilé et enfourne 35 minutes."
+   ],
+   "en": [
+    "Heat the oven to 180 °C.",
+    "Mix the yogurt, sugar and eggs, then the flour (with a sachet of baking powder) and the oil.",
+    "Pour into an oiled tin and bake for 35 minutes."
+   ],
+   "he": [
+    "מחממים תנור ל־180 מעלות.",
+    "מערבבים יוגורט, סוכר וביצים, ואז קמח (עם שקית אבקת אפייה) ושמן.",
+    "יוצקים לתבנית משומנת ואופים 35 דקות."
+   ]
+  }
+ },
+ {
+  "id": "vegetable-soup",
+  "title": {
+   "fr": "Soupe de légumes",
+   "en": "Vegetable soup",
+   "he": "מרק ירקות"
+  },
+  "image": null,
+  "minutes": 40,
+  "difficulty": "easy",
+  "servings": 4,
+  "tags": [
+   "veggie",
+   "vegan",
+   "soup"
+  ],
+  "ingredients": [
+   {
+    "ref": "carrot",
+    "qty": "3"
+   },
+   {
+    "ref": "potato",
+    "qty": "2"
+   },
+   {
+    "ref": "zucchini",
+    "qty": "1"
+   },
+   {
+    "ref": "leek",
+    "qty": "1"
+   },
+   {
+    "ref": "onion",
+    "qty": "1"
+   },
+   {
+    "ref": "stock"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Coupe tous les légumes en morceaux.",
+    "Fais revenir l’oignon et le poireau, ajoute le reste et couvre de bouillon.",
+    "Cuis 30 minutes, puis mixe ou sers en morceaux."
+   ],
+   "en": [
+    "Cut all the vegetables into pieces.",
+    "Fry the onion and leek, add the rest and cover with stock.",
+    "Cook for 30 minutes, then blend or serve chunky."
+   ],
+   "he": [
+    "חותכים את כל הירקות לחתיכות.",
+    "מטגנים בצל וכרישה, מוסיפים את השאר ומכסים בציר.",
+    "מבשלים 30 דקות, ואז טוחנים או מגישים כמו שזה."
+   ]
+  }
+ },
+ {
+  "id": "mujadara",
+  "title": {
+   "fr": "Mujadara",
+   "en": "Mujadara",
+   "he": "מג׳דרה"
+  },
+  "image": null,
+  "minutes": 45,
+  "difficulty": "easy",
+  "servings": 4,
+  "tags": [
+   "veggie",
+   "vegan",
+   "israeli"
+  ],
+  "ingredients": [
+   {
+    "ref": "lentils",
+    "qty": "200 g"
+   },
+   {
+    "ref": "rice",
+    "qty": "200 g"
+   },
+   {
+    "ref": "onion",
+    "qty": "3"
+   },
+   {
+    "ref": "cumin"
+   },
+   {
+    "ref": "olive-oil"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Fais cuire les lentilles 15 minutes dans de l’eau, égoutte.",
+    "Fais caraméliser les oignons émincés dans l’huile d’olive, 20 minutes.",
+    "Cuis le riz avec les lentilles, le cumin et la moitié des oignons, puis garnis du reste des oignons."
+   ],
+   "en": [
+    "Cook the lentils in water for 15 minutes and drain.",
+    "Caramelise the sliced onions in olive oil for 20 minutes.",
+    "Cook the rice with the lentils, cumin and half the onions, then top with the rest."
+   ],
+   "he": [
+    "מבשלים את העדשים 15 דקות במים ומסננים.",
+    "מקרמלים בצל פרוס בשמן זית, 20 דקות.",
+    "מבשלים את האורז עם העדשים, הכמון וחצי מהבצל, ומפזרים מעל את השאר."
+   ]
+  }
+ },
+ {
+  "id": "chicken-wraps",
+  "title": {
+   "fr": "Wraps au poulet",
+   "en": "Chicken wraps",
+   "he": "טורטיות עוף"
+  },
+  "image": null,
+  "minutes": 20,
+  "difficulty": "easy",
+  "servings": 2,
+  "tags": [
+   "meat",
+   "quick"
+  ],
+  "ingredients": [
+   {
+    "ref": "tortilla",
+    "qty": "4"
+   },
+   {
+    "ref": "chicken-breast",
+    "qty": "300 g"
+   },
+   {
+    "ref": "lettuce"
+   },
+   {
+    "ref": "tomato",
+    "qty": "2"
+   },
+   {
+    "ref": "avocado",
+    "qty": "1"
+   },
+   {
+    "ref": "yogurt",
+    "qty": "1"
+   },
+   {
+    "ref": "paprika"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Coupe le poulet en lanières, assaisonne de paprika et fais-le dorer 6 minutes.",
+    "Prépare la salade, la tomate en dés et l’avocat en tranches.",
+    "Garnis les tortillas, ajoute une cuillère de yaourt et roule-les."
+   ],
+   "en": [
+    "Cut the chicken into strips, season with paprika and brown for 6 minutes.",
+    "Prepare the lettuce, diced tomato and sliced avocado.",
+    "Fill the tortillas, add a spoonful of yogurt and roll them up."
+   ],
+   "he": [
+    "חותכים את העוף לרצועות, מתבלים בפפריקה ומזהיבים 6 דקות.",
+    "מכינים חסה, עגבנייה קצוצה ואבוקדו פרוס.",
+    "ממלאים את הטורטיות, מוסיפים כף יוגורט ומגלגלים."
+   ]
+  }
+ },
+ {
+  "id": "cauliflower-gratin",
+  "title": {
+   "fr": "Gratin de chou-fleur",
+   "en": "Cauliflower cheese",
+   "he": "כרובית מוקרמת"
+  },
+  "image": null,
+  "minutes": 45,
+  "difficulty": "medium",
+  "servings": 4,
+  "tags": [
+   "veggie",
+   "oven"
+  ],
+  "ingredients": [
+   {
+    "ref": "cauliflower",
+    "qty": "1"
+   },
+   {
+    "ref": "cheese",
+    "qty": "100 g"
+   },
+   {
+    "ref": "milk",
+    "qty": "500 ml"
+   },
+   {
+    "ref": "butter",
+    "qty": "40 g"
+   },
+   {
+    "ref": "flour",
+    "qty": "40 g"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Fais cuire le chou-fleur en bouquets 8 minutes dans l’eau salée, égoutte.",
+    "Fais fondre le beurre, ajoute la farine puis le lait en fouettant jusqu’à épaississement. Ajoute la moitié du fromage.",
+    "Verse sur le chou-fleur, parsème du reste du fromage et gratine 20 minutes à 200 °C."
+   ],
+   "en": [
+    "Boil the cauliflower florets in salted water for 8 minutes and drain.",
+    "Melt the butter, add the flour, then whisk in the milk until thick. Stir in half the cheese.",
+    "Pour over the cauliflower, top with the rest of the cheese and bake for 20 minutes at 200 °C."
+   ],
+   "he": [
+    "מבשלים את פרחי הכרובית 8 דקות במים מומלחים ומסננים.",
+    "ממיסים חמאה, מוסיפים קמח ואז חלב תוך טריפה עד שמסמיך. מוסיפים חצי מהגבינה.",
+    "יוצקים על הכרובית, מפזרים את שאר הגבינה ואופים 20 דקות ב־200 מעלות."
+   ]
+  }
+ },
+ {
+  "id": "apple-compote",
+  "title": {
+   "fr": "Compote de pommes",
+   "en": "Apple compote",
+   "he": "רסק תפוחים"
+  },
+  "image": null,
+  "minutes": 25,
+  "difficulty": "easy",
+  "servings": 4,
+  "tags": [
+   "veggie",
+   "vegan",
+   "sweet"
+  ],
+  "ingredients": [
+   {
+    "ref": "apple",
+    "qty": "1 kg"
+   },
+   {
+    "ref": "cinnamon"
+   },
+   {
+    "ref": "sugar"
+   },
+   {
+    "ref": "lemon",
+    "qty": "1"
+   }
+  ],
+  "steps": {
+   "fr": [
+    "Épluche et coupe les pommes en morceaux.",
+    "Mets-les dans une casserole avec un peu d’eau, le jus de citron, le sucre et la cannelle.",
+    "Cuis à couvert 20 minutes à feu doux, puis écrase à la fourchette."
+   ],
+   "en": [
+    "Peel and chop the apples.",
+    "Put them in a pan with a little water, the lemon juice, sugar and cinnamon.",
+    "Cook covered over low heat for 20 minutes, then mash with a fork."
+   ],
+   "he": [
+    "מקלפים וחותכים את התפוחים.",
+    "שמים בסיר עם מעט מים, מיץ לימון, סוכר וקינמון.",
+    "מבשלים מכוסה על אש קטנה 20 דקות ומועכים במזלג."
+   ]
+  }
+ }
+]

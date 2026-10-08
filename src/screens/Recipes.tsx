@@ -1,4 +1,5 @@
 import { Button, Icon, IngredientChip, MatchMeter, RecipeCard, RecipeImage } from '../ds';
+import { recipeImage } from '../catalog';
 import { useApp } from '../ctx';
 import { ingredientName, matchRecipes } from '../lib/pantry';
 
@@ -18,23 +19,25 @@ export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: str
   const m = openId ? matches.find((x) => x.recipe.id === openId) : undefined;
   if (m) {
     const r = m.recipe;
+    const qty = (ref: string) => r.ingredients.find((i) => i.ref === ref)?.qty;
     return (
       <div className="screen">
         <button type="button" className="backbtn" onClick={() => onOpen(undefined)}><Icon name="back" className="rtl-flip" />{t('back')}</button>
-        <div className="detail-media"><RecipeImage src={r.image} alt={r.title[lang]} /></div>
+        <div className="detail-media"><RecipeImage src={recipeImage(r)} alt={r.title[lang]} /></div>
         <h1 className="title">{r.title[lang]}</h1>
         <div className="rf-recipe-meta"><Icon name="clock" size={16} /><span>{r.minutes} {t('min')} · {t(r.difficulty)}</span></div>
         <MatchMeter have={m.have.length} total={r.ingredients.length} label={t('ingredients')} />
+        <p className="muted">{t('servings', { n: r.servings })}</p>
         {m.have.length > 0 && (
           <section className="sec">
             <h2 className="grouph">{t('youHave')}</h2>
-            <div className="rf-row">{m.have.map((id) => <IngredientChip key={id} state="have">{ingredientName(id, lang)}</IngredientChip>)}</div>
+            <div className="rf-row">{m.have.map((id) => <IngredientChip key={id} state="have" quantity={qty(id)}>{ingredientName(id, lang)}</IngredientChip>)}</div>
           </section>
         )}
         {m.missing.length > 0 && (
           <section className="sec">
             <h2 className="grouph">{t('youMiss')}</h2>
-            <div className="rf-row">{m.missing.map((id) => <IngredientChip key={id} state="missing" onClick={() => addToList([id])}>{ingredientName(id, lang)}</IngredientChip>)}</div>
+            <div className="rf-row">{m.missing.map((id) => <IngredientChip key={id} state="missing" quantity={qty(id)} onClick={() => addToList([id])}>{ingredientName(id, lang)}</IngredientChip>)}</div>
             <Button variant="secondary" icon="list" onClick={() => addToList(m.missing)}>{t('addMissing')}</Button>
           </section>
         )}
@@ -53,7 +56,7 @@ export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: str
         {matches.map((x) => (
           <RecipeCard
             key={x.recipe.id}
-            image={x.recipe.image}
+            image={recipeImage(x.recipe)}
             imageAlt={x.recipe.title[lang]}
             title={x.recipe.title[lang]}
             time={`${x.recipe.minutes} ${t('min')} · ${t(x.recipe.difficulty)}`}

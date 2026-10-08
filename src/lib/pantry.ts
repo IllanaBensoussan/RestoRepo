@@ -1,4 +1,5 @@
-import { INGREDIENTS, RECIPES, ingredientById, type Category, type Recipe } from '../data';
+import { getCatalog, ingredientById, type Recipe } from '../catalog';
+import type { Category } from '../data';
 import type { BadgeTone } from '../ds';
 import type { Lang, T } from '../i18n';
 
@@ -85,14 +86,15 @@ export interface RecipeMatch {
 
 export function matchRecipes(pantry: PantryEntry[], now = Date.now()): RecipeMatch[] {
   const have = available(pantry, now);
-  return RECIPES.map((recipe) => {
-    const h = recipe.ingredients.filter((i) => have.has(i));
-    const m = recipe.ingredients.filter((i) => !have.has(i));
+  return getCatalog().recipes.map((recipe) => {
+    const refs = recipe.ingredients.map((i) => i.ref);
+    const h = refs.filter((i) => have.has(i));
+    const m = refs.filter((i) => !have.has(i));
     let urgency = Infinity;
     for (const e of pantry) {
       if (!e.ingredientId) continue;
       const ing = ingredientById(e.ingredientId);
-      if (recipe.ingredients.includes(e.ingredientId) || (ing?.group && recipe.ingredients.includes(ing.group))) {
+      if (refs.includes(e.ingredientId) || (ing?.group && refs.includes(ing.group))) {
         const d = daysLeft(e, now);
         if (d >= 0) urgency = Math.min(urgency, d);
       }
@@ -101,4 +103,4 @@ export function matchRecipes(pantry: PantryEntry[], now = Date.now()): RecipeMat
   }).sort((a, b) => b.have.length / b.recipe.ingredients.length - a.have.length / a.recipe.ingredients.length || a.urgency - b.urgency);
 }
 
-export const ingredientName = (id: string, lang: Lang) => ingredientById(id)?.name[lang] ?? INGREDIENTS.find((i) => i.group === id)?.name[lang] ?? id;
+export { ingredientName } from '../catalog';

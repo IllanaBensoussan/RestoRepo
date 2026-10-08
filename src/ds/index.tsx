@@ -208,7 +208,8 @@ export function MatchMeter({ have, total, label }: { have: number; total: number
 
 export function RecipeCard({ title, image, imageAlt, readyLabel, size = 'md', time, have, total, matchLabel, missing, missingLabel, onOpen, onMissing }: {
   title: string;
-  image: string;
+  /** Photo of the finished dish; null shows a stand-in until one is added. */
+  image: string | null;
   imageAlt?: string;
   readyLabel?: string;
   size?: 'md' | 'sm';
@@ -252,7 +253,15 @@ export function RecipeCard({ title, image, imageAlt, readyLabel, size = 'md', ti
 }
 
 // Holds the 4:3 frame with a pulsing placeholder until the dish photo has loaded.
-export function RecipeImage({ src, alt }: { src: string; alt: string }) {
+// A recipe with no photo yet gets a stand-in frame with the pot icon.
+export function RecipeImage({ src, alt }: { src: string | null; alt: string }) {
+  if (!src) {
+    return (
+      <div className="rf-recipe-img rf-recipe-noimg" role="img" aria-label={alt}>
+        <Icon name="pot" size={40} />
+      </div>
+    );
+  }
   return (
     <img
       className="rf-recipe-img rf-recipe-loading"

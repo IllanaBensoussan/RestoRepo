@@ -12,6 +12,7 @@ import {
   writeBatch,
   type Firestore,
 } from 'firebase/firestore';
+import { makeCatalog, setCatalog, type Ingredient, type Recipe } from '../catalog';
 import { getApp, useEmulators } from './firebase';
 import type { PantryEntry, ShoppingEntry } from './pantry';
 import type { UserData } from './store';
@@ -103,4 +104,29 @@ export async function saveDiff(uid: string, prev: UserData, next: UserData) {
     writes++;
   }
   if (writes > 0) await batch.commit();
+}
+
+/**
+ * Keeps the app's catalogue in step with the `ingredients` and `recipes` collections.
+ * Until both have answered with documents, the bundled copy stays in use.
+ */
+export function subscribeCatalog() {
+  const fs = getDb();
+  if (!fs) return () => {};
+  let ingredients: Ingredient[] | null = null;
+  let recipes: Recipe[] | null = null;
+  const apply = () => {
+    if (ingredients?.length && recipes?.length) setCatalog(makeCatalog(ingredients, recipes));
+  };
+  const unsubs = [
+    onSnapshot(collection(fs, 'ingredients'), (s) => {
+      ingredients = s.docs.map((d) => ({ ...(d.data() as Ingredient), id: d.id }));
+      apply();
+    }, (e) => console.warn('catalog: ingredients', e)),
+    onSnapshot(collection(fs, 'recipes'), (s) => {
+      recipes = s.docs.map((d) => ({ ...(d.data() as Recipe), id: d.id })).sort((a, b) => a.id.localeCompare(b.id));
+      apply();
+    }, (e) => console.warn('catalog: recipes', e)),
+  ];
+  return () => unsubs.forEach((u) => u());
 }
