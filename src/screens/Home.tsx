@@ -1,6 +1,7 @@
 import { Button, Icon, PantryItem, RecipeCard } from '../ds';
 import { useApp } from '../ctx';
 import { recipeImage } from '../catalog';
+import { recipeBadges } from './Recipes';
 import { CATEGORIES } from '../data';
 import { formatDate } from '../i18n';
 import { daysLeft, entryName, expiry, ingredientName, matchRecipes, startOfDay } from '../lib/pantry';
@@ -12,7 +13,9 @@ export function Home() {
   const soon = fresh.filter((e) => daysLeft(e, now) <= 3).sort((a, b) => a.expiresAt - b.expiresAt);
   const matches = matchRecipes(data.pantry, now);
   const ready = matches.filter((m) => m.missing.length === 0);
-  const [hero, ...rest] = matches;
+  // The best match, then a short rail: the full list is on the Recipes screen.
+  const [hero, ...others] = matches;
+  const rest = others.slice(0, 10);
 
   function lastReceipt() {
     if (!data.lastReceiptAt) return t('noReceipt');
@@ -31,6 +34,7 @@ export function Home() {
       size={size}
       image={recipeImage(m.recipe)}
       imageAlt={m.recipe.title[lang]}
+      badges={recipeBadges(m.recipe, t)}
       title={m.recipe.title[lang]}
       time={`${m.recipe.minutes} ${t('min')}${size === 'md' ? ` · ${t(m.recipe.difficulty)}` : ''}`}
       have={m.have.length}

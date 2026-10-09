@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
+import ingredients from '../../catalog/ingredients.json';
+import { makeCatalog, setCatalog, type Ingredient } from '../catalog';
 import { matchIngredient, parseReceipt } from './receipt';
+
+// The app gets its catalogue from Firestore; the tests use the file it is seeded from.
+setCatalog(makeCatalog('ready', ingredients as Ingredient[]));
 
 describe('matchIngredient', () => {
   it('finds French, English and Hebrew names', () => {

@@ -58,12 +58,12 @@ Tant que les clés ne sont pas renseignées, l'écran de connexion le signale et
   - `users/{uid}/shopping/{id}` contient un document par article de courses.
 
   Tout se synchronise en direct entre les appareils, et l'app continue de marcher hors ligne grâce au cache de Firestore, puis rattrape à la reconnexion. Les règles (`firestore.rules`) n'autorisent chaque personne qu'à lire et écrire ses propres données. À la première connexion, ce qui était déjà enregistré dans le navigateur est envoyé dans Firestore. Le mode démo reste dans le navigateur.
-- **Catalogue** : les ingrédients et les recettes sont dans Firestore, dans les collections `ingredients` et `recipes`. Tout compte connecté peut les lire, et seul le script d'import peut les modifier. Leur source est dans le dépôt, dans `catalog/ingredients.json` et `catalog/recipes.json` :
+- **Catalogue** : les ingrédients, les recettes et leurs sources sont dans Firestore, dans les collections `ingredients`, `recipes` et `sources`. L'app ne contient aucune copie : tout vient de Firestore (le cache de l'appareil prend le relais hors ligne). Chaque recette a une catégorie (`course` : entrée, plat, accompagnement, dessert, petit-déjeuner), une annotation `kashrut` (viande/lait/neutre, בשרי/חלבי/פרווה) qui doit correspondre à ses ingrédients (champ `kashrut` des ingrédients), et une `source` (id dans `sources` et lien vers la page de la recette). Tout compte connecté peut les lire, et seul le script d'import peut les modifier. Leur source est dans le dépôt, dans `catalog/ingredients.json`, `catalog/recipes.json` et `catalog/sources.json` :
   - pour ajouter ou corriger une recette ou un ingrédient, modifie ces fichiers et pousse ;
   - le workflow `.github/workflows/catalog.yml` vérifie le catalogue (`src/catalog.test.ts`), puis l'envoie dans Firestore ;
-  - l'app lit Firestore, suit les changements en direct et garde une copie du catalogue intégrée pour démarrer ou en cas de problème.
+  - l'app lit Firestore et suit les changements en direct. Après une modification de `firestore.rules`, publie les règles (console Firebase, onglet **Règles**).
 
-  Pour une recette, `image` peut être un chemin du site (`recipes/x.svg`) ou une URL. Sans photo (`null`), l'app affiche un cadre provisoire.
+  Pour une recette, `image` peut être un chemin du site ou une URL. Sans photo (`null`), l'app affiche un cadre provisoire.
 
 ### Importer des recettes de TheMealDB
 

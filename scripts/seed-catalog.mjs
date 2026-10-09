@@ -1,4 +1,4 @@
-// Uploads catalog/ingredients.json and catalog/recipes.json to Firestore.
+// Uploads catalog/ingredients.json, catalog/recipes.json and catalog/sources.json to Firestore.
 // Documents are written by id; documents no longer in the files are deleted.
 //
 //   GOOGLE_APPLICATION_CREDENTIALS=key.json node scripts/seed-catalog.mjs   # real project
@@ -27,6 +27,8 @@ async function sync(name, items) {
 
 const ingredients = read('ingredients.json');
 const recipes = read('recipes.json');
+const sources = read('sources.json');
+await sync('sources', sources);
 await sync('ingredients', ingredients);
 await sync('recipes', recipes);
-await db.doc('meta/catalog').set({ ingredients: ingredients.length, recipes: recipes.length, updatedAt: new Date() });
+await db.doc('meta/catalog').set({ ingredients: ingredients.length, recipes: recipes.length, sources: sources.length, updatedAt: new Date() });

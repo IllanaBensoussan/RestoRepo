@@ -12,7 +12,7 @@ import {
   writeBatch,
   type Firestore,
 } from 'firebase/firestore';
-import { makeCatalog, setCatalog, type Ingredient, type Recipe } from '../catalog';
+import { getCatalog, makeCatalog, setCatalog, type Ingredient, type Recipe, type Source } from '../catalog';
 import { getApp, useEmulators } from './firebase';
 import type { PantryEntry, ShoppingEntry } from './pantry';
 import type { UserData } from './store';
@@ -107,26 +107,49 @@ export async function saveDiff(uid: string, prev: UserData, next: UserData) {
 }
 
 /**
- * Keeps the app's catalogue in step with the `ingredients` and `recipes` collections.
- * Until both have answered with documents, the bundled copy stays in use.
+ * Keeps the app's catalogue in step with the `ingredients`, `recipes` and `sources` collections.
+ * It stays "loading" until each has answered from the server (or from the device cache, when
+ * that holds documents), and turns "unavailable" if one can't be read.
  */
 export function subscribeCatalog() {
   const fs = getDb();
-  if (!fs) return () => {};
+  if (!fs) {
+    setCatalog(makeCatalog('unavailable'));
+    return () => {};
+  }
   let ingredients: Ingredient[] | null = null;
   let recipes: Recipe[] | null = null;
+  let sources: Source[] | null = null;
   const apply = () => {
-    if (ingredients?.length && recipes?.length) setCatalog(makeCatalog(ingredients, recipes));
+    if (ingredients && recipes && sources) setCatalog(makeCatalog('ready', ingredients, recipes, sources));
   };
+  const fail = (what: string) => (e: Error) => {
+    console.warn(`catalog: ${what}`, e);
+    setCatalog({ ...getCatalog(), status: 'unavailable' });
+  };
+  // An empty snapshot from the cache only means nothing is cached yet: wait for the server.
+  const settled = (s: { empty: boolean; metadata: { fromCache: boolean } }) => !s.metadata.fromCache || !s.empty;
   const unsubs = [
-    onSnapshot(collection(fs, 'ingredients'), (s) => {
+    onSnapshot(collection(fs, 'ingredients'), { includeMetadataChanges: true }, (s) => {
+      if (!settled(s)) return;
       ingredients = s.docs.map((d) => ({ ...(d.data() as Ingredient), id: d.id }));
       apply();
-    }, (e) => console.warn('catalog: ingredients', e)),
-    onSnapshot(collection(fs, 'recipes'), (s) => {
+    }, fail('ingredients')),
+    onSnapshot(collection(fs, 'recipes'), { includeMetadataChanges: true }, (s) => {
+      if (!settled(s)) return;
       recipes = s.docs.map((d) => ({ ...(d.data() as Recipe), id: d.id })).sort((a, b) => a.id.localeCompare(b.id));
       apply();
-    }, (e) => console.warn('catalog: recipes', e)),
+    }, fail('recipes')),
+    onSnapshot(collection(fs, 'sources'), { includeMetadataChanges: true }, (s) => {
+      if (!settled(s)) return;
+      sources = s.docs.map((d) => ({ ...(d.data() as Source), id: d.id }));
+      apply();
+    }, (e) => {
+      // Recipes still show without their source's name and logo.
+      console.warn('catalog: sources', e);
+      sources = [];
+      apply();
+    }),
   ];
   return () => unsubs.forEach((u) => u());
 }

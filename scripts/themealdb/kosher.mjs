@@ -20,11 +20,13 @@ const FORBIDDEN = [
   'guanciale', 'speck', 'black pudding', 'crackling', 'frankfurter', 'frankfurters', 'boar',
   // Other forbidden animals and products
   'rabbit', 'hare', 'horse', 'frog', 'frogs', 'snail', 'snails', 'escargot', 'kangaroo', 'crocodile', 'alligator',
-  'suet', 'blood', 'gelatin', 'gelatine',
+  'suet', 'blood', 'gelatin', 'gelatine', 'lardon', 'lardons', 'marshmallow', 'marshmallows',
+  // British mincemeat is traditionally made with suet.
+  'mincemeat',
   // Seafood without fins and scales
   'shrimp', 'shrimps', 'prawn', 'prawns', 'crab', 'crabs', 'lobster', 'lobsters', 'crayfish', 'langoustine', 'langoustines',
   'mussel', 'mussels', 'clam', 'clams', 'oyster', 'oysters', 'scallop', 'scallops', 'cockle', 'cockles', 'whelk', 'whelks',
-  'squid', 'calamari', 'octopus', 'cuttlefish', 'sea urchin', 'krill',
+  'squid', 'calamari', 'octopus', 'cuttlefish', 'sea urchin', 'krill', 'conch', 'conchs',
   // Fish without scales
   'eel', 'eels', 'catfish', 'monkfish', 'shark', 'swordfish', 'sturgeon', 'caviar', 'skate',
 ];

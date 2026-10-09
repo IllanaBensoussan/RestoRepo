@@ -1,10 +1,21 @@
-import { Button, Icon, IngredientChip, MatchMeter, RecipeCard, RecipeImage } from '../ds';
-import { recipeImage } from '../catalog';
+import { useState } from 'react';
+import { Button, Icon, IngredientChip, MatchMeter, RecipeBadges, RecipeCard, RecipeImage, type RecipeBadge } from '../ds';
+import { COURSES, KASHRUT, recipeImage, sourceById, type Course, type Kashrut, type Recipe } from '../catalog';
 import { useApp } from '../ctx';
+import type { T } from '../i18n';
 import { ingredientName, matchRecipes } from '../lib/pantry';
+
+const PAGE = 24;
+
+export function recipeBadges(r: Recipe, t: T): RecipeBadge[] {
+  return [{ label: t(r.course), tone: 'course' }, { label: t(r.kashrut), tone: r.kashrut }];
+}
 
 export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: string) => void }) {
   const { t, lang, data, update, toast } = useApp();
+  const [course, setCourse] = useState<Course | null>(null);
+  const [kashrut, setKashrut] = useState<Kashrut | null>(null);
+  const [shown, setShown] = useState(PAGE);
   const matches = matchRecipes(data.pantry);
 
   function addToList(ids: string[]) {
@@ -20,10 +31,12 @@ export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: str
   if (m) {
     const r = m.recipe;
     const qty = (ref: string) => r.ingredients.find((i) => i.ref === ref)?.qty;
+    const source = sourceById(r.source.id);
     return (
       <div className="screen">
         <button type="button" className="backbtn" onClick={() => onOpen(undefined)}><Icon name="back" className="rtl-flip" />{t('back')}</button>
         <div className="detail-media"><RecipeImage src={recipeImage(r)} alt={r.title[lang]} /></div>
+        <RecipeBadges badges={recipeBadges(r, t)} />
         <h1 className="title">{r.title[lang]}</h1>
         <div className="rf-recipe-meta"><Icon name="clock" size={16} /><span>{r.minutes} {t('min')} · {t(r.difficulty)}</span></div>
         <MatchMeter have={m.have.length} total={r.ingredients.length} label={t('ingredients')} />
@@ -45,19 +58,38 @@ export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: str
           <h2 className="grouph">{t('steps')}</h2>
           <ol className="steps">{r.steps[lang].map((s, i) => <li key={i}>{s}</li>)}</ol>
         </section>
+        {source && (
+          <a className="source" href={r.source.url ?? source.url} target="_blank" rel="noopener noreferrer">
+            <span className="source-label">{t('source')}</span>
+            {source.logo && <img className="source-logo" src={source.logo} alt="" />}
+            <span>{t('seeOnSource', { name: source.name })}</span>
+          </a>
+        )}
       </div>
     );
   }
 
+  const list = matches.filter((x) => (!course || x.recipe.course === course) && (!kashrut || x.recipe.kashrut === kashrut));
+  const pick = <V,>(set: (v: V) => void) => (v: V) => { set(v); setShown(PAGE); };
+
   return (
     <div className="screen">
       <h1 className="display">{t('recipesTitle')}</h1>
+      <div className="filters" role="group" aria-label={t('allCourses')}>
+        <button type="button" aria-pressed={course === null} onClick={() => pick(setCourse)(null)}>{t('allCourses')}</button>
+        {COURSES.map((c) => <button key={c} type="button" aria-pressed={course === c} onClick={() => pick(setCourse)(course === c ? null : c)}>{t(c)}</button>)}
+      </div>
+      <div className="filters" role="group" aria-label={t('anyKashrut')}>
+        {KASHRUT.map((k) => <button key={k} type="button" className={`filter-${k}`} aria-pressed={kashrut === k} onClick={() => pick(setKashrut)(kashrut === k ? null : k)}>{t(k)}</button>)}
+      </div>
+      {list.length === 0 && <p className="muted">{t('noRecipes')}</p>}
       <div className="cards">
-        {matches.map((x) => (
+        {list.slice(0, shown).map((x) => (
           <RecipeCard
             key={x.recipe.id}
             image={recipeImage(x.recipe)}
             imageAlt={x.recipe.title[lang]}
+            badges={recipeBadges(x.recipe, t)}
             title={x.recipe.title[lang]}
             time={`${x.recipe.minutes} ${t('min')} · ${t(x.recipe.difficulty)}`}
             have={x.have.length}
@@ -74,6 +106,7 @@ export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: str
           />
         ))}
       </div>
+      {list.length > shown && <Button variant="secondary" onClick={() => setShown((n) => n + PAGE)}>{t('showMore')}</Button>}
     </div>
   );
 }

@@ -6,12 +6,12 @@
 // Don't run the import at the same time: it would write over what is approved here.
 import { readFileSync } from 'node:fs';
 import { createServer } from 'node:http';
-import { draftProblems, files, LANGS, readJson, STATUSES, TAGS, writeJson } from './themealdb/drafts.mjs';
+import { COURSES, draftProblems, files, kashrutOf, LANGS, readJson, STATUSES, TAGS, writeJson } from './themealdb/drafts.mjs';
 
 const PORT = Number(process.env.PORT) || 5174;
 const page = new URL('themealdb/review.html', import.meta.url);
 
-const catalog = () => readJson(files.ingredients).map((i) => ({ id: i.id, name: i.name, category: i.category, group: i.group }));
+const catalog = () => readJson(files.ingredients).map((i) => ({ id: i.id, name: i.name, category: i.category, group: i.group, kashrut: i.kashrut }));
 
 function send(res, status, body, type = 'application/json; charset=utf-8') {
   res.writeHead(status, { 'content-type': type, 'cache-control': 'no-store' });
@@ -28,10 +28,12 @@ async function readBody(req) {
 }
 
 // The page can only change a draft's status and its recipe text, never its id, source or original.
+// Kashrut always follows the ingredients.
 function update(draft, { status, recipe }) {
   if (!STATUSES.includes(status)) throw new Error(`unknown status "${status}"`);
   const str = (v) => (typeof v === 'string' ? v.trim() : '');
   const steps = Object.fromEntries(LANGS.map((l) => [l, (recipe.steps?.[l] ?? []).map(str)]));
+  const ingredients = (recipe.ingredients ?? []).map((i) => ({ ref: str(i.ref), ...(str(i.qty) ? { qty: str(i.qty) } : {}) }));
   return {
     ...draft,
     status,
@@ -42,7 +44,9 @@ function update(draft, { status, recipe }) {
       difficulty: recipe.difficulty === 'medium' ? 'medium' : 'easy',
       servings: Math.round(Number(recipe.servings)) || 0,
       tags: TAGS.filter((t) => recipe.tags?.includes(t)),
-      ingredients: (recipe.ingredients ?? []).map((i) => ({ ref: str(i.ref), ...(str(i.qty) ? { qty: str(i.qty) } : {}) })),
+      course: COURSES.includes(recipe.course) ? recipe.course : draft.recipe.course,
+      kashrut: kashrutOf(ingredients.map((i) => i.ref), catalog()) ?? 'mixed',
+      ingredients,
       steps: { fr: steps.fr, en: steps.en, he: steps.he },
     },
   };
@@ -54,7 +58,7 @@ const server = createServer(async (req, res) => {
     if (req.method === 'GET' && url.pathname === '/') return send(res, 200, readFileSync(page), 'text/html; charset=utf-8');
     if (req.method === 'GET' && url.pathname === '/tokens.css') return send(res, 200, readFileSync(files.tokens), 'text/css; charset=utf-8');
     if (req.method === 'GET' && url.pathname === '/api/data') {
-      return send(res, 200, { drafts: readJson(files.drafts, []), ingredients: catalog(), tags: TAGS });
+      return send(res, 200, { drafts: readJson(files.drafts, []), ingredients: catalog(), tags: TAGS, courses: COURSES });
     }
     const match = url.pathname.match(/^\/api\/drafts\/([\w-]+)$/);
     if (req.method === 'PUT' && match) {
@@ -63,7 +67,7 @@ const server = createServer(async (req, res) => {
       if (index < 0) return send(res, 404, { error: 'draft not found' });
       const next = update(drafts[index], await readBody(req));
       if (next.status === 'approved') {
-        const problems = draftProblems(next, new Set(catalog().map((i) => i.id)));
+        const problems = draftProblems(next, catalog());
         if (problems.length) return send(res, 422, { error: problems.join('\n') });
       }
       drafts[index] = next;

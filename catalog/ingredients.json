@@ -809,6 +809,7 @@
    "he": "חלב"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 6,
   "defaultQty": "1 L",
   "keywords": [
@@ -825,6 +826,7 @@
    "he": "יוגורט"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 14,
   "defaultQty": "4",
   "keywords": [
@@ -842,6 +844,7 @@
    "he": "גבינה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 14,
   "defaultQty": "200 g",
   "keywords": [
@@ -860,6 +863,7 @@
    "he": "פטה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 14,
   "defaultQty": "200 g",
   "keywords": [
@@ -877,6 +881,7 @@
    "he": "מוצרלה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 7,
   "defaultQty": "250 g",
   "keywords": [
@@ -893,6 +898,7 @@
    "he": "פרמזן"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 30,
   "defaultQty": "100 g",
   "keywords": [
@@ -910,6 +916,7 @@
    "he": "גבינה לבנה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 10,
   "defaultQty": "250 g",
   "keywords": [
@@ -929,6 +936,7 @@
    "he": "לבנה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 14,
   "defaultQty": "250 g",
   "keywords": [
@@ -945,6 +953,7 @@
    "he": "שמנת"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 10,
   "defaultQty": "250 ml",
   "keywords": [
@@ -962,6 +971,7 @@
    "he": "חמאה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 30,
   "defaultQty": "200 g",
   "keywords": [
@@ -978,6 +988,7 @@
    "he": "עוף"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 2,
   "defaultQty": "1 kg",
   "keywords": [
@@ -996,6 +1007,7 @@
    "he": "חזה עוף"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 2,
   "defaultQty": "500 g",
   "keywords": [
@@ -1015,6 +1027,7 @@
    "he": "בשר טחון"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 2,
   "defaultQty": "500 g",
   "keywords": [
@@ -1034,6 +1047,7 @@
    "he": "בקר"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 3,
   "defaultQty": "500 g",
   "keywords": [
@@ -1051,6 +1065,7 @@
    "he": "הודו"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 2,
   "defaultQty": "500 g",
   "keywords": [
@@ -1110,6 +1125,7 @@
    "he": "נקניקיות"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 7,
   "defaultQty": "1",
   "keywords": [
@@ -1535,20 +1551,21 @@
  {
   "id": "stock",
   "name": {
-   "fr": "Bouillon",
-   "en": "Stock",
-   "he": "ציר"
+   "fr": "Bouillon de légumes",
+   "en": "Vegetable stock",
+   "he": "ציר ירקות"
   },
   "category": "grocery",
   "shelfDays": 365,
   "defaultQty": "1",
   "keywords": [
+   "bouillon de legumes",
    "bouillon",
+   "vegetable stock",
    "stock cube",
    "broth",
-   "אבקת מרק",
-   "ציר",
-   "מרק עוף"
+   "ציר ירקות",
+   "אבקת מרק"
   ]
  },
  {
@@ -1757,6 +1774,1233 @@
    "petit pois",
    "peas",
    "אפונה"
+  ]
+ },
+ {
+  "id": "lime",
+  "name": {
+   "fr": "Citron vert",
+   "en": "Lime",
+   "he": "ליים"
+  },
+  "category": "fruit",
+  "shelfDays": 14,
+  "keywords": [
+   "citron vert",
+   "lime",
+   "ליים"
+  ]
+ },
+ {
+  "id": "cornstarch",
+  "name": {
+   "fr": "Fécule de maïs",
+   "en": "Cornflour",
+   "he": "קורנפלור"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "maizena",
+   "fecule de mais",
+   "cornflour",
+   "cornstarch",
+   "קורנפלור"
+  ]
+ },
+ {
+  "id": "yeast",
+  "name": {
+   "fr": "Levure de boulanger",
+   "en": "Yeast",
+   "he": "שמרים"
+  },
+  "category": "grocery",
+  "shelfDays": 120,
+  "keywords": [
+   "levure de boulanger",
+   "levure seche",
+   "yeast",
+   "שמרים"
+  ]
+ },
+ {
+  "id": "sour-cream",
+  "name": {
+   "fr": "Crème aigre",
+   "en": "Sour cream",
+   "he": "שמנת חמוצה"
+  },
+  "category": "dairy",
+  "kashrut": "dairy",
+  "shelfDays": 14,
+  "keywords": [
+   "creme aigre",
+   "sour cream",
+   "שמנת חמוצה"
+  ]
+ },
+ {
+  "id": "condensed-milk",
+  "name": {
+   "fr": "Lait concentré",
+   "en": "Condensed milk",
+   "he": "חלב מרוכז"
+  },
+  "category": "grocery",
+  "kashrut": "dairy",
+  "shelfDays": 365,
+  "keywords": [
+   "lait concentre",
+   "condensed milk",
+   "evaporated milk",
+   "חלב מרוכז"
+  ]
+ },
+ {
+  "id": "dulce-de-leche",
+  "name": {
+   "fr": "Confiture de lait",
+   "en": "Dulce de leche",
+   "he": "ריבת חלב"
+  },
+  "category": "grocery",
+  "kashrut": "dairy",
+  "shelfDays": 180,
+  "keywords": [
+   "confiture de lait",
+   "dulce de leche",
+   "ריבת חלב"
+  ]
+ },
+ {
+  "id": "custard",
+  "name": {
+   "fr": "Crème anglaise",
+   "en": "Custard",
+   "he": "רפרפת"
+  },
+  "category": "dairy",
+  "kashrut": "dairy",
+  "shelfDays": 5,
+  "keywords": [
+   "creme anglaise",
+   "custard",
+   "רפרפת"
+  ]
+ },
+ {
+  "id": "ice-cream",
+  "name": {
+   "fr": "Glace",
+   "en": "Ice cream",
+   "he": "גלידה"
+  },
+  "category": "dairy",
+  "kashrut": "dairy",
+  "shelfDays": 90,
+  "keywords": [
+   "glace vanille",
+   "creme glacee",
+   "ice cream",
+   "גלידה"
+  ]
+ },
+ {
+  "id": "milk-chocolate",
+  "name": {
+   "fr": "Chocolat au lait",
+   "en": "Milk chocolate",
+   "he": "שוקולד חלב"
+  },
+  "category": "grocery",
+  "kashrut": "dairy",
+  "shelfDays": 180,
+  "keywords": [
+   "chocolat au lait",
+   "milk chocolate",
+   "שוקולד חלב"
+  ]
+ },
+ {
+  "id": "chicken-stock",
+  "name": {
+   "fr": "Bouillon de volaille",
+   "en": "Chicken stock",
+   "he": "ציר עוף"
+  },
+  "category": "grocery",
+  "kashrut": "meat",
+  "shelfDays": 365,
+  "keywords": [
+   "bouillon de volaille",
+   "bouillon de poulet",
+   "chicken stock",
+   "ציר עוף",
+   "מרק עוף"
+  ]
+ },
+ {
+  "id": "meat-stock",
+  "name": {
+   "fr": "Bouillon de viande",
+   "en": "Beef stock",
+   "he": "ציר בקר"
+  },
+  "category": "grocery",
+  "kashrut": "meat",
+  "shelfDays": 365,
+  "keywords": [
+   "bouillon de boeuf",
+   "bouillon de viande",
+   "beef stock",
+   "ציר בקר"
+  ]
+ },
+ {
+  "id": "fish-stock",
+  "name": {
+   "fr": "Fumet de poisson",
+   "en": "Fish stock",
+   "he": "ציר דגים"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "fumet de poisson",
+   "fish stock",
+   "ציר דגים"
+  ]
+ },
+ {
+  "id": "lamb",
+  "name": {
+   "fr": "Agneau",
+   "en": "Lamb",
+   "he": "כבש"
+  },
+  "category": "meat",
+  "kashrut": "meat",
+  "shelfDays": 4,
+  "keywords": [
+   "agneau",
+   "lamb",
+   "כבש",
+   "טלה"
+  ]
+ },
+ {
+  "id": "goat",
+  "name": {
+   "fr": "Chevreau",
+   "en": "Goat",
+   "he": "בשר עז"
+  },
+  "category": "meat",
+  "kashrut": "meat",
+  "shelfDays": 4,
+  "keywords": [
+   "chevreau",
+   "goat meat",
+   "בשר עז",
+   "גדי"
+  ]
+ },
+ {
+  "id": "sardines",
+  "name": {
+   "fr": "Sardines",
+   "en": "Sardines",
+   "he": "סרדינים"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "sardine",
+   "pilchard",
+   "סרדינים"
+  ]
+ },
+ {
+  "id": "anchovies",
+  "name": {
+   "fr": "Anchois",
+   "en": "Anchovies",
+   "he": "אנשובי"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "anchois",
+   "anchovy",
+   "אנשובי"
+  ]
+ },
+ {
+  "id": "cornmeal",
+  "name": {
+   "fr": "Semoule de maïs",
+   "en": "Cornmeal",
+   "he": "קמח תירס"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "semoule de mais",
+   "polenta",
+   "cornmeal",
+   "קמח תירס"
+  ]
+ },
+ {
+  "id": "semolina",
+  "name": {
+   "fr": "Semoule fine",
+   "en": "Semolina",
+   "he": "סולת"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "semoule fine",
+   "semolina",
+   "סולת"
+  ]
+ },
+ {
+  "id": "puff-pastry",
+  "name": {
+   "fr": "Pâte feuilletée",
+   "en": "Puff pastry",
+   "he": "בצק עלים"
+  },
+  "category": "bakery",
+  "shelfDays": 30,
+  "keywords": [
+   "pate feuilletee",
+   "puff pastry",
+   "בצק עלים"
+  ]
+ },
+ {
+  "id": "shortcrust-pastry",
+  "name": {
+   "fr": "Pâte brisée",
+   "en": "Shortcrust pastry",
+   "he": "בצק פריך"
+  },
+  "category": "bakery",
+  "shelfDays": 30,
+  "keywords": [
+   "pate brisee",
+   "pate sablee",
+   "shortcrust",
+   "בצק פריך"
+  ]
+ },
+ {
+  "id": "filo-pastry",
+  "name": {
+   "fr": "Pâte filo",
+   "en": "Filo pastry",
+   "he": "בצק פילו"
+  },
+  "category": "bakery",
+  "shelfDays": 30,
+  "keywords": [
+   "pate filo",
+   "filo",
+   "phyllo",
+   "בצק פילו"
+  ]
+ },
+ {
+  "id": "walnuts",
+  "name": {
+   "fr": "Noix",
+   "en": "Walnuts",
+   "he": "אגוזי מלך"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "cerneaux de noix",
+   "walnut",
+   "אגוזי מלך"
+  ]
+ },
+ {
+  "id": "pine-nuts",
+  "name": {
+   "fr": "Pignons de pin",
+   "en": "Pine nuts",
+   "he": "צנוברים"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "pignons",
+   "pine nut",
+   "צנובר"
+  ]
+ },
+ {
+  "id": "pistachios",
+  "name": {
+   "fr": "Pistaches",
+   "en": "Pistachios",
+   "he": "פיסטוקים"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "pistache",
+   "pistachio",
+   "פיסטוק"
+  ]
+ },
+ {
+  "id": "peanuts",
+  "name": {
+   "fr": "Cacahuètes",
+   "en": "Peanuts",
+   "he": "בוטנים"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "cacahuete",
+   "arachide",
+   "peanuts",
+   "בוטנים"
+  ]
+ },
+ {
+  "id": "peanut-butter",
+  "name": {
+   "fr": "Beurre de cacahuète",
+   "en": "Peanut butter",
+   "he": "חמאת בוטנים"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "beurre de cacahuete",
+   "peanut butter",
+   "חמאת בוטנים"
+  ]
+ },
+ {
+  "id": "hazelnuts",
+  "name": {
+   "fr": "Noisettes",
+   "en": "Hazelnuts",
+   "he": "אגוזי לוז"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "noisette",
+   "hazelnut",
+   "אגוזי לוז"
+  ]
+ },
+ {
+  "id": "cashews",
+  "name": {
+   "fr": "Noix de cajou",
+   "en": "Cashews",
+   "he": "קשיו"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "noix de cajou",
+   "cashew",
+   "קשיו"
+  ]
+ },
+ {
+  "id": "pecans",
+  "name": {
+   "fr": "Noix de pécan",
+   "en": "Pecans",
+   "he": "פקאנים"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "noix de pecan",
+   "pecan",
+   "פקאן"
+  ]
+ },
+ {
+  "id": "coconut",
+  "name": {
+   "fr": "Noix de coco râpée",
+   "en": "Desiccated coconut",
+   "he": "קוקוס טחון"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "noix de coco rapee",
+   "coco rape",
+   "desiccated coconut",
+   "shredded coconut",
+   "קוקוס"
+  ]
+ },
+ {
+  "id": "sesame",
+  "name": {
+   "fr": "Graines de sésame",
+   "en": "Sesame seeds",
+   "he": "שומשום"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "graines de sesame",
+   "sesame seed",
+   "שומשום"
+  ]
+ },
+ {
+  "id": "sesame-oil",
+  "name": {
+   "fr": "Huile de sésame",
+   "en": "Sesame oil",
+   "he": "שמן שומשום"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "huile de sesame",
+   "sesame oil",
+   "שמן שומשום"
+  ]
+ },
+ {
+  "id": "poppy-seeds",
+  "name": {
+   "fr": "Graines de pavot",
+   "en": "Poppy seeds",
+   "he": "פרג"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "graines de pavot",
+   "poppy seed",
+   "פרג"
+  ]
+ },
+ {
+  "id": "dried-apricots",
+  "name": {
+   "fr": "Abricots secs",
+   "en": "Dried apricots",
+   "he": "משמש מיובש"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "abricots secs",
+   "dried apricot",
+   "משמש מיובש"
+  ]
+ },
+ {
+  "id": "prunes",
+  "name": {
+   "fr": "Pruneaux",
+   "en": "Prunes",
+   "he": "שזיפים מיובשים"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "pruneau",
+   "prunes",
+   "שזיפים מיובשים"
+  ]
+ },
+ {
+  "id": "dried-fruit",
+  "name": {
+   "fr": "Fruits confits et secs",
+   "en": "Mixed dried fruit",
+   "he": "פירות יבשים"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "fruits confits",
+   "melange de fruits secs",
+   "mixed peel",
+   "dried fruit",
+   "פירות יבשים"
+  ]
+ },
+ {
+  "id": "cocoa",
+  "name": {
+   "fr": "Cacao en poudre",
+   "en": "Cocoa powder",
+   "he": "אבקת קקאו"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "cacao en poudre",
+   "cacao",
+   "cocoa",
+   "קקאו"
+  ]
+ },
+ {
+  "id": "jam",
+  "name": {
+   "fr": "Confiture",
+   "en": "Jam",
+   "he": "ריבה"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "confiture",
+   "ריבה"
+  ]
+ },
+ {
+  "id": "golden-syrup",
+  "name": {
+   "fr": "Mélasse ou sirop de sucre",
+   "en": "Golden syrup or treacle",
+   "he": "סירופ סוכר"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "melasse",
+   "golden syrup",
+   "treacle",
+   "molasses",
+   "סירופ סוכר",
+   "מולסה"
+  ]
+ },
+ {
+  "id": "maple-syrup",
+  "name": {
+   "fr": "Sirop d’érable",
+   "en": "Maple syrup",
+   "he": "סירופ מייפל"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "sirop d erable",
+   "maple syrup",
+   "סירופ מייפל"
+  ]
+ },
+ {
+  "id": "biscuits",
+  "name": {
+   "fr": "Biscuits secs",
+   "en": "Digestive biscuits",
+   "he": "ביסקוויטים"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "biscuits secs",
+   "petit beurre",
+   "digestive",
+   "ביסקוויט"
+  ]
+ },
+ {
+  "id": "marzipan",
+  "name": {
+   "fr": "Pâte d’amande",
+   "en": "Marzipan",
+   "he": "מרציפן"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "pate d amande",
+   "marzipan",
+   "מרציפן"
+  ]
+ },
+ {
+  "id": "apricot",
+  "name": {
+   "fr": "Abricots",
+   "en": "Apricots",
+   "he": "משמשים"
+  },
+  "category": "fruit",
+  "shelfDays": 5,
+  "keywords": [
+   "abricot",
+   "apricot",
+   "משמש"
+  ]
+ },
+ {
+  "id": "peach",
+  "name": {
+   "fr": "Pêches",
+   "en": "Peaches",
+   "he": "אפרסקים"
+  },
+  "category": "fruit",
+  "shelfDays": 5,
+  "keywords": [
+   "peche",
+   "peach",
+   "אפרסק"
+  ]
+ },
+ {
+  "id": "blueberries",
+  "name": {
+   "fr": "Myrtilles",
+   "en": "Blueberries",
+   "he": "אוכמניות"
+  },
+  "category": "fruit",
+  "shelfDays": 5,
+  "keywords": [
+   "myrtille",
+   "blueberr",
+   "אוכמניות"
+  ]
+ },
+ {
+  "id": "blackberries",
+  "name": {
+   "fr": "Mûres",
+   "en": "Blackberries",
+   "he": "אוכמניות שחורות"
+  },
+  "category": "fruit",
+  "shelfDays": 3,
+  "keywords": [
+   "mures",
+   "blackberr",
+   "פטל שחור"
+  ]
+ },
+ {
+  "id": "raspberries",
+  "name": {
+   "fr": "Framboises",
+   "en": "Raspberries",
+   "he": "פטל"
+  },
+  "category": "fruit",
+  "shelfDays": 3,
+  "keywords": [
+   "framboise",
+   "raspberr",
+   "פטל"
+  ]
+ },
+ {
+  "id": "cherries",
+  "name": {
+   "fr": "Cerises",
+   "en": "Cherries",
+   "he": "דובדבנים"
+  },
+  "category": "fruit",
+  "shelfDays": 5,
+  "keywords": [
+   "cerise",
+   "cherry",
+   "cherries",
+   "דובדבן"
+  ]
+ },
+ {
+  "id": "rhubarb",
+  "name": {
+   "fr": "Rhubarbe",
+   "en": "Rhubarb",
+   "he": "ריבס"
+  },
+  "category": "veg",
+  "shelfDays": 7,
+  "keywords": [
+   "rhubarbe",
+   "rhubarb",
+   "ריבס"
+  ]
+ },
+ {
+  "id": "plantain",
+  "name": {
+   "fr": "Bananes plantain",
+   "en": "Plantains",
+   "he": "בננות פלנטיין"
+  },
+  "category": "fruit",
+  "shelfDays": 7,
+  "keywords": [
+   "banane plantain",
+   "plantain",
+   "פלנטיין"
+  ]
+ },
+ {
+  "id": "breadfruit",
+  "name": {
+   "fr": "Fruit à pain",
+   "en": "Breadfruit",
+   "he": "פרי הלחם"
+  },
+  "category": "veg",
+  "shelfDays": 5,
+  "keywords": [
+   "fruit a pain",
+   "breadfruit",
+   "פרי הלחם"
+  ]
+ },
+ {
+  "id": "cassava",
+  "name": {
+   "fr": "Manioc",
+   "en": "Cassava",
+   "he": "קסאווה"
+  },
+  "category": "veg",
+  "shelfDays": 7,
+  "keywords": [
+   "manioc",
+   "cassava",
+   "yuca",
+   "קסאווה"
+  ]
+ },
+ {
+  "id": "taro",
+  "name": {
+   "fr": "Taro",
+   "en": "Taro",
+   "he": "טארו"
+  },
+  "category": "veg",
+  "shelfDays": 7,
+  "keywords": [
+   "taro",
+   "טארו",
+   "קולקס"
+  ]
+ },
+ {
+  "id": "papaya",
+  "name": {
+   "fr": "Papaye",
+   "en": "Papaya",
+   "he": "פפאיה"
+  },
+  "category": "fruit",
+  "shelfDays": 5,
+  "keywords": [
+   "papaye",
+   "papaya",
+   "פפאיה"
+  ]
+ },
+ {
+  "id": "longan",
+  "name": {
+   "fr": "Longanes",
+   "en": "Longans",
+   "he": "לונגן"
+  },
+  "category": "fruit",
+  "shelfDays": 5,
+  "keywords": [
+   "longane",
+   "longan",
+   "לונגן"
+  ]
+ },
+ {
+  "id": "fennel",
+  "name": {
+   "fr": "Fenouil",
+   "en": "Fennel",
+   "he": "שומר"
+  },
+  "category": "veg",
+  "shelfDays": 7,
+  "keywords": [
+   "fenouil",
+   "fennel",
+   "שומר"
+  ]
+ },
+ {
+  "id": "shallot",
+  "name": {
+   "fr": "Échalotes",
+   "en": "Shallots",
+   "he": "שאלוט"
+  },
+  "category": "veg",
+  "shelfDays": 30,
+  "keywords": [
+   "echalote",
+   "shallot",
+   "שאלוט"
+  ]
+ },
+ {
+  "id": "broad-beans",
+  "name": {
+   "fr": "Fèves",
+   "en": "Broad beans",
+   "he": "פול"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "feves",
+   "broad bean",
+   "fava",
+   "פול מצרי",
+   "פול ירוק"
+  ]
+ },
+ {
+  "id": "kidney-beans",
+  "name": {
+   "fr": "Haricots rouges",
+   "en": "Kidney beans",
+   "he": "שעועית אדומה"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "haricots rouges",
+   "kidney bean",
+   "שעועית אדומה"
+  ]
+ },
+ {
+  "id": "black-beans",
+  "name": {
+   "fr": "Haricots noirs",
+   "en": "Black beans",
+   "he": "שעועית שחורה"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "haricots noirs",
+   "black bean",
+   "שעועית שחורה"
+  ]
+ },
+ {
+  "id": "rocket",
+  "name": {
+   "fr": "Roquette",
+   "en": "Rocket",
+   "he": "רוקט"
+  },
+  "category": "veg",
+  "shelfDays": 4,
+  "keywords": [
+   "roquette",
+   "rocket",
+   "arugula",
+   "רוקט",
+   "ארוגולה"
+  ]
+ },
+ {
+  "id": "bean-sprouts",
+  "name": {
+   "fr": "Pousses de soja",
+   "en": "Bean sprouts",
+   "he": "נבטי סויה"
+  },
+  "category": "veg",
+  "shelfDays": 3,
+  "keywords": [
+   "pousses de soja",
+   "bean sprout",
+   "נבטים"
+  ]
+ },
+ {
+  "id": "asparagus",
+  "name": {
+   "fr": "Asperges",
+   "en": "Asparagus",
+   "he": "אספרגוס"
+  },
+  "category": "veg",
+  "shelfDays": 4,
+  "keywords": [
+   "asperge",
+   "asparagus",
+   "אספרגוס"
+  ]
+ },
+ {
+  "id": "vine-leaves",
+  "name": {
+   "fr": "Feuilles de vigne",
+   "en": "Vine leaves",
+   "he": "עלי גפן"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "feuilles de vigne",
+   "vine leaves",
+   "grape leaves",
+   "עלי גפן"
+  ]
+ },
+ {
+  "id": "sauerkraut",
+  "name": {
+   "fr": "Choucroute",
+   "en": "Sauerkraut",
+   "he": "כרוב כבוש"
+  },
+  "category": "grocery",
+  "shelfDays": 60,
+  "keywords": [
+   "choucroute",
+   "sauerkraut",
+   "כרוב כבוש"
+  ]
+ },
+ {
+  "id": "palm-hearts",
+  "name": {
+   "fr": "Cœurs de palmier",
+   "en": "Hearts of palm",
+   "he": "לבבות דקל"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "coeurs de palmier",
+   "heart of palm",
+   "palm hearts",
+   "לבבות דקל"
+  ]
+ },
+ {
+  "id": "capers",
+  "name": {
+   "fr": "Câpres",
+   "en": "Capers",
+   "he": "צלפים"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "capres",
+   "capers",
+   "צלפים"
+  ]
+ },
+ {
+  "id": "lemongrass",
+  "name": {
+   "fr": "Citronnelle",
+   "en": "Lemongrass",
+   "he": "עשב לימון"
+  },
+  "category": "herbs",
+  "shelfDays": 10,
+  "keywords": [
+   "citronnelle",
+   "lemongrass",
+   "עשב לימון"
+  ]
+ },
+ {
+  "id": "chives",
+  "name": {
+   "fr": "Ciboulette",
+   "en": "Chives",
+   "he": "עירית"
+  },
+  "category": "herbs",
+  "shelfDays": 5,
+  "keywords": [
+   "ciboulette",
+   "chives",
+   "עירית"
+  ]
+ },
+ {
+  "id": "noodles",
+  "name": {
+   "fr": "Nouilles",
+   "en": "Noodles",
+   "he": "אטריות"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "nouilles",
+   "noodles",
+   "אטריות"
+  ]
+ },
+ {
+  "id": "buckwheat",
+  "name": {
+   "fr": "Sarrasin",
+   "en": "Buckwheat",
+   "he": "כוסמת"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "sarrasin",
+   "kasha",
+   "buckwheat",
+   "כוסמת"
+  ]
+ },
+ {
+  "id": "freekeh",
+  "name": {
+   "fr": "Frikeh",
+   "en": "Freekeh",
+   "he": "פריקה"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "frikeh",
+   "freekeh",
+   "פריקה"
+  ]
+ },
+ {
+  "id": "tapioca",
+  "name": {
+   "fr": "Tapioca",
+   "en": "Tapioca",
+   "he": "טפיוקה"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "tapioca",
+   "טפיוקה"
+  ]
+ },
+ {
+  "id": "rye-flour",
+  "name": {
+   "fr": "Farine de seigle",
+   "en": "Rye flour",
+   "he": "קמח שיפון"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "farine de seigle",
+   "rye flour",
+   "קמח שיפון"
+  ]
+ },
+ {
+  "id": "mung-beans",
+  "name": {
+   "fr": "Haricots mungo",
+   "en": "Mung beans",
+   "he": "מש"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "haricots mungo",
+   "mung bean",
+   "שעועית מש"
+  ]
+ },
+ {
+  "id": "pretzels",
+  "name": {
+   "fr": "Bretzels",
+   "en": "Pretzels",
+   "he": "בייגלה"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "bretzel",
+   "pretzel",
+   "בייגלה"
+  ]
+ },
+ {
+  "id": "mayonnaise",
+  "name": {
+   "fr": "Mayonnaise",
+   "en": "Mayonnaise",
+   "he": "מיונז"
+  },
+  "category": "grocery",
+  "shelfDays": 90,
+  "keywords": [
+   "mayonnaise",
+   "mayo",
+   "מיונז"
+  ]
+ },
+ {
+  "id": "ketchup",
+  "name": {
+   "fr": "Ketchup",
+   "en": "Ketchup",
+   "he": "קטשופ"
+  },
+  "category": "grocery",
+  "shelfDays": 180,
+  "keywords": [
+   "ketchup",
+   "קטשופ"
+  ]
+ },
+ {
+  "id": "wine",
+  "name": {
+   "fr": "Vin",
+   "en": "Wine",
+   "he": "יין"
+  },
+  "category": "grocery",
+  "shelfDays": 365,
+  "keywords": [
+   "vin blanc",
+   "vin rouge",
+   "xeres",
+   "wine",
+   "sherry",
+   "יין"
   ]
  }
 ]

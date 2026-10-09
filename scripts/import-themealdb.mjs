@@ -23,7 +23,7 @@
 // THEMEALDB_API_KEY defaults to "1", TheMealDB's test key.
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { parseArgs } from 'node:util';
-import { draftProblems, files, ID_PREFIX, LANGS, readJson, TAGS, writeJson } from './themealdb/drafts.mjs';
+import { COURSES, courseOf, draftProblems, files, ID_PREFIX, kashrutOf, LANGS, readJson, SOURCE_ID, TAGS, writeJson } from './themealdb/drafts.mjs';
 import { checkKosher, mealIngredients } from './themealdb/kosher.mjs';
 
 const dir = files.dir;
@@ -133,6 +133,7 @@ async function makeClaude() {
     difficulty: z.string(),
     servings: z.number().int(),
     tags: z.array(z.string()),
+    course: z.string(),
     ingredients: z.array(
       z.object({
         source: z.string(),
@@ -194,6 +195,8 @@ async function makeClaude() {
       else if (!prev.qty && i.qty) prev.qty = i.qty;
     }
     const missing = out.ingredients.filter((i) => i.use === 'missing' || (i.use === 'ref' && !known.has(i.ref))).map((i) => i.source);
+    const kashrut = kashrutOf([...used.keys()], ingredients);
+    if (!kashrut) return { excluded: { id: meal.idMeal, name: meal.strMeal, by: 'catalogue', issues: ['meat with dairy'] } };
 
     return {
       draft: {
@@ -205,6 +208,9 @@ async function makeClaude() {
           id: `${ID_PREFIX}${meal.idMeal}`,
           title: { fr: out.title.fr, en: out.title.en, he: out.title.he },
           image: meal.strMealThumb || null,
+          course: COURSES.includes(out.course) ? out.course : courseOf(meal),
+          kashrut,
+          source: { id: SOURCE_ID, url: source.url },
           minutes: out.minutes,
           difficulty: out.difficulty === 'easy' ? 'easy' : 'medium',
           servings: out.servings,
@@ -220,7 +226,7 @@ async function makeClaude() {
 
 function systemPrompt() {
   const catalog = ingredients.map((i) => `${i.id}: ${i.name.en}${i.group ? ` (one kind of ${i.group})` : ''}`).join('\n');
-  const example = readJson(files.recipes).find((r) => r.id === 'shakshuka');
+  const example = readJson(files.recipes)[0];
   return `You prepare recipes from TheMealDB for RestoFrigo, a kitchen app in French, English and Hebrew that suggests recipes from what is in the user's fridge. Its users keep kosher.
 
 You get one recipe: its original name, category, cuisine, ingredients with measures, and instructions. Fill in each field as follows.
@@ -233,6 +239,8 @@ steps: rewrite the instructions as 3 to 8 short steps, the same steps in each la
 
 minutes: total time including cooking and resting, a realistic estimate. difficulty: easy or medium. servings: from the recipe, or a reasonable estimate.
 
+course: starter (starters, soups, salads), main, side, dessert (desserts, cakes, sweet baking) or breakfast. TheMealDB's category is a hint, not the answer: a soup filed under Vegetarian is a starter.
+
 tags: those that apply, from the list. veggie: no meat or fish. vegan: no animal product at all. fish. meat: meat or poultry. quick: 20 minutes or less. oven. soup. salad. pasta. sweet: a dessert or sweet baking. asian. israeli: an Israeli dish, or a Middle Eastern one common in Israel.
 
 ingredients: one entry per original ingredient, in the same order, with source set to the original name, and use set to:
@@ -244,10 +252,10 @@ qty: the amount in a form that reads in any language: a count ("2"), or grams an
 notes: what a reviewer should check: an ambiguous ingredient, a guess about time or servings, an instruction you had to interpret. Empty when there is nothing.
 
 The app's ingredients (id: English name):
-${catalog}
+${catalog}${example ? `
 
 A recipe already in the app, to show the tone and length of the steps:
-${JSON.stringify({ title: example.title, steps: example.steps })}`;
+${JSON.stringify({ title: example.title, steps: example.steps })}` : ''}`;
 }
 
 // ---------------------------------------------------------------------------------------------------------------
@@ -256,8 +264,7 @@ ${JSON.stringify({ title: example.title, steps: example.steps })}`;
 function publish() {
   const drafts = readJson(files.drafts, []);
   const approved = drafts.filter((d) => d.status === 'approved');
-  const known = new Set(refs);
-  const problems = approved.flatMap((d) => draftProblems(d, known).map((p) => `${d.source.id} ${d.source.name}: ${p}`));
+  const problems = approved.flatMap((d) => draftProblems(d, ingredients).map((p) => `${d.source.id} ${d.source.name}: ${p}`));
   if (problems.length) {
     console.error(`Rien n’a été publié. Corrige d’abord ces recettes approuvées :\n${problems.join('\n')}`);
     process.exit(1);
