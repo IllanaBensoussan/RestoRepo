@@ -16,6 +16,9 @@ describe('checkKosher', () => {
     expect(checkKosher(recipe(['King Prawns', 'Rice'])).ok).toBe(false);
     expect(checkKosher(recipe(['Gelatine Leafs', 'Sugar'])).ok).toBe(false);
     expect(checkKosher(recipe(['Suet', 'Flour'])).ok).toBe(false);
+    expect(checkKosher(recipe(['Conchs', 'Lime'])).ok).toBe(false);
+    expect(checkKosher(recipe(['Mincemeat', 'Shortcrust Pastry'])).ok).toBe(false);
+    expect(checkKosher(recipe(['Miniature Marshmallows', 'Chocolate'])).ok).toBe(false);
     expect(checkKosher(recipe(['Rice'], { category: 'Pork' })).ok).toBe(false);
     expect(checkKosher(recipe(['Rice'], { title: 'Ham Hock Colcannon' })).ok).toBe(false);
   });
