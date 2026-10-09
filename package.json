@@ -12,7 +12,8 @@
     "emulators": "firebase emulators:start --only auth,firestore --project demo-restofrigo",
     "dev:emulators": "VITE_FIREBASE_EMULATORS=1 VITE_FIREBASE_API_KEY=demo VITE_FIREBASE_AUTH_DOMAIN=demo-restofrigo.firebaseapp.com VITE_FIREBASE_PROJECT_ID=demo-restofrigo VITE_FIREBASE_APP_ID=demo vite",
     "seed:catalog": "node scripts/seed-catalog.mjs",
-    "import:themealdb": "node scripts/import-themealdb.mjs"
+    "import:themealdb": "node scripts/import-themealdb.mjs",
+    "review:themealdb": "node scripts/review-themealdb.mjs"
   },
   "dependencies": {
     "firebase": "^12.19.0",

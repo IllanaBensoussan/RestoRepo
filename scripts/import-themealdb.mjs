@@ -1,4 +1,4 @@
-// Imports recipes from TheMealDB (https://www.themealdb.com) in two steps, with a human review between them.
+// Imports recipes from TheMealDB (https://www.themealdb.com) in three steps: draft, review, publish.
 //
 // 1. Draft: fetches every recipe, drops the ones that aren't kosher (scripts/themealdb/kosher.mjs), then has
 //    Claude double-check kashrut, translate to French and Hebrew, split the steps, estimate time and difficulty,
@@ -12,8 +12,8 @@
 //      node scripts/import-themealdb.mjs --dry-run                          # fetch and filter only, no Claude
 //      ANTHROPIC_API_KEY=... node scripts/import-themealdb.mjs --redo 52772,52773   # draft these again
 //
-// 2. Review: in drafts.json, read each draft, fix the texts if needed, and set "status" to "approved" or
-//    "rejected".
+// 2. Review: `npm run review:themealdb` opens a page to read each draft next to the original, fix it, and
+//    approve or reject it (or edit "status" in drafts.json by hand).
 //
 // 3. Publish: copies the approved drafts into catalog/recipes.json (ids "mealdb-<id>"), and removes imported
 //    recipes whose draft is no longer approved. Push, and the catalog workflow uploads them to Firestore.
@@ -21,24 +21,12 @@
 //      node scripts/import-themealdb.mjs --publish
 //
 // THEMEALDB_API_KEY defaults to "1", TheMealDB's test key.
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { parseArgs } from 'node:util';
+import { draftProblems, files, ID_PREFIX, LANGS, readJson, TAGS, writeJson } from './themealdb/drafts.mjs';
 import { checkKosher, mealIngredients } from './themealdb/kosher.mjs';
 
-const root = new URL('../', import.meta.url);
-const dir = new URL('imports/themealdb/', root);
-const files = {
-  drafts: new URL('drafts.json', dir),
-  excluded: new URL('excluded.json', dir),
-  ingredients: new URL('catalog/ingredients.json', root),
-  recipes: new URL('catalog/recipes.json', root),
-};
-const readJson = (f, fallback) => (existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : fallback);
-const writeJson = (f, data) => writeFileSync(f, `${JSON.stringify(data, null, 1)}\n`);
-
-const ID_PREFIX = 'mealdb-';
-const LANGS = ['fr', 'en', 'he'];
-const TAGS = ['veggie', 'vegan', 'fish', 'meat', 'quick', 'oven', 'soup', 'salad', 'pasta', 'sweet', 'asian', 'israeli'];
+const dir = files.dir;
 const MODEL = 'claude-opus-5-5';
 const PARALLEL = 3;
 
@@ -269,22 +257,9 @@ function publish() {
   const drafts = readJson(files.drafts, []);
   const approved = drafts.filter((d) => d.status === 'approved');
   const known = new Set(refs);
-  const problems = [];
-  for (const d of approved) {
-    const r = d.recipe;
-    const where = `${d.source.id} ${d.source.name}`;
-    const verdict = checkKosher({ title: d.source.name, category: d.source.category, ingredients: d.original.ingredients });
-    if (!verdict.ok) problems.push(`${where}: not kosher (${verdict.issues.join('; ')})`);
-    for (const { ref } of r.ingredients) if (!known.has(ref)) problems.push(`${where}: unknown ingredient "${ref}"`);
-    for (const l of LANGS) {
-      if (!r.title[l]?.trim()) problems.push(`${where}: no title in ${l}`);
-      if (!r.steps[l]?.length) problems.push(`${where}: no steps in ${l}`);
-      else if (r.steps[l].length !== r.steps.fr.length) problems.push(`${where}: ${l} doesn't have as many steps as fr`);
-    }
-    if (!r.ingredients.length) problems.push(`${where}: no ingredients`);
-  }
+  const problems = approved.flatMap((d) => draftProblems(d, known).map((p) => `${d.source.id} ${d.source.name}: ${p}`));
   if (problems.length) {
-    console.error(`Nothing published. Fix these approved drafts first:\n${problems.join('\n')}`);
+    console.error(`Rien n’a été publié. Corrige d’abord ces recettes approuvées :\n${problems.join('\n')}`);
     process.exit(1);
   }
 

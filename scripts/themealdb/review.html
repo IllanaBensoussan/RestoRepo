@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Relecture TheMealDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/tokens.css" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--surface-muted); color: var(--ink); font: 15px/22px var(--font-sans); -webkit-font-smoothing: antialiased; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .app { display: grid; grid-template-columns: 320px 1fr; height: 100dvh; }
+  @media (max-width: 860px) { .app { grid-template-columns: 1fr; height: auto; } .side { max-height: 45dvh; } }
+
+  /* Sidebar */
+  .side { display: flex; flex-direction: column; background: var(--surface); border-inline-end: 1px solid var(--border); min-height: 0; }
+  .side-head { padding: var(--space-4); border-bottom: 1px solid var(--border); display: grid; gap: var(--space-3); }
+  .brand { font-size: 18px; font-weight: 700; color: var(--brand); }
+  .filters { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+  .chip { border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius-pill); padding: 2px 10px; font-size: 13px; cursor: pointer; }
+  .chip[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+  .search { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+  .list { overflow-y: auto; flex: 1; margin: 0; padding: var(--space-2); list-style: none; }
+  .item { display: grid; grid-template-columns: 44px 1fr auto; gap: var(--space-3); align-items: center; width: 100%; padding: var(--space-2); border: 0; border-radius: var(--radius-sm); background: none; text-align: start; cursor: pointer; }
+  .item:hover { background: var(--surface-muted); }
+  .item[aria-current="true"] { background: var(--brand-soft); }
+  .item img, .thumb-empty { width: 44px; height: 44px; border-radius: var(--radius-sm); object-fit: cover; background: var(--surface-muted); }
+  .item-title { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .item-sub { font-size: 13px; line-height: 18px; color: var(--ink-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .s-pending { background: var(--info); } .s-needs-ingredients { background: var(--warn); }
+  .s-approved { background: var(--brand); } .s-rejected { background: var(--border-strong); }
+  .empty { padding: var(--space-6); color: var(--ink-muted); text-align: center; }
+
+  /* Main */
+  .main { overflow-y: auto; min-height: 0; display: flex; flex-direction: column; }
+  .content { padding: var(--space-6); display: grid; gap: var(--space-4); max-width: 1280px; width: 100%; margin: 0 auto; flex: 1; }
+  @media (max-width: 600px) { .content { padding: var(--space-4); } }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-4); box-shadow: var(--shadow-card); }
+  .card h2 { margin: 0 0 var(--space-3); font-size: 16px; line-height: 22px; }
+  .head { display: grid; grid-template-columns: 120px 1fr; gap: var(--space-4); align-items: center; }
+  .head img { width: 120px; height: 120px; border-radius: var(--radius-md); object-fit: cover; background: var(--surface-muted); }
+  .head h1 { margin: 0; font-size: 24px; line-height: 30px; }
+  .meta { color: var(--ink-muted); display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; margin-top: var(--space-1); }
+  .meta a { color: var(--brand); }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: var(--radius-pill); font-size: 13px; font-weight: 500; }
+  .p-pending { background: var(--info-soft); color: var(--info); } .p-needs-ingredients { background: var(--warn-soft); color: var(--warn); }
+  .p-approved { background: var(--brand-soft); color: var(--brand-strong); } .p-rejected { background: var(--surface-muted); color: var(--ink-muted); }
+  .alert { border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); }
+  .alert ul { margin: var(--space-1) 0 0; padding-inline-start: 20px; }
+  .alert-info { background: var(--info-soft); } .alert-warn { background: var(--warn-soft); } .alert-danger { background: var(--danger-soft); color: var(--danger); white-space: pre-line; }
+
+  .cols { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--space-4); align-items: start; }
+  @media (max-width: 1100px) { .cols { grid-template-columns: 1fr; } }
+  .original { position: sticky; top: var(--space-4); max-height: calc(100dvh - 120px); overflow-y: auto; }
+  @media (max-width: 1100px) { .original { position: static; max-height: none; } }
+  .original ul { margin: 0 0 var(--space-4); padding-inline-start: 20px; }
+  .original .measure { color: var(--ink-muted); }
+  .instructions { white-space: pre-wrap; margin: 0; }
+  .edit { display: grid; gap: var(--space-4); }
+
+  label.field { display: grid; grid-template-columns: 36px 1fr; gap: var(--space-2); align-items: center; }
+  .lang { font-size: 12px; font-weight: 600; color: var(--ink-muted); }
+  input[type="text"], input[type="number"], select, textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+  textarea { resize: vertical; min-height: 60px; }
+  [dir="rtl"] { text-align: right; }
+  .stack { display: grid; gap: var(--space-2); }
+  .row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: end; }
+  .row > label { display: grid; gap: var(--space-1); font-size: 13px; color: var(--ink-muted); }
+  .row input[type="number"] { width: 100px; }
+  .tags { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-3); }
+  .ing { display: grid; grid-template-columns: 1fr 120px 36px; gap: var(--space-2); }
+  .step { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--space-3); display: grid; gap: var(--space-2); }
+  .step-head { display: flex; justify-content: space-between; align-items: center; font-weight: 500; }
+
+  .btn { border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius-sm); padding: 8px 14px; cursor: pointer; font-weight: 500; }
+  .btn:hover { background: var(--surface-muted); }
+  .btn:disabled { opacity: 0.5; cursor: default; }
+  .btn-icon { padding: 4px 8px; min-width: 36px; }
+  .btn-add { justify-self: start; color: var(--brand); border-style: dashed; }
+  .btn-primary { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+  .btn-primary:hover { background: var(--brand-strong); }
+  .btn-danger { color: var(--danger); }
+  .bar { position: sticky; bottom: 0; background: var(--surface); border-top: 1px solid var(--border); padding: var(--space-3) var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+  .bar .spacer { flex: 1; }
+  .saved { font-size: 13px; color: var(--ink-muted); }
+  .hint { font-size: 13px; color: var(--ink-muted); }
+  code { background: var(--surface-muted); padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="side-head">
+      <div class="brand">Relecture TheMealDB</div>
+      <div class="filters" id="filters"></div>
+      <input class="search" id="search" type="search" placeholder="Chercher une recette" aria-label="Chercher une recette" />
+    </div>
+    <ul class="list" id="list"></ul>
+  </aside>
+  <main class="main" id="main"><div class="empty">Chargement…</div></main>
+</div>
+
+<script>
+const STATUS = {
+  pending: 'À relire',
+  'needs-ingredients': 'Ingrédients manquants',
+  approved: 'Approuvée',
+  rejected: 'Rejetée',
+};
+const FILTERS = [
+  ['pending', 'À relire'],
+  ['needs-ingredients', 'Ingrédients manquants'],
+  ['approved', 'Approuvées'],
+  ['rejected', 'Rejetées'],
+  ['all', 'Toutes'],
+];
+const TAG_NAMES = { veggie: 'Végétarien', vegan: 'Végan', fish: 'Poisson', meat: 'Viande', quick: 'Rapide', oven: 'Four', soup: 'Soupe', salad: 'Salade', pasta: 'Pâtes', sweet: 'Sucré', asian: 'Asiatique', israeli: 'Israélien' };
+const CATEGORY_NAMES = { veg: 'Légumes', fruit: 'Fruits', herbs: 'Herbes', dairy: 'Crèmerie', meat: 'Viande et poisson', bakery: 'Boulangerie', grocery: 'Épicerie' };
+const LANGS = [['fr', 'FR', 'ltr'], ['en', 'EN', 'ltr'], ['he', 'HE', 'rtl']];
+
+let data = { drafts: [], ingredients: [], tags: [] };
+let filter = 'pending';
+let query = '';
+let currentId = null;
+let edit = null; // the recipe being edited
+let editStatus = null;
+let error = '';
+
+// Small DOM helper: h('div', { class: 'x', onclick }, child, 'text', …)
+function h(tag, props, ...children) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(props || {})) {
+    if (v == null || v === false) continue;
+    if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
+    else if (k === 'value') el.value = v;
+    else el.setAttribute(k, v === true ? '' : v);
+  }
+  for (const c of children.flat()) if (c != null && c !== false) el.append(c);
+  return el;
+}
+
+const hideImage = (e) => { e.target.style.visibility = 'hidden'; };
+const current = () => data.drafts.find((d) => d.source.id === currentId);
+const title = (d) => d.recipe.title.fr || d.recipe.title.en || d.source.name;
+const dirty = () => {
+  const d = current();
+  return !!d && JSON.stringify(edit) !== JSON.stringify(d.recipe);
+};
+
+function visible() {
+  const q = query.trim().toLowerCase();
+  return data.drafts.filter((d) =>
+    (filter === 'all' || d.status === filter) &&
+    (!q || [d.source.name, ...Object.values(d.recipe.title), d.source.category, d.source.area].join(' ').toLowerCase().includes(q)));
+}
+
+async function load() {
+  const res = await fetch('/api/data');
+  data = await res.json();
+  if (!data.drafts.length) {
+    document.getElementById('main').replaceChildren(h('div', { class: 'empty' }, 'Aucun brouillon. Lance d’abord ', h('code', {}, 'npm run import:themealdb'), '.'));
+    renderSide();
+    return;
+  }
+  if (!visible().length) filter = 'all';
+  select(visible()[0]?.source.id, true);
+}
+
+function select(id, force) {
+  if (!force && dirty() && !confirm('Tes modifications ne sont pas enregistrées. Les abandonner ?')) return;
+  currentId = id;
+  const d = current();
+  edit = d ? structuredClone(d.recipe) : null;
+  editStatus = d?.status;
+  error = '';
+  renderSide();
+  renderMain();
+  document.getElementById('main').scrollTop = 0;
+}
+
+function renderSide() {
+  const counts = { all: data.drafts.length };
+  for (const d of data.drafts) counts[d.status] = (counts[d.status] || 0) + 1;
+  document.getElementById('filters').replaceChildren(...FILTERS.map(([key, label]) =>
+    h('button', { class: 'chip', 'aria-pressed': String(filter === key), onclick: () => { filter = key; renderSide(); } }, `${label} · ${counts[key] || 0}`)));
+
+  const items = visible();
+  document.getElementById('list').replaceChildren(...(items.length ? items.map((d) =>
+    h('li', {}, h('button', { class: 'item', 'aria-current': String(d.source.id === currentId), onclick: () => select(d.source.id) },
+      d.recipe.image ? h('img', { src: d.recipe.image + '/preview', alt: '', loading: 'lazy', onerror: (e) => { e.target.onerror = hideImage; e.target.src = d.recipe.image; } }) : h('div', { class: 'thumb-empty' }),
+      h('div', { style: 'min-width:0' }, h('div', { class: 'item-title' }, title(d)), h('div', { class: 'item-sub' }, `${d.source.name} · ${d.source.category ?? ''}`)),
+      h('span', { class: `dot s-${d.status}`, title: STATUS[d.status] })))) : [h('li', { class: 'empty' }, 'Rien ici.')]));
+}
+
+function renderMain() {
+  const main = document.getElementById('main');
+  const d = current();
+  if (!d) { main.replaceChildren(h('div', { class: 'empty' }, 'Choisis une recette dans la liste.')); return; }
+  const r = edit;
+  const rerender = () => renderMain();
+
+  const head = h('div', { class: 'card head' },
+    d.recipe.image ? h('img', { src: d.recipe.image, alt: '', onerror: hideImage }) : h('div', { class: 'thumb-empty', style: 'width:120px;height:120px' }),
+    h('div', {},
+      h('h1', {}, d.source.name),
+      h('div', { class: 'meta' },
+        h('span', { class: `pill p-${d.status}` }, STATUS[d.status]),
+        h('span', {}, [d.source.category, d.source.area].filter(Boolean).join(' · ')),
+        h('a', { href: d.source.url, target: '_blank', rel: 'noopener' }, 'Voir sur TheMealDB'),
+        d.source.video && h('a', { href: d.source.video, target: '_blank', rel: 'noopener' }, 'Vidéo'))));
+
+  const alerts = [
+    error && h('div', { class: 'alert alert-danger', role: 'alert' }, error),
+    d.missing?.length && h('div', { class: 'alert alert-warn' },
+      h('strong', {}, 'Ingrédients absents du catalogue'),
+      h('ul', {}, d.missing.map((m) => h('li', {}, m))),
+      h('div', { class: 'hint' }, 'Ajoute-les à catalog/ingredients.json puis à la recette ci-dessous, relance la page, ou rejette la recette.')),
+    d.notes?.length && h('div', { class: 'alert alert-info' },
+      h('strong', {}, 'À vérifier'),
+      h('ul', {}, d.notes.map((n) => h('li', {}, n)))),
+  ];
+
+  const original = h('section', { class: 'card original' },
+    h('h2', {}, 'Original (anglais)'),
+    h('ul', {}, d.original.ingredients.map((i) => h('li', {}, i.name, i.measure && h('span', { class: 'measure' }, ` — ${i.measure}`)))),
+    h('p', { class: 'instructions' }, d.original.instructions));
+
+  // Titles
+  const titles = h('section', { class: 'card' }, h('h2', {}, 'Titre'),
+    h('div', { class: 'stack' }, LANGS.map(([l, label, dir]) =>
+      h('label', { class: 'field' }, h('span', { class: 'lang' }, label),
+        h('input', { type: 'text', dir, lang: l, value: r.title[l], oninput: (e) => { r.title[l] = e.target.value; } })))));
+
+  // Time, servings, difficulty, tags
+  const infos = h('section', { class: 'card' }, h('h2', {}, 'Infos'),
+    h('div', { class: 'row' },
+      h('label', {}, 'Minutes', h('input', { type: 'number', min: 1, value: r.minutes, oninput: (e) => { r.minutes = Number(e.target.value); } })),
+      h('label', {}, 'Portions', h('input', { type: 'number', min: 1, value: r.servings, oninput: (e) => { r.servings = Number(e.target.value); } })),
+      h('label', {}, 'Difficulté', h('select', { onchange: (e) => { r.difficulty = e.target.value; } },
+        h('option', { value: 'easy', selected: r.difficulty === 'easy' }, 'Facile'),
+        h('option', { value: 'medium', selected: r.difficulty === 'medium' }, 'Moyenne')))),
+    h('div', { class: 'tags' }, data.tags.map((t) =>
+      h('button', { class: 'chip', 'aria-pressed': String(r.tags.includes(t)), onclick: () => {
+        r.tags = r.tags.includes(t) ? r.tags.filter((x) => x !== t) : data.tags.filter((x) => x === t || r.tags.includes(x));
+        rerender();
+      } }, TAG_NAMES[t] || t))));
+
+  // Ingredients
+  const byCategory = {};
+  for (const i of data.ingredients) (byCategory[i.category] ||= []).push(i);
+  const ingredientSelect = (value, onchange) => h('select', { onchange, 'aria-label': 'Ingrédient' },
+    !data.ingredients.some((i) => i.id === value) && h('option', { value, selected: true }, `${value || 'Choisir…'} (inconnu)`),
+    Object.entries(byCategory).map(([cat, list]) => h('optgroup', { label: CATEGORY_NAMES[cat] || cat },
+      list.map((i) => h('option', { value: i.id, selected: i.id === value }, `${i.name.fr} (${i.id})`)))));
+  const ingredients = h('section', { class: 'card' }, h('h2', {}, 'Ingrédients'),
+    h('div', { class: 'stack' },
+      r.ingredients.map((ing, n) => h('div', { class: 'ing' },
+        ingredientSelect(ing.ref, (e) => { ing.ref = e.target.value; }),
+        h('input', { type: 'text', placeholder: 'Quantité', 'aria-label': 'Quantité', value: ing.qty || '', oninput: (e) => { ing.qty = e.target.value; } }),
+        h('button', { class: 'btn btn-icon btn-danger', title: 'Retirer', 'aria-label': 'Retirer', onclick: () => { r.ingredients.splice(n, 1); rerender(); } }, '✕'))),
+      h('button', { class: 'btn btn-add', onclick: () => { r.ingredients.push({ ref: '' }); rerender(); } }, '+ Ajouter un ingrédient'),
+      h('div', { class: 'hint' }, 'Quantités neutres : un nombre (« 2 ») ou des grammes et millilitres (« 200 g »). Vide pour sel, cuillères, pincées.')));
+
+  // Steps: one card per step with the three languages, so they always stay aligned.
+  const count = r.steps.fr.length;
+  const moveStep = (from, to) => { for (const [l] of LANGS) r.steps[l].splice(to, 0, ...r.steps[l].splice(from, 1)); rerender(); };
+  const steps = h('section', { class: 'card' }, h('h2', {}, 'Étapes'),
+    h('div', { class: 'stack' },
+      Array.from({ length: count }, (_, n) => h('div', { class: 'step' },
+        h('div', { class: 'step-head' }, `Étape ${n + 1}`,
+          h('div', {},
+            h('button', { class: 'btn btn-icon', title: 'Monter', 'aria-label': 'Monter', disabled: n === 0, onclick: () => moveStep(n, n - 1) }, '↑'),
+            h('button', { class: 'btn btn-icon', title: 'Descendre', 'aria-label': 'Descendre', disabled: n === count - 1, onclick: () => moveStep(n, n + 1) }, '↓'),
+            h('button', { class: 'btn btn-icon btn-danger', title: 'Supprimer l’étape', 'aria-label': 'Supprimer l’étape', onclick: () => { for (const [l] of LANGS) r.steps[l].splice(n, 1); rerender(); } }, '✕'))),
+        LANGS.map(([l, label, dir]) => h('label', { class: 'field' }, h('span', { class: 'lang' }, label),
+          h('textarea', { dir, lang: l, rows: 2, value: r.steps[l][n] ?? '', oninput: (e) => { r.steps[l][n] = e.target.value; } }))))),
+      h('button', { class: 'btn btn-add', onclick: () => { for (const [l] of LANGS) r.steps[l].push(''); rerender(); } }, '+ Ajouter une étape')));
+
+  // Actions
+  const list = visible();
+  const index = list.findIndex((x) => x.source.id === d.source.id);
+  const bar = h('div', { class: 'bar' },
+    h('button', { class: 'btn', disabled: index <= 0, onclick: () => select(list[index - 1].source.id) }, '← Précédente'),
+    h('button', { class: 'btn', disabled: index < 0 || index >= list.length - 1, onclick: () => select(list[index + 1].source.id) }, 'Suivante →'),
+    h('span', { class: 'spacer' }),
+    h('span', { class: 'saved', id: 'saved' }),
+    h('button', { class: 'btn btn-danger', onclick: () => save('rejected', true) }, 'Rejeter'),
+    d.status !== 'pending' && d.status !== 'needs-ingredients' && h('button', { class: 'btn', onclick: () => save(d.missing?.length ? 'needs-ingredients' : 'pending') }, 'Remettre à relire'),
+    h('button', { class: 'btn', onclick: () => save(d.status) }, 'Enregistrer'),
+    h('button', { class: 'btn btn-primary', onclick: () => save('approved', true) }, 'Approuver'));
+
+  main.replaceChildren(
+    h('div', { class: 'content' }, head, ...alerts.filter(Boolean),
+      h('div', { class: 'cols' }, original, h('div', { class: 'edit' }, titles, infos, ingredients, steps)),
+      h('p', { class: 'hint' }, 'Une fois la relecture finie : ', h('code', {}, 'npm run import:themealdb -- --publish'), ', puis pousse.')),
+    bar);
+}
+
+async function save(status, goNext) {
+  const d = current();
+  // Where to go once this one leaves the list.
+  const list = visible();
+  const index = list.findIndex((x) => x.source.id === d.source.id);
+  const res = await fetch(`/api/drafts/${encodeURIComponent(d.source.id)}`, {
+    method: 'PUT',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ status, recipe: edit }),
+  });
+  const body = await res.json();
+  if (!res.ok) {
+    error = res.status === 422 ? `Impossible d’approuver :\n${body.error}` : `Erreur : ${body.error}`;
+    renderMain();
+    document.getElementById('main').scrollTop = 0;
+    return;
+  }
+  data.drafts[data.drafts.indexOf(d)] = body;
+  const after = visible();
+  if (goNext) {
+    const next = after.find((x) => x.source.id === list[index + 1]?.source.id) || after[index] || after[after.length - 1];
+    select(next?.source.id ?? body.source.id, true);
+  } else {
+    select(body.source.id, true);
+    document.getElementById('saved').textContent = 'Enregistré';
+  }
+}
+
+document.getElementById('search').addEventListener('input', (e) => { query = e.target.value; renderSide(); });
+window.addEventListener('beforeunload', (e) => { if (dirty()) e.preventDefault(); });
+load();
+</script>
+</body>
+</html>
