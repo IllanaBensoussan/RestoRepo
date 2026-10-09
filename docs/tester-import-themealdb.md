@@ -10,6 +10,10 @@ Ce guide sert à vérifier les trois outils ajoutés pour importer des recettes 
 
 Le filtre kasher est dans `scripts/themealdb/kosher.mjs`, et les contrôles avant publication dans `scripts/themealdb/drafts.mjs`.
 
+## Déjà dans le catalogue
+
+Cinq recettes TheMealDB ont été ajoutées à la main, sans passer par le script : Poulet rôti à l’algérienne (53280), Falafels à la poêle (53266), Haricots verts syriens à l’huile d’olive (53092), Oukha (53079) et Gâteau au chocolat (52776). Elles sont dans `catalog/recipes.json` (identifiants `mealdb-<numéro>`) et notées `approved` dans `imports/themealdb/drafts.json`. Le script ne les retraduit donc pas, et `--publish` les garde. Pour repartir de zéro, supprime `imports/themealdb/` et les recettes `mealdb-` de `catalog/recipes.json`.
+
 ## Ce qu'il faut
 
 - **Node.js 20 ou plus récent** : `node -v` pour vérifier, sinon https://nodejs.org (version LTS).
