@@ -121,11 +121,13 @@ const FILTERS = [
   ['rejected', 'Rejetées'],
   ['all', 'Toutes'],
 ];
+const COURSE_NAMES = { starter: 'Entrée', main: 'Plat', side: 'Accompagnement', dessert: 'Dessert', breakfast: 'Petit-déjeuner' };
+const KASHRUT_NAMES = { meat: 'Viande (בשרי)', dairy: 'Lait (חלבי)', parve: 'Neutre (פרווה)', mixed: 'Viande et lait : pas kasher' };
 const TAG_NAMES = { veggie: 'Végétarien', vegan: 'Végan', fish: 'Poisson', meat: 'Viande', quick: 'Rapide', oven: 'Four', soup: 'Soupe', salad: 'Salade', pasta: 'Pâtes', sweet: 'Sucré', asian: 'Asiatique', israeli: 'Israélien' };
 const CATEGORY_NAMES = { veg: 'Légumes', fruit: 'Fruits', herbs: 'Herbes', dairy: 'Crèmerie', meat: 'Viande et poisson', bakery: 'Boulangerie', grocery: 'Épicerie' };
 const LANGS = [['fr', 'FR', 'ltr'], ['en', 'EN', 'ltr'], ['he', 'HE', 'rtl']];
 
-let data = { drafts: [], ingredients: [], tags: [] };
+let data = { drafts: [], ingredients: [], tags: [], courses: [] };
 let filter = 'pending';
 let query = '';
 let currentId = null;
@@ -245,7 +247,10 @@ function renderMain() {
       h('label', {}, 'Portions', h('input', { type: 'number', min: 1, value: r.servings, oninput: (e) => { r.servings = Number(e.target.value); } })),
       h('label', {}, 'Difficulté', h('select', { onchange: (e) => { r.difficulty = e.target.value; } },
         h('option', { value: 'easy', selected: r.difficulty === 'easy' }, 'Facile'),
-        h('option', { value: 'medium', selected: r.difficulty === 'medium' }, 'Moyenne')))),
+        h('option', { value: 'medium', selected: r.difficulty === 'medium' }, 'Moyenne'))),
+      h('label', {}, 'Catégorie', h('select', { onchange: (e) => { r.course = e.target.value; } },
+        data.courses.map((c) => h('option', { value: c, selected: r.course === c }, COURSE_NAMES[c] || c))))),
+    h('p', { class: 'hint' }, `Annotation : ${KASHRUT_NAMES[d.recipe.kashrut] || d.recipe.kashrut}. Elle suit les ingrédients et se met à jour à l’enregistrement.`),
     h('div', { class: 'tags' }, data.tags.map((t) =>
       h('button', { class: 'chip', 'aria-pressed': String(r.tags.includes(t)), onclick: () => {
         r.tags = r.tags.includes(t) ? r.tags.filter((x) => x !== t) : data.tags.filter((x) => x === t || r.tags.includes(x));

@@ -97,6 +97,14 @@ const fr = {
   fresh: 'Frais', today: 'Aujourd’hui', expired: 'Périmé', days: '{n} jours', day: '1 jour',
   yesterday: 'hier', todayLower: 'aujourd’hui', daysAgo: 'il y a {n} jours',
   easy: 'Facile', medium: 'Moyen', min: 'min',
+  catalogUnavailable: 'Les recettes n’ont pas pu être chargées. Vérifie ta connexion.',
+  starter: 'Entrée', main: 'Plat', side: 'Accompagnement', dessert: 'Dessert', breakfast: 'Petit-déjeuner',
+  meat: 'Viande', dairy: 'Lait', parve: 'Neutre',
+  allCourses: 'Tout', anyKashrut: 'Viande, lait ou neutre',
+  noRecipes: 'Aucune recette ici pour l’instant.',
+  showMore: 'Voir plus de recettes',
+  source: 'Source',
+  seeOnSource: 'Voir la recette sur {name}',
 };
 
 export type Key = keyof typeof fr;
@@ -195,6 +203,14 @@ const en: Dict = {
   fresh: 'Fresh', today: 'Today', expired: 'Expired', days: '{n} days', day: '1 day',
   yesterday: 'yesterday', todayLower: 'today', daysAgo: '{n} days ago',
   easy: 'Easy', medium: 'Medium', min: 'min',
+  catalogUnavailable: 'Recipes couldn’t be loaded. Check your connection.',
+  starter: 'Starter', main: 'Main', side: 'Side', dessert: 'Dessert', breakfast: 'Breakfast',
+  meat: 'Meat', dairy: 'Dairy', parve: 'Parve',
+  allCourses: 'All', anyKashrut: 'Meat, dairy or parve',
+  noRecipes: 'No recipes here yet.',
+  showMore: 'Show more recipes',
+  source: 'Source',
+  seeOnSource: 'See the recipe on {name}',
 };
 
 const he: Dict = {
@@ -290,6 +306,14 @@ const he: Dict = {
   fresh: 'טרי', today: 'היום', expired: 'פג תוקף', days: '{n} ימים', day: 'יום אחד',
   yesterday: 'אתמול', todayLower: 'היום', daysAgo: 'לפני {n} ימים',
   easy: 'קל', medium: 'בינוני', min: 'דק׳',
+  catalogUnavailable: 'לא הצלחנו לטעון את המתכונים. כדאי לבדוק את החיבור.',
+  starter: 'מנה ראשונה', main: 'מנה עיקרית', side: 'תוספת', dessert: 'קינוח', breakfast: 'ארוחת בוקר',
+  meat: 'בשרי', dairy: 'חלבי', parve: 'פרווה',
+  allCourses: 'הכול', anyKashrut: 'בשרי, חלבי או פרווה',
+  noRecipes: 'אין כאן מתכונים עדיין.',
+  showMore: 'עוד מתכונים',
+  source: 'מקור',
+  seeOnSource: 'למתכון ב-{name}',
 };
 
 const DICTS: Record<Lang, Dict> = { fr, en, he };

@@ -27,6 +27,11 @@
 .rf-badge-today { font-weight: 600; }
 .rf-badge-expired { background: var(--danger-soft); color: var(--danger); }
 .rf-badge-receipt { background: var(--info-soft); color: var(--info); }
+.rf-badge-course { background: var(--surface-muted); color: var(--ink); }
+.rf-badge-meat { background: var(--danger-soft); color: var(--danger); }
+.rf-badge-dairy { background: var(--info-soft); color: var(--info); }
+.rf-badge-parve { background: var(--brand-soft); color: var(--brand-strong); }
+.rf-recipe-badges { display: flex; flex-wrap: wrap; gap: var(--space-1); }
 
 /* Chip */
 .rf-chip { display: inline-flex; align-items: center; gap: var(--space-1); min-height: 32px; padding: 0 var(--space-3); border-radius: var(--radius-pill); font-size: 13px; line-height: 18px; font-weight: 500; border: 1px solid transparent; }

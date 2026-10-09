@@ -117,3 +117,12 @@ h1, h2, p { margin: 0; }
 .syncbar { padding: var(--space-2) var(--space-4); padding-inline-end: 64px; background: var(--warn-soft); color: var(--warn); font-size: 13px; line-height: 18px; }
 .rf-recipe-noimg { display: flex; align-items: center; justify-content: center; background: var(--brand-soft); color: var(--brand-strong); }
 .rf-chip-btn .rf-chip-qty, .rf-chip .rf-chip-qty { margin-inline-start: 2px; }
+.filters { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.filters button { min-block-size: 32px; padding: 0 var(--space-3); border-radius: var(--radius-pill); border: 1px solid var(--border); background: transparent; color: var(--ink-muted); font-size: 13px; cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--brand-soft); color: var(--brand-strong); border-color: transparent; font-weight: 500; }
+.filters .filter-meat[aria-pressed="true"] { background: var(--danger-soft); color: var(--danger); }
+.filters .filter-dairy[aria-pressed="true"] { background: var(--info-soft); color: var(--info); }
+.filters button:focus-visible, .source:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.source { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); padding: var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--ink); text-decoration: none; font-size: 13px; line-height: 18px; }
+.source-label { color: var(--ink-muted); }
+.source-logo { block-size: 24px; inline-size: auto; }

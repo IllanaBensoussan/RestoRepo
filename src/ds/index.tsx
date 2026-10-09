@@ -206,8 +206,20 @@ export function MatchMeter({ have, total, label }: { have: number; total: number
   );
 }
 
-export function RecipeCard({ title, image, imageAlt, readyLabel, size = 'md', time, have, total, matchLabel, missing, missingLabel, onOpen, onMissing }: {
+export interface RecipeBadge { label: string; tone: 'course' | 'meat' | 'dairy' | 'parve' }
+
+export function RecipeBadges({ badges }: { badges: RecipeBadge[] }) {
+  return (
+    <div className="rf-recipe-badges">
+      {badges.map((b) => <span key={b.label} className={cx('rf-badge', `rf-badge-${b.tone}`)}>{b.label}</span>)}
+    </div>
+  );
+}
+
+export function RecipeCard({ title, image, imageAlt, badges, readyLabel, size = 'md', time, have, total, matchLabel, missing, missingLabel, onOpen, onMissing }: {
   title: string;
+  /** Course and kashrut, shown above the title. */
+  badges?: RecipeBadge[];
   /** Photo of the finished dish; null shows a stand-in until one is added. */
   image: string | null;
   imageAlt?: string;
@@ -235,6 +247,7 @@ export function RecipeCard({ title, image, imageAlt, readyLabel, size = 'md', ti
         )}
       </div>
       <div className="rf-recipe-body">
+        {badges && badges.length > 0 && <RecipeBadges badges={badges} />}
         <div className="rf-recipe-title">{title}</div>
         {time && <div className="rf-recipe-meta"><Icon name="clock" size={16} /><span>{time}</span></div>}
         <MatchMeter have={have} total={total} label={matchLabel} />
@@ -267,6 +280,7 @@ export function RecipeImage({ src, alt }: { src: string | null; alt: string }) {
       className="rf-recipe-img rf-recipe-loading"
       src={src}
       alt={alt}
+      loading="lazy"
       onLoad={(e) => e.currentTarget.classList.remove('rf-recipe-loading')}
     />
   );

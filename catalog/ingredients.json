@@ -809,6 +809,7 @@
    "he": "חלב"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 6,
   "defaultQty": "1 L",
   "keywords": [
@@ -825,6 +826,7 @@
    "he": "יוגורט"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 14,
   "defaultQty": "4",
   "keywords": [
@@ -842,6 +844,7 @@
    "he": "גבינה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 14,
   "defaultQty": "200 g",
   "keywords": [
@@ -860,6 +863,7 @@
    "he": "פטה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 14,
   "defaultQty": "200 g",
   "keywords": [
@@ -877,6 +881,7 @@
    "he": "מוצרלה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 7,
   "defaultQty": "250 g",
   "keywords": [
@@ -893,6 +898,7 @@
    "he": "פרמזן"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 30,
   "defaultQty": "100 g",
   "keywords": [
@@ -910,6 +916,7 @@
    "he": "גבינה לבנה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 10,
   "defaultQty": "250 g",
   "keywords": [
@@ -929,6 +936,7 @@
    "he": "לבנה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 14,
   "defaultQty": "250 g",
   "keywords": [
@@ -945,6 +953,7 @@
    "he": "שמנת"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 10,
   "defaultQty": "250 ml",
   "keywords": [
@@ -962,6 +971,7 @@
    "he": "חמאה"
   },
   "category": "dairy",
+  "kashrut": "dairy",
   "shelfDays": 30,
   "defaultQty": "200 g",
   "keywords": [
@@ -978,6 +988,7 @@
    "he": "עוף"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 2,
   "defaultQty": "1 kg",
   "keywords": [
@@ -996,6 +1007,7 @@
    "he": "חזה עוף"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 2,
   "defaultQty": "500 g",
   "keywords": [
@@ -1015,6 +1027,7 @@
    "he": "בשר טחון"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 2,
   "defaultQty": "500 g",
   "keywords": [
@@ -1034,6 +1047,7 @@
    "he": "בקר"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 3,
   "defaultQty": "500 g",
   "keywords": [
@@ -1051,6 +1065,7 @@
    "he": "הודו"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 2,
   "defaultQty": "500 g",
   "keywords": [
@@ -1110,6 +1125,7 @@
    "he": "נקניקיות"
   },
   "category": "meat",
+  "kashrut": "meat",
   "shelfDays": 7,
   "defaultQty": "1",
   "keywords": [
@@ -1535,20 +1551,21 @@
  {
   "id": "stock",
   "name": {
-   "fr": "Bouillon",
-   "en": "Stock",
-   "he": "ציר"
+   "fr": "Bouillon de légumes",
+   "en": "Vegetable stock",
+   "he": "ציר ירקות"
   },
   "category": "grocery",
   "shelfDays": 365,
   "defaultQty": "1",
   "keywords": [
+   "bouillon de legumes",
    "bouillon",
+   "vegetable stock",
    "stock cube",
    "broth",
-   "אבקת מרק",
-   "ציר",
-   "מרק עוף"
+   "ציר ירקות",
+   "אבקת מרק"
   ]
  },
  {

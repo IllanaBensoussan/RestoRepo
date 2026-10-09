@@ -3,8 +3,8 @@ import { TabBar } from './ds';
 import { Ctx, type AppCtx, type Tab } from './ctx';
 import { LANGS, LANG_NAMES, detectLang, makeT, type Lang } from './i18n';
 import { completeRedirect, signOut as fbSignOut, watchUser, type AppUser, type SignInResult } from './lib/firebase';
-import { useCatalog } from './catalog';
-import { cloudAvailable, subscribeCatalog } from './lib/cloud';
+import { makeCatalog, setCatalog, useCatalog } from './catalog';
+import { subscribeCatalog } from './lib/cloud';
 import { seedDemo, usePref, useUserData } from './lib/store';
 import { Home } from './screens/Home';
 import { Login } from './screens/Login';
@@ -75,9 +75,13 @@ export function App() {
 
 function Shell({ user, lang, setLang, t, toast, signOut, children }: Pick<AppCtx, 'user' | 'lang' | 'setLang' | 't' | 'toast' | 'signOut'> & { children: React.ReactNode }) {
   const [data, update, sync] = useUserData(user.uid);
-  // Re-render the screens when the catalogue arrives from Firestore.
-  useCatalog();
-  useEffect(() => (user.demo || !cloudAvailable() ? undefined : subscribeCatalog()), [user.demo]);
+  // The catalogue only comes from Firestore, which the demo account can't read.
+  const catalog = useCatalog();
+  useEffect(() => {
+    if (!user.demo) return subscribeCatalog();
+    setCatalog(makeCatalog('unavailable'));
+    return undefined;
+  }, [user.demo]);
   const [tab, setTab] = useState<Tab>('home');
   const [recipe, setRecipe] = useState<string | undefined>();
   const [manual, setManual] = useState(false);
@@ -101,8 +105,9 @@ function Shell({ user, lang, setLang, t, toast, signOut, children }: Pick<AppCtx
           {user.photoURL ? <img src={user.photoURL} alt="" referrerPolicy="no-referrer" /> : <span>{initials}</span>}
         </button>
         {sync === 'error' && <div className="syncbar" role="alert">{t('syncError')}</div>}
+        {catalog.status === 'unavailable' && <div className="syncbar" role="alert">{t('catalogUnavailable')}</div>}
         <main ref={main} className="main">
-          {sync === 'loading' ? <div className="screen"><p className="muted" aria-busy="true">{t('loading')}</p></div> : <>
+          {sync === 'loading' || catalog.status === 'loading' ? <div className="screen"><p className="muted" aria-busy="true">{t('loading')}</p></div> : <>
           {tab === 'home' && <Home />}
           {tab === 'pantry' && <Pantry />}
           {tab === 'scan' && <Scan manual={manual} onManualClose={() => setManual(false)} />}
