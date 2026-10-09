@@ -65,6 +65,16 @@ Tant que les clés ne sont pas renseignées, l'écran de connexion le signale et
 
   Pour une recette, `image` peut être un chemin du site (`recipes/x.svg`) ou une URL. Sans photo (`null`), l'app affiche un cadre provisoire.
 
+### Importer des recettes de TheMealDB
+
+`scripts/import-themealdb.mjs` ajoute au catalogue des recettes de [TheMealDB](https://www.themealdb.com), en trois temps :
+
+1. **Brouillons** : `ANTHROPIC_API_KEY=... npm run import:themealdb` récupère toutes les recettes, écarte celles qui ne sont pas kasher, puis Claude revérifie la cacheroute, traduit en français et en hébreu, découpe les étapes, estime le temps et la difficulté, et relie chaque ingrédient au catalogue. Le résultat va dans `imports/themealdb/drafts.json`, et les recettes écartées dans `imports/themealdb/excluded.json`, avec la raison. Relancer la commande ne traite que les nouvelles recettes. Options : `-- --limit 5` pour essayer sur quelques recettes, `-- --dry-run` pour seulement récupérer et filtrer (sans Claude), `-- --redo 52772` pour refaire un brouillon.
+2. **Relecture** : dans `drafts.json`, chaque brouillon contient la recette traduite (`recipe`), l'original (`original`) et les points à vérifier (`notes`). Corrige les textes si besoin et mets `status` à `approved` ou `rejected`. Le statut `needs-ingredients` signale des ingrédients absents du catalogue (`missing`) : ajoute-les à `catalog/ingredients.json` puis à la recette, ou refais le brouillon avec `--redo`.
+3. **Publication** : `npm run import:themealdb -- --publish` copie les brouillons approuvés dans `catalog/recipes.json` (identifiants `mealdb-<id>`), retire ceux qui ne sont plus approuvés et refuse de publier s'il manque une traduction ou un ingrédient. Il suffit ensuite de pousser.
+
+Le filtre kasher (`scripts/themealdb/kosher.mjs`) écarte le porc, les fruits de mer, les poissons sans écailles, le lapin, la gélatine, le suif, les saucisses sans précision, et tout mélange de viande et de lait ou de viande et de poisson. Il juge la composition de la recette, pas la certification des produits ni l'abattage. La clé de test TheMealDB (`1`) sert par défaut. Pour une app publiée, mets ta clé dans `THEMEALDB_API_KEY`.
+
 ## Mise en ligne
 
 Chaque push sur la branche principale construit l'app et la publie sur **https://resto-frigo.web.app** (`.github/workflows/deploy.yml`). Il faut une seule fois le secret GitHub `FIREBASE_SERVICE_ACCOUNT` : la clé JSON d'un compte de service Google Cloud qui a les rôles **Administrateur Firebase Hosting** (pour la mise en ligne) et **Utilisateur Cloud Datastore** (pour l'envoi du catalogue).
