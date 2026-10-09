@@ -11,7 +11,9 @@
     "test": "vitest run",
     "emulators": "firebase emulators:start --only auth,firestore --project demo-restofrigo",
     "dev:emulators": "VITE_FIREBASE_EMULATORS=1 VITE_FIREBASE_API_KEY=demo VITE_FIREBASE_AUTH_DOMAIN=demo-restofrigo.firebaseapp.com VITE_FIREBASE_PROJECT_ID=demo-restofrigo VITE_FIREBASE_APP_ID=demo vite",
-    "seed:catalog": "node scripts/seed-catalog.mjs"
+    "seed:catalog": "node scripts/seed-catalog.mjs",
+    "import:themealdb": "node scripts/import-themealdb.mjs",
+    "review:themealdb": "node scripts/review-themealdb.mjs"
   },
   "dependencies": {
     "firebase": "^12.19.0",
@@ -21,12 +23,14 @@
     "tesseract.js": "^6.0.1"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.132.1",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.7.0",
     "firebase-admin": "^13.10.0",
     "typescript": "~5.8",
     "vite": "^6.4.4",
-    "vitest": "^3.2.7"
+    "vitest": "^3.2.7",
+    "zod": "^4.6.5"
   }
 }

@@ -1,0 +1,547 @@
+[
+ {
+  "status": "approved",
+  "source": {
+   "id": "52776",
+   "name": "Chocolate Gateau",
+   "category": "Dessert",
+   "area": "France",
+   "url": "https://www.themealdb.com/meal/52776",
+   "video": "https://www.youtube.com/watch?v=dsJtgmAhFF4"
+  },
+  "notes": [],
+  "recipe": {
+   "id": "mealdb-52776",
+   "title": {
+    "fr": "Gâteau au chocolat",
+    "en": "Chocolate gateau",
+    "he": "עוגת שוקולד"
+   },
+   "image": "https://www.themealdb.com/images/media/meals/tqtywx1468317395.jpg",
+   "minutes": 85,
+   "difficulty": "medium",
+   "servings": 8,
+   "tags": [
+    "veggie",
+    "sweet",
+    "oven"
+   ],
+   "ingredients": [
+    {
+     "ref": "chocolate",
+     "qty": "250 g"
+    },
+    {
+     "ref": "butter",
+     "qty": "175 g"
+    },
+    {
+     "ref": "sugar",
+     "qty": "175 g"
+    },
+    {
+     "ref": "flour",
+     "qty": "125 g"
+    },
+    {
+     "ref": "egg",
+     "qty": "5"
+    },
+    {
+     "ref": "milk"
+    }
+   ],
+   "steps": {
+    "fr": [
+     "Préchauffe le four à 180 °C. Beurre un moule à charnière rond de 20 cm et tapisse le fond de papier cuisson.",
+     "Fais fondre le chocolat en morceaux au bain-marie en remuant (ou 2 à 3 minutes au micro-ondes, en remuant de temps en temps), puis laisse-le tiédir.",
+     "Dans un saladier, travaille le beurre et le sucre à la cuillère en bois jusqu’à obtenir un mélange léger et mousseux. Incorpore les œufs petit à petit, avec un peu de farine si le mélange tranche.",
+     "Ajoute le reste de la farine, le chocolat fondu et 2 cuillères à soupe de lait, et mélange jusqu’à obtenir une pâte lisse.",
+     "Verse la pâte dans le moule et fais cuire 50 à 55 minutes, jusqu’à ce que le centre soit ferme et qu’une pique en ressorte propre. Laisse tiédir 10 minutes, démoule et laisse refroidir complètement."
+    ],
+    "en": [
+     "Preheat the oven to 180 °C. Grease a 20 cm round springform tin and line the base with baking paper.",
+     "Melt the chocolate in a heatproof bowl over a pan of gently simmering water, stirring (or for 2 to 3 minutes in the microwave, stirring now and then), then let it cool slightly.",
+     "In a mixing bowl, cream the butter and sugar with a wooden spoon until light and fluffy. Beat in the eggs gradually, adding a little flour if the mixture starts to curdle.",
+     "Fold in the rest of the flour, the melted chocolate and 2 tablespoons milk, and mix until smooth.",
+     "Spread the mixture in the tin and bake for 50 to 55 minutes, until firm in the centre and a skewer comes out clean. Cool for 10 minutes, then turn out and leave to cool completely."
+    ],
+    "he": [
+     "מחממים את התנור ל-180 מעלות. משמנים תבנית עגולה עם דפנות נפתחות בקוטר 20 ס״מ ומרפדים את התחתית בנייר אפייה.",
+     "ממיסים את השוקולד השבור בקערה עמידה בחום מעל סיר עם מים רותחים בעדינות, תוך ערבוב (או 2–3 דקות במיקרוגל, עם ערבוב מדי פעם), ומניחים לו להתקרר מעט.",
+     "בקערה מקציפים את החמאה והסוכר בכף עץ עד שהתערובת בהירה ואוורירית. מוסיפים את הביצים בהדרגה תוך טריפה, ואם התערובת נפרדת מוסיפים מעט קמח.",
+     "מקפלים פנימה את שאר הקמח, את השוקולד המומס ו-2 כפות חלב, ומערבבים עד שהבלילה חלקה.",
+     "מורחים את הבלילה בתבנית ואופים 50–55 דקות, עד שהמרכז יציב וקיסם שננעץ בו יוצא נקי. מצננים 10 דקות, מחלצים מהתבנית ומצננים לגמרי."
+    ]
+   }
+  },
+  "original": {
+   "ingredients": [
+    {
+     "name": "Plain chocolate",
+     "measure": "250g"
+    },
+    {
+     "name": "Butter",
+     "measure": "175g"
+    },
+    {
+     "name": "Milk",
+     "measure": "2 tablespoons"
+    },
+    {
+     "name": "Eggs",
+     "measure": "5"
+    },
+    {
+     "name": "Granulated Sugar",
+     "measure": "175g"
+    },
+    {
+     "name": "Flour",
+     "measure": "125g"
+    }
+   ],
+   "instructions": "Preheat the oven to 180°C/350°F/Gas Mark 4. Grease and line the base of an 8 in round spring form cake tin with baking parchment\r\nBreak the chocolate into a heatproof bowl and place over a saucepan of gently simmering water and stir until it melts. (or melt in the microwave for 2-3 mins stirring occasionally)\r\nPlace the butter and sugar in a mixing bowl and cream together with a wooden spoon until light and fluffy. Gradually beat in the eggs, adding a little flour if the mixture begins to curdle. Fold in the remaining flour with the cooled, melted chocolate and milk. Mix until smooth.\r\nSpread the mixture into the cake tin and bake for 50-55 mins or until firm in the centre and a skewer comes out cleanly. Cool for 10 minutes, then turn out and cool completely."
+  }
+ },
+ {
+  "status": "approved",
+  "source": {
+   "id": "53079",
+   "name": "Fish Soup (Ukha)",
+   "category": "Seafood",
+   "area": "Russian",
+   "url": "https://www.themealdb.com/meal/53079",
+   "video": "https://www.youtube.com/watch?v=cS3Yn-y5uVg"
+  },
+  "notes": [],
+  "recipe": {
+   "id": "mealdb-53079",
+   "title": {
+    "fr": "Oukha, soupe de poisson russe",
+    "en": "Ukha, Russian fish soup",
+    "he": "אוחה, מרק דגים רוסי"
+   },
+   "image": "https://www.themealdb.com/images/media/meals/7n8su21699013057.jpg",
+   "minutes": 45,
+   "difficulty": "easy",
+   "servings": 4,
+   "tags": [
+    "fish",
+    "soup"
+   ],
+   "ingredients": [
+    {
+     "ref": "white-fish",
+     "qty": "1"
+    },
+    {
+     "ref": "salmon",
+     "qty": "1"
+    },
+    {
+     "ref": "potato",
+     "qty": "4"
+    },
+    {
+     "ref": "carrot",
+     "qty": "2"
+    },
+    {
+     "ref": "onion",
+     "qty": "1"
+    },
+    {
+     "ref": "stock",
+     "qty": "750 ml"
+    },
+    {
+     "ref": "olive-oil"
+    }
+   ],
+   "steps": {
+    "fr": [
+     "Fais chauffer 2 cuillères à soupe d’huile d’olive dans une casserole moyenne à feu moyen-vif. Ajoute l’oignon émincé et fais-le revenir en remuant de temps en temps, jusqu’à ce qu’il commence à caraméliser.",
+     "Ajoute les carottes coupées et laisse cuire environ 4 minutes, jusqu’à ce qu’elles commencent à ramollir.",
+     "Verse 750 ml de fumet de poisson et 750 ml d’eau, ajoute les pommes de terre en morceaux et 3 feuilles de laurier, sale, poivre et porte à ébullition. Baisse le feu, couvre et laisse cuire 25 minutes, jusqu’à ce que les pommes de terre soient tendres.",
+     "Ajoute délicatement le cabillaud et le saumon coupés en cubes et laisse frémir quelques minutes, sans trop cuire : le poisson est prêt quand sa chair devient opaque et s’effeuille facilement.",
+     "Parsème d’aneth ou de persil ciselé avant de servir."
+    ],
+    "en": [
+     "Heat 2 tablespoons olive oil in a medium pot over a medium-high heat. Add the sliced onion and cook, stirring now and then, until it starts to caramelise.",
+     "Add the chopped carrots and cook for about 4 minutes, until they start to soften.",
+     "Pour in 750 ml fish stock and 750 ml water, add the potatoes in chunks and 3 bay leaves, season and bring to the boil. Lower the heat, cover and simmer for 25 minutes, until the potatoes are tender.",
+     "Gently add the cubed cod and salmon and simmer for a few minutes without overcooking: the fish is done when the flesh is opaque and flakes easily.",
+     "Scatter with chopped dill or parsley before serving."
+    ],
+    "he": [
+     "מחממים 2 כפות שמן זית בסיר בינוני על אש בינונית-גבוהה. מוסיפים את הבצל הפרוס ומטגנים תוך ערבוב מדי פעם, עד שהוא מתחיל להתקרמל.",
+     "מוסיפים את הגזר החתוך ומבשלים כ-4 דקות, עד שהוא מתחיל להתרכך.",
+     "יוצקים 750 מ״ל ציר דגים ו-750 מ״ל מים, מוסיפים את תפוחי האדמה בקוביות גדולות ו-3 עלי דפנה, מתבלים במלח ופלפל ומביאים לרתיחה. מנמיכים את האש, מכסים ומבשלים 25 דקות, עד שתפוחי האדמה רכים.",
+     "מוסיפים בעדינות את קוביות הבקלה והסלמון ומבשלים על אש קטנה כמה דקות, בלי לבשל יותר מדי: הדג מוכן כשהבשר שלו אטום ומתפרק בקלות.",
+     "מפזרים שמיר או פטרוזיליה קצוצים לפני ההגשה."
+    ]
+   }
+  },
+  "original": {
+   "ingredients": [
+    {
+     "name": "Olive Oil",
+     "measure": "2 tbs"
+    },
+    {
+     "name": "Onion",
+     "measure": "1 sliced"
+    },
+    {
+     "name": "Carrots",
+     "measure": "2 medium"
+    },
+    {
+     "name": "Fish Stock",
+     "measure": "3 cups"
+    },
+    {
+     "name": "Water",
+     "measure": "3 cups"
+    },
+    {
+     "name": "Potatoes",
+     "measure": "4 large"
+    },
+    {
+     "name": "Bay Leaf",
+     "measure": "3"
+    },
+    {
+     "name": "Cod",
+     "measure": "1"
+    },
+    {
+     "name": "Salmon",
+     "measure": "1"
+    }
+   ],
+   "instructions": "In a medium pot, heat the olive oil over medium-high heat. Add the onions and cook, stirring occasionally until the onions start to caramelize. Add the carrots and cook until the carrots start to soften, about 4 more minutes.\r\nAdd the stock, water, potatoes, bay leaves, and black peppercorns. Season with salt and bring to a boil. Reduce heat, cover and cook for 10 minutes. Add the millet and cook for 15 more minutes until millet and potatoes are cooked.\r\nGently add the fish cubes. Stir and bring the soup to a simmer. The fish will cook through very fast, so make sure to not overcook them. They are done when the flesh is opaque and flakes easily.\r\nGarnish the soup with chopped fresh dill or parsley before serving."
+  }
+ },
+ {
+  "status": "approved",
+  "source": {
+   "id": "53092",
+   "name": "Fasoliyyeh Bi Z-Zayt (Syrian Green Beans with Olive Oil)",
+   "category": "Vegan",
+   "area": "Syrian",
+   "url": "https://www.themealdb.com/meal/53092",
+   "video": "https://www.youtube.com/watch?v=_EadiEPxQI0"
+  },
+  "notes": [],
+  "recipe": {
+   "id": "mealdb-53092",
+   "title": {
+    "fr": "Haricots verts syriens à l’huile d’olive",
+    "en": "Syrian green beans with olive oil",
+    "he": "שעועית ירוקה סורית בשמן זית"
+   },
+   "image": "https://www.themealdb.com/images/media/meals/21yc5s1760524759.jpg",
+   "minutes": 30,
+   "difficulty": "easy",
+   "servings": 4,
+   "tags": [
+    "veggie",
+    "vegan"
+   ],
+   "ingredients": [
+    {
+     "ref": "green-beans",
+     "qty": "450 g"
+    },
+    {
+     "ref": "olive-oil",
+     "qty": "60 ml"
+    },
+    {
+     "ref": "garlic",
+     "qty": "1"
+    },
+    {
+     "ref": "coriander"
+    }
+   ],
+   "steps": {
+    "fr": [
+     "Mets les haricots verts dans une grande casserole, arrose-les d’huile d’olive, sale et couvre.",
+     "Fais cuire à feu moyen-vif en remuant de temps en temps, jusqu’à la cuisson voulue. En Syrie, on les aime bien cuits, quand ils commencent à brunir. Ils doivent cuire à l’étouffée dans l’eau qu’ils rendent, sans rissoler.",
+     "Ajoute la coriandre ciselée et l’ail, et prolonge la cuisson juste jusqu’à ce que la coriandre commence à flétrir. Sers en plat principal avec de la pita chaude, ou en accompagnement."
+    ],
+    "en": [
+     "Put the green beans in a large pot, drizzle with olive oil, season with salt and cover.",
+     "Cook over a medium-high heat, stirring now and then, until done to your liking. Syrians like them well cooked, until they start to turn brown. They should steam in the water they release rather than fry.",
+     "Add the chopped coriander and garlic and cook just until the coriander starts to wilt. Serve as a main dish with warm pita, or as a side."
+    ],
+    "he": [
+     "שמים את השעועית הירוקה בסיר גדול, מזלפים שמן זית, ממליחים ומכסים.",
+     "מבשלים על אש בינונית-גבוהה ומערבבים מדי פעם, עד למידת הריכוך הרצויה. בסוריה אוהבים אותה מבושלת היטב, עד שהיא מתחילה להשחים. היא צריכה להתבשל באדים של הנוזלים שהיא משחררת, לא להיטגן.",
+     "מוסיפים את הכוסברה הקצוצה ואת השום ומבשלים רק עד שהכוסברה מתחילה לנבול. מגישים כמנה עיקרית עם פיתה חמה, או כתוספת."
+    ]
+   }
+  },
+  "original": {
+   "ingredients": [
+    {
+     "name": "Green Beans",
+     "measure": "16 ounces"
+    },
+    {
+     "name": "Olive Oil",
+     "measure": "1/4 cup"
+    },
+    {
+     "name": "Salt",
+     "measure": "Dash"
+    },
+    {
+     "name": "Garlic",
+     "measure": "1 clove"
+    },
+    {
+     "name": "Cilantro",
+     "measure": "1/4 cup"
+    }
+   ],
+   "instructions": "Place the green beans into a large pot, and drizzle with olive oil. Season with salt to taste, and put the lid on the pot. Cook over medium-high heat, stirring occasionally, until beans are cooked to your desired doneness. Syrians like it cooked until the green beans are turning brownish in color. The idea is not to saute them, but to let them steam in the moisture released by the ice crystals.\r\n\r\nAdd cilantro and garlic to the beans, and continue to cook just until the cilantro has started to wilt. Eat as a main course by scooping up with warm pita bread or serve as a side dish."
+  }
+ },
+ {
+  "status": "approved",
+  "source": {
+   "id": "53266",
+   "name": "Falafel",
+   "category": "Vegetarian",
+   "area": "Turkish",
+   "url": "https://www.themealdb.com/meal/53266",
+   "video": "https://www.youtube.com/watch?v=NZcWedPKysk"
+  },
+  "notes": [],
+  "recipe": {
+   "id": "mealdb-53266",
+   "title": {
+    "fr": "Falafels à la poêle",
+    "en": "Pan-fried falafel",
+    "he": "פלאפל במחבת"
+   },
+   "image": "https://www.themealdb.com/images/media/meals/u5e9qq1763795441.jpg",
+   "minutes": 25,
+   "difficulty": "easy",
+   "servings": 3,
+   "tags": [
+    "veggie",
+    "israeli"
+   ],
+   "ingredients": [
+    {
+     "ref": "chickpeas",
+     "qty": "400 g"
+    },
+    {
+     "ref": "onion",
+     "qty": "1"
+    },
+    {
+     "ref": "garlic",
+     "qty": "1"
+    },
+    {
+     "ref": "oil"
+    },
+    {
+     "ref": "cumin"
+    },
+    {
+     "ref": "parsley"
+    },
+    {
+     "ref": "egg",
+     "qty": "1"
+    }
+   ],
+   "steps": {
+    "fr": [
+     "Fais chauffer 1 cuillère à soupe d’huile dans une grande poêle et fais revenir l’oignon haché et l’ail écrasé à feu doux pendant 5 minutes, jusqu’à ce qu’ils soient tendres.",
+     "Verse-les dans un grand saladier avec les pois chiches égouttés, 1 cuillère à café de cumin et 1 cuillère à café de coriandre moulue, puis écrase le tout à la fourchette ou au presse-purée jusqu’à ce que les pois chiches soient complètement écrasés.",
+     "Ajoute une poignée de persil haché, sale, poivre, puis l’œuf battu, et mélange à la main.",
+     "Forme 6 boules et aplatis-les en galettes.",
+     "Fais chauffer le reste de l’huile et fais cuire les falafels à feu moyen 3 minutes de chaque côté, jusqu’à ce qu’ils soient dorés et fermes. Sers-les chauds ou froids, avec du couscous, de la pita ou une salade."
+    ],
+    "en": [
+     "Heat 1 tablespoon oil in a large pan and gently fry the chopped onion and crushed garlic for 5 minutes, until soft.",
+     "Tip them into a large bowl with the drained chickpeas, 1 teaspoon cumin and 1 teaspoon ground coriander, and mash with a fork or potato masher until the chickpeas are completely broken down.",
+     "Stir in a handful of chopped parsley, season, then add the beaten egg and bring the mixture together with your hands.",
+     "Shape into 6 balls, then flatten them into patties.",
+     "Heat the rest of the oil and fry the falafel over a medium heat for 3 minutes on each side, until golden and firm. Serve hot or cold with couscous, pita or salad."
+    ],
+    "he": [
+     "מחממים כף שמן במחבת גדולה ומטגנים את הבצל הקצוץ והשום הכתוש על אש נמוכה 5 דקות, עד שהם מתרככים.",
+     "מעבירים לקערה גדולה עם החומוס המסונן, כפית כמון וכפית כוסברה טחונה, ומועכים במזלג או במועך פירה עד שהחומוס נמעך לגמרי.",
+     "מוסיפים חופן פטרוזיליה קצוצה, מתבלים במלח ופלפל, מוסיפים את הביצה הטרופה ומגבשים את התערובת בידיים.",
+     "יוצרים 6 כדורים ומשטחים אותם לקציצות.",
+     "מחממים את יתרת השמן ומטגנים את הפלאפל על אש בינונית 3 דקות מכל צד, עד שהוא זהוב ויציב. מגישים חם או קר, עם קוסקוס, פיתה או סלט."
+    ]
+   }
+  },
+  "original": {
+   "ingredients": [
+    {
+     "name": "Sunflower Oil",
+     "measure": "2 tablespoons"
+    },
+    {
+     "name": "Onion",
+     "measure": "1 chopped"
+    },
+    {
+     "name": "Garlic",
+     "measure": "1 clove peeled crushed"
+    },
+    {
+     "name": "Chickpeas",
+     "measure": "400g"
+    },
+    {
+     "name": "Ground Cumin",
+     "measure": "1 tsp"
+    },
+    {
+     "name": "Ground Coriander",
+     "measure": "1 tsp"
+    },
+    {
+     "name": "Parsley",
+     "measure": "Handful"
+    },
+    {
+     "name": "Egg",
+     "measure": "1 beaten"
+    }
+   ],
+   "instructions": "step 1\r\nHeat 1 tbsp oil in a large pan, then fry the onion and garlic over a low heat for 5 mins until softened. Tip into a large mixing bowl with the chickpeas and spices, then mash together with a fork or potato masher until the chickpeas are totally broken down. Stir in the parsley or dried herbs, with seasoning to taste. Add the egg, then squish the mixture together with your hands.\r\n\r\nstep 2\r\nMould the mix into 6 balls, then flatten into patties. Heat the remaining oil in the pan, then fry the falafels on a medium heat for 3 mins on each side, until golden brown and firm. Serve hot or cold with couscous, pitta bread or salad."
+  }
+ },
+ {
+  "status": "approved",
+  "source": {
+   "id": "53280",
+   "name": "Poulet Roti a l'Algerienne (Algerian Roast Chicken)",
+   "category": "Chicken",
+   "area": "Algerian",
+   "url": "https://www.themealdb.com/meal/53280",
+   "video": "https://www.youtube.com/watch?v=78O6Sv7HNO0"
+  },
+  "notes": [],
+  "recipe": {
+   "id": "mealdb-53280",
+   "title": {
+    "fr": "Poulet rôti à l’algérienne",
+    "en": "Algerian roast chicken",
+    "he": "עוף צלוי אלג׳ירי"
+   },
+   "image": "https://www.themealdb.com/images/media/meals/nlxald1764112200.jpg",
+   "minutes": 100,
+   "difficulty": "easy",
+   "servings": 4,
+   "tags": [
+    "meat",
+    "oven"
+   ],
+   "ingredients": [
+    {
+     "ref": "chicken",
+     "qty": "1"
+    },
+    {
+     "ref": "onion",
+     "qty": "1"
+    },
+    {
+     "ref": "olive-oil"
+    },
+    {
+     "ref": "vinegar"
+    },
+    {
+     "ref": "mustard"
+    },
+    {
+     "ref": "garlic",
+     "qty": "3"
+    }
+   ],
+   "steps": {
+    "fr": [
+     "Préchauffe le four à 175 °C.",
+     "Dans un plat à four, mélange 250 ml d’eau, l’oignon haché, 5 cuillères à soupe d’huile d’olive, 2 cuillères à soupe de vinaigre balsamique, 1 cuillère à soupe de moutarde de Dijon, l’ail écrasé, 1 cuillère à café de poivre noir, 1 cuillère à café de piment de Cayenne et du sel.",
+     "Ajoute le poulet et retourne-le jusqu’à ce qu’il soit bien enrobé.",
+     "Enfourne pour environ 1 h 30, jusqu’à ce que la cuisse soit cuite à cœur (74 °C près de l’os)."
+    ],
+    "en": [
+     "Preheat the oven to 175 °C.",
+     "In a roasting dish, mix 250 ml water, the chopped onion, 5 tablespoons olive oil, 2 tablespoons balsamic vinegar, 1 tablespoon Dijon mustard, the crushed garlic, 1 teaspoon black pepper, 1 teaspoon cayenne pepper and salt.",
+     "Add the chicken and turn it until it is well coated.",
+     "Roast for about 1 hour 30 minutes, until the thickest part of the thigh reaches 74 °C near the bone."
+    ],
+    "he": [
+     "מחממים את התנור ל-175 מעלות.",
+     "בתבנית צלייה מערבבים 250 מ״ל מים, את הבצל הקצוץ, 5 כפות שמן זית, 2 כפות חומץ בלסמי, כף חרדל דיז׳ון, את השום הכתוש, כפית פלפל שחור, כפית פלפל קאיין ומלח.",
+     "מוסיפים את העוף והופכים אותו עד שהוא מצופה היטב בתערובת.",
+     "צולים כשעה וחצי, עד שהחלק העבה של הירך מגיע ל-74 מעלות ליד העצם."
+    ]
+   }
+  },
+  "original": {
+   "ingredients": [
+    {
+     "name": "Water",
+     "measure": "1 cup"
+    },
+    {
+     "name": "Onion",
+     "measure": "1 chopped"
+    },
+    {
+     "name": "Olive Oil",
+     "measure": "5 tablespoons"
+    },
+    {
+     "name": "Balsamic Vinegar",
+     "measure": "2 tablespoons"
+    },
+    {
+     "name": "Dijon Mustard",
+     "measure": "1 tablespoon"
+    },
+    {
+     "name": "Garlic",
+     "measure": "3 Cloves Crushed"
+    },
+    {
+     "name": "Black Pepper",
+     "measure": "1 tsp"
+    },
+    {
+     "name": "Cayenne Pepper",
+     "measure": "1 tsp"
+    },
+    {
+     "name": "Salt",
+     "measure": "To taste"
+    },
+    {
+     "name": "Chicken",
+     "measure": "1"
+    }
+   ],
+   "instructions": "Preheat oven to 350 degrees F (175 degrees C).\r\n\r\nMix water, onion, olive oil, balsamic vinegar, Dijon mustard, garlic, black pepper, cayenne pepper, and salt together in a roasting dish. Add chicken; turn until well coated with mixture.\r\n\r\nBake in the preheated oven until an instant-read thermometer inserted into the thickest part of the thigh, near the bone, reads 165 degrees F (74 degrees C), about 1 hour 30 minutes."
+  }
+ }
+]
