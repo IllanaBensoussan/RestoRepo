@@ -4,3 +4,12 @@ dist
 .env.local
 *.tsbuildinfo
 *-debug.log
+
+# Secrets: Firebase Admin service account keys and other private credentials
+key.json
+*service-account*.json
+*serviceAccount*.json
+*-firebase-adminsdk-*.json
+*.pem
+*.p12
+.env.*.local
