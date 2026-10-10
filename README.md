@@ -11,7 +11,7 @@ L'app est construite à partir du design system **RestoFrigo** (Claude Design) :
 - **Frigo** : produits par catégorie, triés par date de péremption.
 - **Scanner** : photo (appareil photo), import photo ou PDF, ou ajout à la main. Chaque ligne lue est vérifiée avant d'entrer dans le frigo.
 - **Recettes** : classées selon les ingrédients que tu as, puis selon ce qui périme en premier. Les ingrédients manquants s'ajoutent aux courses.
-- **Menu** : menu de la semaine, un déjeuner et un dîner par jour, partagé avec le foyer. On passe d'une semaine à l'autre, on choisit une recette par repas (celles qu'on peut faire avec le frigo d'abord) ou on l'ajoute depuis une recette, et un bouton met aux courses tout ce qui manque pour les repas à venir. Le menu du jour s'affiche sur l'accueil.
+- **Menu de la semaine** (dans l'onglet Recettes) : un déjeuner et un dîner par jour, un déjeuner et un dîner par jour, partagé avec le foyer. On passe d'une semaine à l'autre, on choisit une recette par repas (celles qu'on peut faire avec le frigo d'abord) ou on l'ajoute depuis une recette, et un bouton met aux courses tout ce qui manque pour les repas à venir. Le menu du jour s'affiche sur l'accueil.
 - **Courses** : liste de courses.
 
 Trois langues : français, anglais et hébreu (de droite à gauche).

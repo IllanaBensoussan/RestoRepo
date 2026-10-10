@@ -8,6 +8,17 @@ import { ingredientName, matchRecipes, uid } from '../lib/pantry';
 import { normalize } from '../lib/receipt';
 import { Sheet } from './Sheet';
 
+/** Switches the Recipes tab between the recipe list and the weekly menu. */
+export function RecipesSwitch({ on }: { on: 'recipes' | 'menu' }) {
+  const { t, go } = useApp();
+  return (
+    <div className="seg" role="group" aria-label={t('tabRecipes')}>
+      <button type="button" className={on === 'recipes' ? 'on' : ''} aria-pressed={on === 'recipes'} onClick={() => go('recipes')}>{t('tabRecipes')}</button>
+      <button type="button" className={on === 'menu' ? 'on' : ''} aria-pressed={on === 'menu'} onClick={() => go('menu')}>{t('menuTitle')}</button>
+    </div>
+  );
+}
+
 /** "Lunch · Monday 12", for a meal of a day. */
 export function mealLabel(date: string, meal: Meal, t: T, lang: Lang) {
   return `${t(meal)} · ${formatDay(parseDay(date), lang, { weekday: 'long', day: 'numeric' })}`;
@@ -72,6 +83,7 @@ export function Menu() {
   return (
     <div className="screen">
       <h1 className="display">{t('menuTitle')}</h1>
+      <RecipesSwitch on="menu" />
       <div className="weeknav">
         <button type="button" className="iconbtn" onClick={() => setOffset((o) => o - 1)} aria-label={t('prevWeek')}><Icon name="back" className="rtl-flip" /></button>
         <div className="weeknav-label">

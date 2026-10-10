@@ -5,7 +5,7 @@ import { useApp } from '../ctx';
 import type { T } from '../i18n';
 import { recipeUrl, share } from '../lib/links';
 import { entryIngredientId, ingredientName, matchRecipes } from '../lib/pantry';
-import { PlanSheet } from './Menu';
+import { PlanSheet, RecipesSwitch } from './Menu';
 
 const PAGE = 24;
 
@@ -83,6 +83,7 @@ export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: str
   return (
     <div className="screen">
       <h1 className="display">{t('recipesTitle')}</h1>
+      <RecipesSwitch on="recipes" />
       <div className="filters" role="group" aria-label={t('allCourses')}>
         <button type="button" aria-pressed={course === null} onClick={() => pick(setCourse)(null)}>{t('allCourses')}</button>
         {COURSES.map((c) => <button key={c} type="button" aria-pressed={course === c} onClick={() => pick(setCourse)(course === c ? null : c)}>{t(c)}</button>)}

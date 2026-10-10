@@ -166,14 +166,13 @@ function Shell({ user, lang, setLang, t, toast, signOut, link, onLinkHandled, ch
         </main>
         <TabBar
           label={t('nav')}
-          active={tab}
+          active={tab === 'menu' ? 'recipes' : tab}
           onChange={(id) => go(id as Tab)}
           items={[
             { id: 'home', label: t('tabHome'), icon: 'home' },
             { id: 'pantry', label: t('tabPantry'), icon: 'fridge' },
             { id: 'scan', label: t('tabScan'), icon: 'camera', primary: true },
             { id: 'recipes', label: t('tabRecipes'), icon: 'pot' },
-            { id: 'menu', label: t('tabMenu'), icon: 'calendar' },
             { id: 'list', label: t('tabList'), icon: 'list' },
           ]}
         />
