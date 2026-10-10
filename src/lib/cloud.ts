@@ -113,7 +113,14 @@ export function subscribeHousehold(id: string, onData: (d: UserData, h: Househol
       cached[4] = s.metadata.fromCache;
       menu = s.docs.map((d) => ({ ...(d.data() as MenuEntry), id: d.id }));
       emit();
-    }, onError),
+    }, (e) => {
+      // Rules published before the menu existed refuse it: the fridge and the list still sync.
+      // Someone removed from the household is refused the other collections too.
+      console.warn('menu', e);
+      cached[4] = false;
+      menu = [];
+      emit();
+    }),
   ];
   return () => unsubs.forEach((u) => u());
 }
