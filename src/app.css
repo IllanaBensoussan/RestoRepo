@@ -136,3 +136,28 @@ h1, h2, p { margin: 0; }
 .checkrow { display: flex; align-items: center; gap: var(--space-3); font-size: 15px; line-height: 22px; cursor: pointer; }
 .checkrow input { inline-size: 20px; block-size: 20px; accent-color: var(--brand); }
 .line-by { font-size: 12px; line-height: 16px; color: var(--ink-muted); }
+
+/* Weekly menu */
+.weeknav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.weeknav-label { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 17px; line-height: 24px; }
+.mday { display: flex; flex-direction: column; gap: var(--space-2); }
+.mday .grouph { display: flex; align-items: center; gap: var(--space-2); }
+.mday-name::first-letter { text-transform: uppercase; }
+.mday-badge { padding: 0 var(--space-2); border-radius: var(--radius-pill); background: var(--brand-soft); color: var(--brand-strong); font-size: 12px; line-height: 20px; font-weight: 500; }
+.mday-past { opacity: .6; }
+.mslot { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface-raised); }
+.mslot-main, .mpick { flex: 1; min-inline-size: 0; display: flex; flex-direction: column; gap: 2px; border: 0; background: none; padding: var(--space-1) 0; color: inherit; font: inherit; text-align: start; cursor: pointer; }
+.mslot-main:disabled { cursor: default; }
+.mslot-empty { inline-size: 100%; border-style: dashed; background: transparent; color: inherit; font: inherit; text-align: start; cursor: pointer; justify-content: space-between; min-block-size: 48px; }
+.mslot-meal { font-size: 12px; line-height: 16px; color: var(--ink-muted); }
+.mslot-title { font-size: 15px; line-height: 22px; font-weight: 500; }
+.mslot-meta { font-size: 12px; line-height: 16px; color: var(--ink-muted); }
+.mslot-add { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--brand); font-size: 13px; font-weight: 500; }
+.mslot-main:focus-visible, .mslot-empty:focus-visible, .mpick:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.picker-list { display: flex; flex-direction: column; }
+.mpick { padding: var(--space-3) 0; border-block-end: 1px solid var(--border); }
+.mpick:last-child { border-block-end: 0; }
+.plan-days { display: flex; flex-direction: column; gap: var(--space-3); }
+.plan-day { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+.plan-day-name { font-size: 15px; line-height: 22px; }
+.plan-day-name::first-letter { text-transform: uppercase; }

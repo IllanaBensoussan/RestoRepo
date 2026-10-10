@@ -141,6 +141,29 @@ const fr = {
   storeBought: 'Ranger les achetés au frigo',
   storedBought: '{n} produit(s) rangé(s) au frigo',
   someone: 'Quelqu’un',
+  tabMenu: 'Menu',
+  menuTitle: 'Menu de la semaine',
+  prevWeek: 'Semaine précédente',
+  nextWeek: 'Semaine suivante',
+  thisWeek: 'Revenir à cette semaine',
+  lunch: 'Déjeuner',
+  dinner: 'Dîner',
+  pickRecipe: 'Choisir une recette',
+  searchRecipe: 'Rechercher une recette',
+  addToMenu: 'Ajouter au menu',
+  addToMenuHint: 'Choisis le jour et le repas. Une recette déjà prévue à ce moment-là sera remplacée.',
+  addedToMenu: '{title} est au menu : {when}.',
+  removeFromMenu: 'Retirer du menu',
+  menuEmpty: 'Rien de prévu cette semaine. Choisis une recette pour chaque repas : ce qui manque ira aux courses en un geste.',
+  weekNeeds: 'Ajouter le manquant de la semaine aux courses ({n})',
+  weekReady: 'Tout ce qu’il faut pour le menu est au frigo ou sur la liste.',
+  addedNeeds: '{n} ingrédient(s) ajouté(s) aux courses.',
+  clearWeek: 'Vider la semaine',
+  confirmClearWeek: 'Retirer tous les repas prévus cette semaine ?',
+  recipeGone: 'Recette retirée du catalogue',
+  plannedBy: 'prévu par {name}',
+  todayMenu: 'Au menu aujourd’hui',
+  seeMenu: 'Voir le menu',
 };
 
 export type Key = keyof typeof fr;
@@ -283,6 +306,29 @@ const en: Dict = {
   storeBought: 'Put bought items in the fridge',
   storedBought: '{n} item(s) put in the fridge',
   someone: 'Someone',
+  tabMenu: 'Menu',
+  menuTitle: 'This week’s menu',
+  prevWeek: 'Previous week',
+  nextWeek: 'Next week',
+  thisWeek: 'Back to this week',
+  lunch: 'Lunch',
+  dinner: 'Dinner',
+  pickRecipe: 'Pick a recipe',
+  searchRecipe: 'Search for a recipe',
+  addToMenu: 'Add to menu',
+  addToMenuHint: 'Pick the day and the meal. A recipe already planned then will be replaced.',
+  addedToMenu: '{title} is on the menu: {when}.',
+  removeFromMenu: 'Remove from menu',
+  menuEmpty: 'Nothing planned this week. Pick a recipe for each meal: whatever is missing goes on the shopping list in one tap.',
+  weekNeeds: 'Add what the week is missing to the list ({n})',
+  weekReady: 'Everything the menu needs is in the fridge or on the list.',
+  addedNeeds: '{n} ingredient(s) added to the shopping list.',
+  clearWeek: 'Clear the week',
+  confirmClearWeek: 'Remove every meal planned this week?',
+  recipeGone: 'Recipe no longer in the catalogue',
+  plannedBy: 'planned by {name}',
+  todayMenu: 'On the menu today',
+  seeMenu: 'See the menu',
 };
 
 const he: Dict = {
@@ -422,6 +468,29 @@ const he: Dict = {
   storeBought: 'העברת מה שנקנה למקרר',
   storedBought: '{n} מוצרים הועברו למקרר',
   someone: 'מישהו',
+  tabMenu: 'תפריט',
+  menuTitle: 'התפריט השבועי',
+  prevWeek: 'השבוע הקודם',
+  nextWeek: 'השבוע הבא',
+  thisWeek: 'חזרה לשבוע הנוכחי',
+  lunch: 'צהריים',
+  dinner: 'ערב',
+  pickRecipe: 'בחירת מתכון',
+  searchRecipe: 'חיפוש מתכון',
+  addToMenu: 'הוספה לתפריט',
+  addToMenuHint: 'בוחרים יום וארוחה. מתכון שכבר מתוכנן באותו זמן יוחלף.',
+  addedToMenu: '{title} בתפריט: {when}.',
+  removeFromMenu: 'הסרה מהתפריט',
+  menuEmpty: 'אין עדיין תוכנית לשבוע הזה. בוחרים מתכון לכל ארוחה, ומה שחסר עובר לרשימת הקניות בלחיצה אחת.',
+  weekNeeds: 'הוספת מה שחסר לשבוע לרשימת הקניות ({n})',
+  weekReady: 'כל מה שהתפריט צריך נמצא במקרר או ברשימה.',
+  addedNeeds: '{n} מצרכים נוספו לרשימת הקניות.',
+  clearWeek: 'ניקוי השבוע',
+  confirmClearWeek: 'להסיר את כל הארוחות המתוכננות לשבוע הזה?',
+  recipeGone: 'המתכון כבר לא בקטלוג',
+  plannedBy: 'תוכנן על ידי {name}',
+  todayMenu: 'בתפריט היום',
+  seeMenu: 'לתפריט',
 };
 
 const DICTS: Record<Lang, Dict> = { fr, en, he };
@@ -449,6 +518,10 @@ const LOCALES: Record<Lang, string> = { fr: 'fr-FR', en: 'en-IL', he: 'he-IL' };
 export function formatPrice(n: number, lang: Lang) {
   const v = n.toFixed(2);
   return lang === 'en' ? `₪${v}` : `${v.replace('.', ',')} ₪`;
+}
+
+export function formatDay(d: Date, lang: Lang, opts: Intl.DateTimeFormatOptions) {
+  return d.toLocaleDateString(LOCALES[lang], opts);
 }
 
 export function formatDate(d: Date, lang: Lang) {

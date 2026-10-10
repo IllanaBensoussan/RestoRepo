@@ -5,6 +5,7 @@ import { useApp } from '../ctx';
 import type { T } from '../i18n';
 import { recipeUrl, share } from '../lib/links';
 import { entryIngredientId, ingredientName, matchRecipes } from '../lib/pantry';
+import { PlanSheet } from './Menu';
 
 const PAGE = 24;
 
@@ -17,6 +18,7 @@ export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: str
   const [course, setCourse] = useState<Course | null>(null);
   const [kashrut, setKashrut] = useState<Kashrut | null>(null);
   const [shown, setShown] = useState(PAGE);
+  const [planning, setPlanning] = useState(false);
   const matches = matchRecipes(data.pantry);
 
   function addToList(ids: string[]) {
@@ -45,6 +47,8 @@ export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: str
         <div className="rf-recipe-meta"><Icon name="clock" size={16} /><span>{r.minutes} {t('min')} · {t(r.difficulty)}</span></div>
         <MatchMeter have={m.have.length} total={r.ingredients.length} label={t('ingredients')} />
         <p className="muted">{t('servings', { n: r.servings })}</p>
+        <Button variant="secondary" icon="calendar" onClick={() => setPlanning(true)}>{t('addToMenu')}</Button>
+        {planning && <PlanSheet recipe={r} onClose={() => setPlanning(false)} />}
         {m.have.length > 0 && (
           <section className="sec">
             <h2 className="grouph">{t('youHave')}</h2>

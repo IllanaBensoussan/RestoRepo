@@ -11,6 +11,7 @@ import { seedDemo, usePref, useUserData } from './lib/store';
 import { Home } from './screens/Home';
 import { HouseholdPanel, JoinSheet } from './screens/Household';
 import { Login } from './screens/Login';
+import { Menu } from './screens/Menu';
 import { Pantry } from './screens/Pantry';
 import { Recipes } from './screens/Recipes';
 import { Scan } from './screens/Scan';
@@ -159,6 +160,7 @@ function Shell({ user, lang, setLang, t, toast, signOut, link, onLinkHandled, ch
           {tab === 'pantry' && <Pantry />}
           {tab === 'scan' && <Scan manual={manual} onManualClose={() => setManual(false)} />}
           {tab === 'recipes' && <Recipes openId={recipe} onOpen={(id) => { setRecipe(id); main.current?.scrollTo({ top: 0 }); }} />}
+          {tab === 'menu' && <Menu />}
           {tab === 'list' && <Shopping />}
           </>}
         </main>
@@ -171,6 +173,7 @@ function Shell({ user, lang, setLang, t, toast, signOut, link, onLinkHandled, ch
             { id: 'pantry', label: t('tabPantry'), icon: 'fridge' },
             { id: 'scan', label: t('tabScan'), icon: 'camera', primary: true },
             { id: 'recipes', label: t('tabRecipes'), icon: 'pot' },
+            { id: 'menu', label: t('tabMenu'), icon: 'calendar' },
             { id: 'list', label: t('tabList'), icon: 'list' },
           ]}
         />

@@ -1,15 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { cloudAvailable, currentHouseholdId, legacyData, moveToOwnHousehold, saveDiff, subscribeHousehold, subscribeHouseholdId, type Household } from './cloud';
 import type { AppUser } from './firebase';
+import type { MenuEntry } from './menu';
 import type { PantryEntry, ShoppingEntry } from './pantry';
 
 export interface UserData {
   pantry: PantryEntry[];
   shopping: ShoppingEntry[];
+  /** The weekly menu: recipes planned for each day's meals. */
+  menu: MenuEntry[];
   lastReceiptAt: number | null;
 }
 
-const EMPTY: UserData = { pantry: [], shopping: [], lastReceiptAt: null };
+const EMPTY: UserData = { pantry: [], shopping: [], menu: [], lastReceiptAt: null };
 const keyFor = (uid: string) => `restofrigo:data:${uid}`;
 
 function load(uid: string): UserData {
@@ -32,7 +35,7 @@ export interface UserStore {
 }
 
 /**
- * The fridge, shopping list and last receipt date the user sees: their household's.
+ * The fridge, shopping list, menu and last receipt date the user sees: their household's.
  * Google accounts are stored in Firestore (shared live with the household, synced across devices,
  * usable offline); the demo account, or an app without Firebase keys, stays in this browser.
  */
@@ -89,7 +92,7 @@ function useCloudData(user: AppUser, active: boolean): UserStore {
         creating = true;
         void (async () => {
           const saved = load(uid);
-          const seed = (await legacyData(uid)) ?? (saved.pantry.length || saved.shopping.length ? saved : undefined);
+          const seed = (await legacyData(uid)) ?? (saved.pantry.length || saved.shopping.length || saved.menu.length ? saved : undefined);
           await moveToOwnHousehold(userRef.current, seed);
           try { localStorage.removeItem(keyFor(uid)); } catch { /* ignore */ }
         })().catch((err) => {
@@ -189,7 +192,7 @@ export function seedDemo() {
     const now = Date.now(), D = 86_400_000;
     const e = (id: string, ingredientId: string, category: PantryEntry['category'], days: number, source: PantryEntry['source'], quantity?: string): PantryEntry =>
       ({ id, ingredientId, category, source, quantity, addedAt: now - D, expiresAt: now + days * D });
-    const data: UserData = { lastReceiptAt: now - D, shopping: [], pantry: [
+    const data: UserData = { lastReceiptAt: now - D, shopping: [], menu: [], pantry: [
       e('d1', 'egg', 'dairy', 10, 'receipt', '12'), e('d2', 'cherry-tomato', 'veg', 2, 'receipt', '250 g'),
       e('d3', 'pepper', 'veg', 3, 'manual', '3'), e('d4', 'onion', 'veg', 20, 'receipt', '1 kg'),
       e('d5', 'garlic', 'veg', 20, 'receipt', '1'), e('d6', 'olive-oil', 'grocery', 200, 'receipt', '1 L'),
