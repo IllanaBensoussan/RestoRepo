@@ -4,7 +4,7 @@ import type { AppUser } from './lib/firebase';
 import type { UserData } from './lib/store';
 import type { Lang, T } from './i18n';
 
-export type Tab = 'home' | 'pantry' | 'scan' | 'recipes' | 'list';
+export type Tab = 'home' | 'pantry' | 'scan' | 'recipes' | 'menu' | 'list';
 
 export interface AppCtx {
   lang: Lang;

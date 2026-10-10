@@ -13,7 +13,7 @@ service cloud.firestore {
       allow read, write: if signedIn() && request.auth.uid == uid;
     }
 
-    // A household shares one fridge and one shopping list between its members. Each person
+    // A household shares one fridge, one shopping list and one weekly menu between its members. Each person
     // owns at most one, whose id is their uid, so nobody can take someone else's id.
     match /households/{hid} {
       allow read: if isMember(hid);
@@ -38,6 +38,10 @@ service cloud.firestore {
         allow write: if isMemberAfter(hid);
       }
       match /shopping/{id} {
+        allow read: if isMember(hid);
+        allow write: if isMemberAfter(hid);
+      }
+      match /menu/{id} {
         allow read: if isMember(hid);
         allow write: if isMemberAfter(hid);
       }

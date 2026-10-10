@@ -67,13 +67,14 @@ export interface Catalog {
   /** First ingredient of each group, for naming a group. */
   byGroup: Map<string, Ingredient>;
   sourceById: Map<string, Source>;
+  recipeById: Map<string, Recipe>;
 }
 
 export function makeCatalog(status: Catalog['status'], ingredients: Ingredient[] = [], recipes: Recipe[] = [], sources: Source[] = []): Catalog {
   const byId = new Map(ingredients.map((i) => [i.id, i]));
   const byGroup = new Map<string, Ingredient>();
   for (const i of ingredients) if (i.group && !byGroup.has(i.group)) byGroup.set(i.group, i);
-  return { status, ingredients, recipes, sources, byId, byGroup, sourceById: new Map(sources.map((s) => [s.id, s])) };
+  return { status, ingredients, recipes, sources, byId, byGroup, sourceById: new Map(sources.map((s) => [s.id, s])), recipeById: new Map(recipes.map((r) => [r.id, r])) };
 }
 
 let current = makeCatalog('loading');
@@ -98,6 +99,7 @@ export function useCatalog() {
 
 export const ingredientById = (id: string) => current.byId.get(id);
 export const sourceById = (id: string) => current.sourceById.get(id);
+export const recipeById = (id: string) => current.recipeById.get(id);
 
 export function ingredientName(ref: string, lang: Lang) {
   return (current.byId.get(ref) ?? current.byGroup.get(ref))?.name[lang] ?? ref;

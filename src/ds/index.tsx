@@ -24,6 +24,9 @@ const PATHS = {
   back: 'M15 5l-7 7 7 7',
   // Sharing a recipe, the shopping list or a household invitation.
   share: 'M12 3v12 M7.5 7.5L12 3l4.5 4.5 M6 11H5v9h14v-9h-1',
+  // The weekly menu, and moving forward through its weeks (mirrors in RTL).
+  calendar: 'M4 6h16v14H4z M4 10h16 M8 3v5 M16 3v5',
+  forward: 'M9 5l7 7-7 7',
 } as const;
 
 export type IconName = keyof typeof PATHS;

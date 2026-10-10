@@ -2,6 +2,8 @@ import { Button, Icon, PantryItem, RecipeCard } from '../ds';
 import { useApp } from '../ctx';
 import { recipeImage } from '../catalog';
 import { recipeBadges } from './Recipes';
+import { MealRow } from './Menu';
+import { dayKey, mealsBetween } from '../lib/menu';
 import { CATEGORIES } from '../data';
 import { formatDate } from '../i18n';
 import { daysLeft, entryIngredientId, entryName, expiry, ingredientName, matchRecipes, startOfDay } from '../lib/pantry';
@@ -16,6 +18,8 @@ export function Home() {
   // The best match, then a short rail: the full list is on the Recipes screen.
   const [hero, ...others] = matches;
   const rest = others.slice(0, 10);
+  const today = dayKey(new Date(now));
+  const todayMeals = mealsBetween(data.menu, today, today);
 
   function lastReceipt() {
     if (!data.lastReceiptAt) return t('noReceipt');
@@ -69,6 +73,16 @@ export function Home() {
         <div className="scan-txt"><b>{t('shopping')}</b><span>{lastReceipt()}</span></div>
         <Button variant="scan" size="sm" icon="camera" onClick={() => go('scan')}>{t('scanShort')}</Button>
       </div>
+
+      {todayMeals.length > 0 && (
+        <section className="sec">
+          <div className="sec-h">
+            <h2>{t('todayMenu')}</h2>
+            <button type="button" className="linkbtn" onClick={() => go('menu')}>{t('seeMenu')}</button>
+          </div>
+          {todayMeals.map((m) => <MealRow key={m.id} entry={m} label={t(m.meal)} />)}
+        </section>
+      )}
 
       {hero && (
         <section className="sec">

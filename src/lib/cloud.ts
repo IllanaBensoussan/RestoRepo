@@ -1,6 +1,6 @@
-// Firestore storage. A household shares one fridge and one shopping list between its members:
-// households/{id} holds lastReceiptAt and the current invitation code, and its members, pantry and
-// shopping subcollections hold one document per person or item. users/{uid} says which household
+// Firestore storage. A household shares one fridge, one shopping list and one weekly menu between
+// its members: households/{id} holds lastReceiptAt and the current invitation code, and its
+// members, pantry, shopping and menu subcollections hold one document per person or item. users/{uid} says which household
 // the person is in. Reads and writes go through Firestore's on-device cache, so the app keeps
 // working offline and syncs later.
 import {
@@ -20,6 +20,7 @@ import {
 } from 'firebase/firestore';
 import { getCatalog, makeCatalog, setCatalog, type Ingredient, type Recipe, type Source } from '../catalog';
 import { getApp, useEmulators, type AppUser } from './firebase';
+import type { MenuEntry } from './menu';
 import type { PantryEntry, ShoppingEntry } from './pantry';
 import type { UserData } from './store';
 
@@ -71,19 +72,20 @@ export function subscribeHouseholdId(uid: string, onId: (id: string | null) => v
 }
 
 /**
- * Streams a household's fridge, shopping list and members. `fromCache` says the snapshot came
+ * Streams a household's fridge, shopping list, menu and members. `fromCache` says the snapshot came
  * from the device cache, not yet confirmed by the server.
  */
 export function subscribeHousehold(id: string, onData: (d: UserData, h: Household, fromCache: boolean) => void, onError: (e: Error & { code?: string }) => void) {
   const fs = getDb()!;
   let pantry: PantryEntry[] | null = null;
   let shopping: ShoppingEntry[] | null = null;
+  let menu: MenuEntry[] | null = null;
   let members: Member[] | null = null;
   let info: { owner: string; invite: string | null; lastReceiptAt: number | null } | null = null;
-  const cached = [true, true, true, true];
+  const cached = [true, true, true, true, true];
   const emit = () => {
-    if (!pantry || !shopping || !members || !info) return;
-    onData({ pantry, shopping, lastReceiptAt: info.lastReceiptAt }, { id, owner: info.owner, invite: info.invite, members }, cached.some(Boolean));
+    if (!pantry || !shopping || !menu || !members || !info) return;
+    onData({ pantry, shopping, menu, lastReceiptAt: info.lastReceiptAt }, { id, owner: info.owner, invite: info.invite, members }, cached.some(Boolean));
   };
   const unsubs = [
     onSnapshot(doc(fs, 'households', id), { includeMetadataChanges: true }, (s) => {
@@ -107,6 +109,11 @@ export function subscribeHousehold(id: string, onData: (d: UserData, h: Househol
       shopping = s.docs.map((d) => ({ ...(d.data() as ShoppingEntry), id: d.id }));
       emit();
     }, onError),
+    onSnapshot(collection(fs, 'households', id, 'menu'), { includeMetadataChanges: true }, (s) => {
+      cached[4] = s.metadata.fromCache;
+      menu = s.docs.map((d) => ({ ...(d.data() as MenuEntry), id: d.id }));
+      emit();
+    }, onError),
   ];
   return () => unsubs.forEach((u) => u());
 }
@@ -121,6 +128,7 @@ export async function saveDiff(householdId: string, prev: UserData, next: UserDa
   for (const [name, before, after] of [
     ['pantry', prev.pantry, next.pantry],
     ['shopping', prev.shopping, next.shopping],
+    ['menu', prev.menu, next.menu],
   ] as const) {
     const old = new Map<string, object>(before.map((x) => [x.id, x]));
     const now = new Set(after.map((x) => x.id));
@@ -147,11 +155,12 @@ export async function saveDiff(householdId: string, prev: UserData, next: UserDa
 }
 
 /** Copies items into a household, in batches small enough for Firestore. */
-async function copyItems(householdId: string, data: Pick<UserData, 'pantry' | 'shopping'>) {
+async function copyItems(householdId: string, data: Pick<UserData, 'pantry' | 'shopping' | 'menu'>) {
   const fs = getDb()!;
   const items = [
     ...data.pantry.map((x) => ['pantry', x] as const),
     ...data.shopping.map((x) => ['shopping', x] as const),
+    ...data.menu.map((x) => ['menu', x] as const),
   ];
   for (let i = 0; i < items.length; i += 400) {
     const batch = writeBatch(fs);
@@ -193,6 +202,7 @@ export async function legacyData(uid: string): Promise<UserData | null> {
   return {
     pantry: pantry.docs.map((d) => ({ ...(d.data() as PantryEntry), id: d.id })),
     shopping: shopping.docs.map((d) => ({ ...(d.data() as ShoppingEntry), id: d.id })),
+    menu: [],
     lastReceiptAt: (user.get('lastReceiptAt') as number | undefined) ?? null,
   };
 }
@@ -234,7 +244,7 @@ export async function joinHousehold(user: AppUser, invite: Invite, current: stri
   addMember(join, invite.householdId, user, invite.code);
   await join.commit();
   if (!current || current === invite.householdId) return;
-  const moved = bring ? [...bring.pantry.map((x) => ['pantry', x.id]), ...bring.shopping.map((x) => ['shopping', x.id])] : [];
+  const moved = bring ? [...bring.pantry.map((x) => ['pantry', x.id]), ...bring.shopping.map((x) => ['shopping', x.id]), ...bring.menu.map((x) => ['menu', x.id])] : [];
   if (bring) await copyItems(invite.householdId, bring);
   for (let i = 0; i < moved.length; i += 400) {
     const batch = writeBatch(fs);

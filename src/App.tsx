@@ -11,6 +11,7 @@ import { seedDemo, usePref, useUserData } from './lib/store';
 import { Home } from './screens/Home';
 import { HouseholdPanel, JoinSheet } from './screens/Household';
 import { Login } from './screens/Login';
+import { Menu } from './screens/Menu';
 import { Pantry } from './screens/Pantry';
 import { Recipes } from './screens/Recipes';
 import { Scan } from './screens/Scan';
@@ -159,12 +160,13 @@ function Shell({ user, lang, setLang, t, toast, signOut, link, onLinkHandled, ch
           {tab === 'pantry' && <Pantry />}
           {tab === 'scan' && <Scan manual={manual} onManualClose={() => setManual(false)} />}
           {tab === 'recipes' && <Recipes openId={recipe} onOpen={(id) => { setRecipe(id); main.current?.scrollTo({ top: 0 }); }} />}
+          {tab === 'menu' && <Menu />}
           {tab === 'list' && <Shopping />}
           </>}
         </main>
         <TabBar
           label={t('nav')}
-          active={tab}
+          active={tab === 'menu' ? 'recipes' : tab}
           onChange={(id) => go(id as Tab)}
           items={[
             { id: 'home', label: t('tabHome'), icon: 'home' },
