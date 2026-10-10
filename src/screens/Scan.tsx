@@ -3,7 +3,7 @@ import { Button, IngredientChip, ReceiptLine, ReceiptScan } from '../ds';
 import { useApp } from '../ctx';
 import { ingredientById, useCatalog } from '../catalog';
 import { formatPrice } from '../i18n';
-import { newEntry } from '../lib/pantry';
+import { findIngredient, newEntry } from '../lib/pantry';
 import { normalize, parseReceipt, type ParsedLine } from '../lib/receipt';
 import { Sheet } from './Sheet';
 
@@ -41,12 +41,12 @@ export function Scan({ manual, onManualClose }: { manual: boolean; onManualClose
   }
 
   function confirm(lines: ParsedLine[]) {
-    const keep = lines.filter((l) => l.status !== 'ignored');
+    const keep = lines.filter((l): l is ParsedLine & { ingredientId: string } => l.status !== 'ignored' && !!l.ingredientId);
     const now = Date.now();
     update((d) => ({
       ...d,
       lastReceiptAt: now,
-      pantry: [...d.pantry, ...keep.map((l) => newEntry(l.ingredientId, { name: l.raw.toLowerCase(), quantity: l.quantity, source: 'receipt', now }))],
+      pantry: [...d.pantry, ...keep.map((l) => newEntry(l.ingredientId, { quantity: l.quantity, source: 'receipt', now }))],
     }));
     toast(t('added', { n: keep.length }));
     setPhase({ k: 'start' });
@@ -69,7 +69,7 @@ export function Scan({ manual, onManualClose }: { manual: boolean; onManualClose
       </div>
     );
   } else if (phase.k === 'review') {
-    const kept = phase.lines.filter((l) => l.status !== 'ignored').length;
+    const kept = phase.lines.filter((l) => l.status !== 'ignored' && l.ingredientId).length;
     body = (
       <>
         <h1 className="display">{t('reviewTitle')}</h1>
@@ -169,11 +169,13 @@ function ManualAdd({ onClose }: { onClose: () => void }) {
   const [qty, setQty] = useState('');
   const list = useSearch(q);
   const ing = picked ? ingredientById(picked) : undefined;
+  // A typed name counts only when it is a catalogue ingredient.
+  const typed = ing ? null : findIngredient(q);
+  const target = ing?.id ?? typed;
 
   function add() {
-    const name = q.trim();
-    if (!ing && !name) return;
-    update((d) => ({ ...d, pantry: [...d.pantry, newEntry(ing ? ing.id : null, { name, quantity: qty.trim() || undefined, source: 'manual' })] }));
+    if (!target) return;
+    update((d) => ({ ...d, pantry: [...d.pantry, newEntry(target, { quantity: qty.trim() || undefined, source: 'manual' })] }));
     toast(t('added', { n: 1 }));
     setPicked(null);
     setQ('');
@@ -193,7 +195,8 @@ function ManualAdd({ onClose }: { onClose: () => void }) {
       <label className="flabel">{t('quantity')}
         <input className="field" value={qty} placeholder={ing?.defaultQty} onChange={(e) => setQty(e.target.value)} />
       </label>
-      <Button variant="primary" icon="plus" block disabled={!ing && !q.trim()} onClick={add}>{t('add')}</Button>
+      {!target && q.trim() && <p className="error" role="alert">{t('unknownIngredient')}</p>}
+      <Button variant="primary" icon="plus" block disabled={!target} onClick={add}>{t('add')}</Button>
     </Sheet>
   );
 }

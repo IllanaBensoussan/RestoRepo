@@ -3,7 +3,7 @@ import { Button, Icon, IngredientChip, MatchMeter, RecipeBadges, RecipeCard, Rec
 import { COURSES, KASHRUT, recipeImage, sourceById, type Course, type Kashrut, type Recipe } from '../catalog';
 import { useApp } from '../ctx';
 import type { T } from '../i18n';
-import { ingredientName, matchRecipes } from '../lib/pantry';
+import { entryIngredientId, ingredientName, matchRecipes } from '../lib/pantry';
 
 const PAGE = 24;
 
@@ -20,7 +20,7 @@ export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: str
 
   function addToList(ids: string[]) {
     update((d) => {
-      const pending = new Set(d.shopping.filter((s) => !s.done).map((s) => s.ingredientId));
+      const pending = new Set(d.shopping.filter((s) => !s.done).map(entryIngredientId));
       const add = ids.filter((id) => !pending.has(id)).map((id, i) => ({ id: `${id}-${Date.now()}-${i}`, ingredientId: id, done: false }));
       return { ...d, shopping: [...d.shopping, ...add] };
     });

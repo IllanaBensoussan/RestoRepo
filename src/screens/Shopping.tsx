@@ -1,18 +1,22 @@
 import { useState } from 'react';
 import { Button, Icon } from '../ds';
 import { useApp } from '../ctx';
-import { entryName, uid } from '../lib/pantry';
+import { entryName, findIngredient, uid } from '../lib/pantry';
 
 export function Shopping() {
   const { t, lang, data, update } = useApp();
   const [text, setText] = useState('');
+  const [unknown, setUnknown] = useState(false);
   const items = data.shopping.slice().sort((a, b) => Number(a.done) - Number(b.done));
 
   const toggle = (id: string) => update((d) => ({ ...d, shopping: d.shopping.map((s) => (s.id === id ? { ...s, done: !s.done } : s)) }));
   const add = () => {
     const name = text.trim();
     if (!name) return;
-    update((d) => ({ ...d, shopping: [...d.shopping, { id: uid(), ingredientId: null, name, done: false }] }));
+    // Only catalogue ingredients go on the list, so recipes can tell they are on it.
+    const ingredientId = findIngredient(name);
+    if (!ingredientId) return setUnknown(true);
+    update((d) => (d.shopping.some((s) => s.ingredientId === ingredientId && !s.done) ? d : { ...d, shopping: [...d.shopping, { id: uid(), ingredientId, done: false }] }));
     setText('');
   };
 
@@ -20,9 +24,10 @@ export function Shopping() {
     <div className="screen">
       <h1 className="display">{t('listTitle')}</h1>
       <form className="addrow" onSubmit={(e) => { e.preventDefault(); add(); }}>
-        <input className="field" placeholder={t('addItem')} value={text} onChange={(e) => setText(e.target.value)} />
+        <input className="field" placeholder={t('addItem')} value={text} onChange={(e) => { setText(e.target.value); setUnknown(false); }} />
         <Button type="submit" variant="secondary" icon="plus" aria-label={t('add')} />
       </form>
+      {unknown && <p className="error" role="alert">{t('unknownIngredient')}</p>}
       {items.length === 0 ? (
         <p className="muted">{t('listEmpty')}</p>
       ) : (
