@@ -3,6 +3,7 @@ import { Button, Icon, IngredientChip, MatchMeter, RecipeBadges, RecipeCard, Rec
 import { COURSES, KASHRUT, recipeImage, sourceById, type Course, type Kashrut, type Recipe } from '../catalog';
 import { useApp } from '../ctx';
 import type { T } from '../i18n';
+import { recipeUrl, share } from '../lib/links';
 import { entryIngredientId, ingredientName, matchRecipes } from '../lib/pantry';
 
 const PAGE = 24;
@@ -12,7 +13,7 @@ export function recipeBadges(r: Recipe, t: T): RecipeBadge[] {
 }
 
 export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: string) => void }) {
-  const { t, lang, data, update, toast } = useApp();
+  const { t, lang, user, data, update, toast } = useApp();
   const [course, setCourse] = useState<Course | null>(null);
   const [kashrut, setKashrut] = useState<Kashrut | null>(null);
   const [shown, setShown] = useState(PAGE);
@@ -21,7 +22,7 @@ export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: str
   function addToList(ids: string[]) {
     update((d) => {
       const pending = new Set(d.shopping.filter((s) => !s.done).map(entryIngredientId));
-      const add = ids.filter((id) => !pending.has(id)).map((id, i) => ({ id: `${id}-${Date.now()}-${i}`, ingredientId: id, done: false }));
+      const add = ids.filter((id) => !pending.has(id)).map((id, i) => ({ id: `${id}-${Date.now()}-${i}`, ingredientId: id, done: false, addedBy: user.uid }));
       return { ...d, shopping: [...d.shopping, ...add] };
     });
     toast(t('addedToList', { name: ids.map((id) => ingredientName(id, lang)).join(', ') }));
@@ -37,7 +38,10 @@ export function Recipes({ openId, onOpen }: { openId?: string; onOpen: (id?: str
         <button type="button" className="backbtn" onClick={() => onOpen(undefined)}><Icon name="back" className="rtl-flip" />{t('back')}</button>
         <div className="detail-media"><RecipeImage src={recipeImage(r)} alt={r.title[lang]} /></div>
         <RecipeBadges badges={recipeBadges(r, t)} />
-        <h1 className="title">{r.title[lang]}</h1>
+        <div className="titlerow">
+          <h1 className="title">{r.title[lang]}</h1>
+          <Button variant="secondary" size="sm" icon="share" onClick={() => void share({ title: r.title[lang], text: t('recipeShareText', { title: r.title[lang] }), url: recipeUrl(r.id) }, () => toast(t('linkCopied')))}>{t('share')}</Button>
+        </div>
         <div className="rf-recipe-meta"><Icon name="clock" size={16} /><span>{r.minutes} {t('min')} · {t(r.difficulty)}</span></div>
         <MatchMeter have={m.have.length} total={r.ingredients.length} label={t('ingredients')} />
         <p className="muted">{t('servings', { n: r.servings })}</p>

@@ -1,19 +1,25 @@
-// Firestore storage: users/{uid} holds lastReceiptAt; its pantry and shopping
-// subcollections hold one document per item. Reads and writes go through
-// Firestore's on-device cache, so the app keeps working offline and syncs later.
+// Firestore storage. A household shares one fridge and one shopping list between its members:
+// households/{id} holds lastReceiptAt and the current invitation code, and its members, pantry and
+// shopping subcollections hold one document per person or item. users/{uid} says which household
+// the person is in. Reads and writes go through Firestore's on-device cache, so the app keeps
+// working offline and syncs later.
 import {
   collection,
   connectFirestoreEmulator,
   doc,
+  getDoc,
+  getDocFromServer,
+  getDocs,
   initializeFirestore,
   onSnapshot,
   persistentLocalCache,
   persistentMultipleTabManager,
   writeBatch,
   type Firestore,
+  type WriteBatch,
 } from 'firebase/firestore';
 import { getCatalog, makeCatalog, setCatalog, type Ingredient, type Recipe, type Source } from '../catalog';
-import { getApp, useEmulators } from './firebase';
+import { getApp, useEmulators, type AppUser } from './firebase';
 import type { PantryEntry, ShoppingEntry } from './pantry';
 import type { UserData } from './store';
 
@@ -34,36 +40,70 @@ function getDb() {
 
 export const cloudAvailable = () => getDb() !== null;
 
+export interface Member {
+  uid: string;
+  name: string;
+  photoURL: string | null;
+  joinedAt: number;
+}
+
+export interface Household {
+  id: string;
+  owner: string;
+  /** Code of the current invitation link, once someone has shared one. */
+  invite: string | null;
+  members: Member[];
+}
+
 /**
- * Streams the user's data. `onData` gets `null` while the account has nothing stored yet;
- * `fromCache` says the snapshot came from the device cache, not yet confirmed by the server.
+ * Streams the id of the user's household: `null` once the server confirms there is none yet.
+ * Ids waiting on a local write are skipped, so a household is only reported once joining it
+ * has gone through.
  */
-export function subscribeUserData(uid: string, onData: (d: UserData | null, fromCache: boolean) => void, onError: (e: Error) => void) {
+export function subscribeHouseholdId(uid: string, onId: (id: string | null) => void, onError: (e: Error) => void) {
+  const fs = getDb()!;
+  return onSnapshot(doc(fs, 'users', uid), { includeMetadataChanges: true }, (s) => {
+    if (s.metadata.hasPendingWrites) return;
+    const id = s.get('householdId') as string | undefined;
+    if (id) onId(id);
+    else if (!s.metadata.fromCache) onId(null);
+  }, onError);
+}
+
+/**
+ * Streams a household's fridge, shopping list and members. `fromCache` says the snapshot came
+ * from the device cache, not yet confirmed by the server.
+ */
+export function subscribeHousehold(id: string, onData: (d: UserData, h: Household, fromCache: boolean) => void, onError: (e: Error & { code?: string }) => void) {
   const fs = getDb()!;
   let pantry: PantryEntry[] | null = null;
   let shopping: ShoppingEntry[] | null = null;
-  let lastReceiptAt: number | null | undefined;
-  let exists = false;
-  const cached = [true, true, true];
+  let members: Member[] | null = null;
+  let info: { owner: string; invite: string | null; lastReceiptAt: number | null } | null = null;
+  const cached = [true, true, true, true];
   const emit = () => {
-    if (pantry === null || shopping === null || lastReceiptAt === undefined) return;
-    const empty = !exists && pantry.length === 0 && shopping.length === 0;
-    onData(empty ? null : { pantry, shopping, lastReceiptAt }, cached.some(Boolean));
+    if (!pantry || !shopping || !members || !info) return;
+    onData({ pantry, shopping, lastReceiptAt: info.lastReceiptAt }, { id, owner: info.owner, invite: info.invite, members }, cached.some(Boolean));
   };
   const unsubs = [
-    onSnapshot(doc(fs, 'users', uid), { includeMetadataChanges: true }, (s) => {
+    onSnapshot(doc(fs, 'households', id), { includeMetadataChanges: true }, (s) => {
       cached[0] = s.metadata.fromCache;
-      exists = s.exists();
-      lastReceiptAt = (s.get('lastReceiptAt') as number | undefined) ?? null;
+      info = { owner: (s.get('owner') as string | undefined) ?? id, invite: (s.get('invite') as string | undefined) ?? null, lastReceiptAt: (s.get('lastReceiptAt') as number | undefined) ?? null };
       emit();
     }, onError),
-    onSnapshot(collection(fs, 'users', uid, 'pantry'), { includeMetadataChanges: true }, (s) => {
+    onSnapshot(collection(fs, 'households', id, 'members'), { includeMetadataChanges: true }, (s) => {
       cached[1] = s.metadata.fromCache;
+      members = s.docs.map((d) => ({ uid: d.id, name: (d.get('name') as string) || '', photoURL: (d.get('photoURL') as string | null) ?? null, joinedAt: (d.get('joinedAt') as number) || 0 }))
+        .sort((a, b) => a.joinedAt - b.joinedAt);
+      emit();
+    }, onError),
+    onSnapshot(collection(fs, 'households', id, 'pantry'), { includeMetadataChanges: true }, (s) => {
+      cached[2] = s.metadata.fromCache;
       pantry = s.docs.map((d) => ({ ...(d.data() as PantryEntry), id: d.id }));
       emit();
     }, onError),
-    onSnapshot(collection(fs, 'users', uid, 'shopping'), { includeMetadataChanges: true }, (s) => {
-      cached[2] = s.metadata.fromCache;
+    onSnapshot(collection(fs, 'households', id, 'shopping'), { includeMetadataChanges: true }, (s) => {
+      cached[3] = s.metadata.fromCache;
       shopping = s.docs.map((d) => ({ ...(d.data() as ShoppingEntry), id: d.id }));
       emit();
     }, onError),
@@ -73,8 +113,8 @@ export function subscribeUserData(uid: string, onData: (d: UserData | null, from
 
 const same = (a: object, b: object) => JSON.stringify(a) === JSON.stringify(b);
 
-/** Writes only what changed between two states, in one atomic batch. */
-export async function saveDiff(uid: string, prev: UserData, next: UserData) {
+/** Writes only what changed between two states of a household, in one atomic batch. */
+export async function saveDiff(householdId: string, prev: UserData, next: UserData) {
   const fs = getDb()!;
   const batch = writeBatch(fs);
   let writes = 0;
@@ -88,22 +128,136 @@ export async function saveDiff(uid: string, prev: UserData, next: UserData) {
       const o = old.get(item.id);
       if (!o || !same(o, item)) {
         const { id, ...fields } = item;
-        batch.set(doc(fs, 'users', uid, name, id), fields);
+        batch.set(doc(fs, 'households', householdId, name, id), fields);
         writes++;
       }
     }
     for (const id of old.keys()) {
       if (!now.has(id)) {
-        batch.delete(doc(fs, 'users', uid, name, id));
+        batch.delete(doc(fs, 'households', householdId, name, id));
         writes++;
       }
     }
   }
-  if (prev.lastReceiptAt !== next.lastReceiptAt || writes > 0) {
-    batch.set(doc(fs, 'users', uid), { lastReceiptAt: next.lastReceiptAt, updatedAt: Date.now() }, { merge: true });
+  if (prev.lastReceiptAt !== next.lastReceiptAt) {
+    batch.set(doc(fs, 'households', householdId), { lastReceiptAt: next.lastReceiptAt }, { merge: true });
     writes++;
   }
   if (writes > 0) await batch.commit();
+}
+
+/** Copies items into a household, in batches small enough for Firestore. */
+async function copyItems(householdId: string, data: Pick<UserData, 'pantry' | 'shopping'>) {
+  const fs = getDb()!;
+  const items = [
+    ...data.pantry.map((x) => ['pantry', x] as const),
+    ...data.shopping.map((x) => ['shopping', x] as const),
+  ];
+  for (let i = 0; i < items.length; i += 400) {
+    const batch = writeBatch(fs);
+    for (const [name, { id, ...fields }] of items.slice(i, i + 400)) batch.set(doc(fs, 'households', householdId, name, id), fields);
+    await batch.commit();
+  }
+}
+
+function addMember(batch: WriteBatch, householdId: string, user: AppUser, invite?: string) {
+  const fs = getDb()!;
+  batch.set(doc(fs, 'households', householdId, 'members', user.uid), { name: user.name, photoURL: user.photoURL, joinedAt: Date.now(), invite });
+  batch.set(doc(fs, 'users', user.uid), { householdId }, { merge: true });
+}
+
+/**
+ * Puts the user (back) in their own household, whose id is their uid, and fills it with `seed`.
+ * When they are leaving another household, `leaving` drops them from it in the same batch.
+ */
+export async function moveToOwnHousehold(user: AppUser, seed?: UserData, leaving?: string) {
+  const fs = getDb()!;
+  const batch = writeBatch(fs);
+  const lastReceiptAt = seed?.lastReceiptAt;
+  batch.set(doc(fs, 'households', user.uid), { owner: user.uid, ...(lastReceiptAt ? { lastReceiptAt } : {}) }, { merge: true });
+  addMember(batch, user.uid, user);
+  if (leaving && leaving !== user.uid) batch.delete(doc(fs, 'households', leaving, 'members', user.uid));
+  await batch.commit();
+  if (seed) await copyItems(user.uid, seed);
+}
+
+/** What the user stored before households existed (users/{uid} and its subcollections), if anything. */
+export async function legacyData(uid: string): Promise<UserData | null> {
+  const fs = getDb()!;
+  const [user, pantry, shopping] = await Promise.all([
+    getDoc(doc(fs, 'users', uid)),
+    getDocs(collection(fs, 'users', uid, 'pantry')),
+    getDocs(collection(fs, 'users', uid, 'shopping')),
+  ]);
+  if (pantry.empty && shopping.empty) return null;
+  return {
+    pantry: pantry.docs.map((d) => ({ ...(d.data() as PantryEntry), id: d.id })),
+    shopping: shopping.docs.map((d) => ({ ...(d.data() as ShoppingEntry), id: d.id })),
+    lastReceiptAt: (user.get('lastReceiptAt') as number | undefined) ?? null,
+  };
+}
+
+const newCode = () => Array.from(crypto.getRandomValues(new Uint8Array(12)), (b) => b.toString(16).padStart(2, '0')).join('');
+
+/**
+ * Creates a new invitation code for the household and withdraws the previous one, so an old
+ * link stops working. Returns the code right away: the write syncs when the device is online.
+ */
+export function newInvite(h: Household, by: AppUser) {
+  const fs = getDb()!;
+  const code = newCode();
+  const batch = writeBatch(fs);
+  batch.set(doc(fs, 'invites', code), { householdId: h.id, by: by.uid, fromName: by.name, createdAt: Date.now() });
+  batch.set(doc(fs, 'households', h.id), { invite: code }, { merge: true });
+  if (h.invite) batch.delete(doc(fs, 'invites', h.invite));
+  batch.commit().catch((e) => console.error('invite', e));
+  return code;
+}
+
+export interface Invite { code: string; householdId: string; fromName: string }
+
+/** The household an invitation code leads to, or null when the code is unknown or withdrawn. */
+export async function lookupInvite(code: string): Promise<Invite | null> {
+  const fs = getDb()!;
+  const s = await getDoc(doc(fs, 'invites', code));
+  if (!s.exists()) return null;
+  return { code, householdId: s.get('householdId') as string, fromName: (s.get('fromName') as string) || '' };
+}
+
+/**
+ * Joins the invite's household, then leaves the current one. With `bring`, the user's items are
+ * moved over first (they were the current household's only member, so nobody else loses them).
+ */
+export async function joinHousehold(user: AppUser, invite: Invite, current: string | null, bring?: UserData) {
+  const fs = getDb()!;
+  const join = writeBatch(fs);
+  addMember(join, invite.householdId, user, invite.code);
+  await join.commit();
+  if (!current || current === invite.householdId) return;
+  const moved = bring ? [...bring.pantry.map((x) => ['pantry', x.id]), ...bring.shopping.map((x) => ['shopping', x.id])] : [];
+  if (bring) await copyItems(invite.householdId, bring);
+  for (let i = 0; i < moved.length; i += 400) {
+    const batch = writeBatch(fs);
+    for (const [name, id] of moved.slice(i, i + 400)) batch.delete(doc(fs, 'households', current, name, id));
+    await batch.commit();
+  }
+  const leave = writeBatch(fs);
+  leave.delete(doc(fs, 'households', current, 'members', user.uid));
+  await leave.commit();
+}
+
+/** The household id stored on the server for the user, bypassing the device cache. */
+export async function currentHouseholdId(uid: string) {
+  const s = await getDocFromServer(doc(getDb()!, 'users', uid));
+  return (s.get('householdId') as string | undefined) ?? null;
+}
+
+/** Removes someone from the household (owner only). */
+export async function removeMember(householdId: string, uid: string) {
+  const fs = getDb()!;
+  const batch = writeBatch(fs);
+  batch.delete(doc(fs, 'households', householdId, 'members', uid));
+  await batch.commit();
 }
 
 /**

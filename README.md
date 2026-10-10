@@ -52,16 +52,24 @@ Tant que les clés ne sont pas renseignées, l'écran de connexion le signale et
 
 - Vite + React 18 + TypeScript, Firebase Auth.
 - Lecture des tickets : les PDF passent par `pdfjs-dist` (texte du PDF), les photos par `tesseract.js` (OCR français, anglais et hébreu). Les deux bibliothèques ne se chargent qu'au moment d'un scan. Tesseract télécharge son moteur et ses langues depuis un CDN au premier scan.
-- **Données** : avec un compte Google, le frigo, les courses et la date du dernier ticket sont dans Firestore :
-  - `users/{uid}` contient `lastReceiptAt` ;
-  - `users/{uid}/pantry/{id}` contient un document par produit du frigo ;
-  - `users/{uid}/shopping/{id}` contient un document par article de courses.
+- **Données** : avec un compte Google, le frigo, les courses et la date du dernier ticket appartiennent à un **foyer**, partagé par ses membres, dans Firestore :
+  - `households/{id}` contient `owner` (la personne qui l'a créé ; l'id du foyer est son uid), `lastReceiptAt` et `invite` (le code du lien d'invitation actuel) ;
+  - `households/{id}/members/{uid}` contient un document par membre (nom, photo, date d'arrivée) ;
+  - `households/{id}/pantry/{id}` contient un document par produit du frigo ;
+  - `households/{id}/shopping/{id}` contient un document par article de courses (`addedBy` : qui l'a ajouté) ;
+  - `users/{uid}` contient `householdId`, le foyer de la personne ;
+  - `invites/{code}` mène au foyer qui a créé ce code.
 
-  Tout se synchronise en direct entre les appareils, et l'app continue de marcher hors ligne grâce au cache de Firestore, puis rattrape à la reconnexion. Les règles (`firestore.rules`) n'autorisent chaque personne qu'à lire et écrire ses propres données. À la première connexion, ce qui était déjà enregistré dans le navigateur est envoyé dans Firestore. Le mode démo reste dans le navigateur.
+  Tout se synchronise en direct entre les membres et leurs appareils, et l'app continue de marcher hors ligne grâce au cache de Firestore, puis rattrape à la reconnexion. Les règles (`firestore.rules`) n'autorisent que les membres d'un foyer à le lire et à le modifier. À la première connexion, chacun reçoit son propre foyer, rempli avec ce qui était déjà enregistré (l'ancien emplacement `users/{uid}/pantry` et `users/{uid}/shopping`, ou à défaut le navigateur). Le mode démo reste dans le navigateur, sans foyer.
+- **Partage** :
+  - **Foyer** : dans **Compte** (ou **Partager la liste** dans Courses), **Inviter quelqu'un** envoie un lien `/foyer/{code}`. La personne qui l'ouvre se connecte avec Google et rejoint le foyer : elle voit le même frigo et la même liste, en direct. Si elle avait déjà des produits, l'app propose de les apporter au frigo commun. Elle quitte alors son foyer précédent. La personne qui a créé le foyer peut retirer un membre (il retrouve son propre foyer) et **changer le lien d'invitation** (l'ancien ne marche plus). Les autres membres peuvent **quitter le foyer**.
+  - **Courses** : quand quelqu'un d'autre ajoute un article, un message l'annonce, et l'article indique qui l'a ajouté. **Ranger les achetés au frigo** met les articles cochés dans le frigo du foyer.
+  - **Recette** : le bouton **Partager** d'une recette envoie un lien `/recette/{id}`, qui ouvre cette recette dans l'app (après connexion si besoin).
+  - Ces liens passent par la réécriture de `firebase.json`, qui sert l'app à toutes les adresses. Sur téléphone, le bouton ouvre le menu de partage (WhatsApp, SMS…) ; sinon il copie le lien.
 - **Catalogue** : les ingrédients, les recettes et leurs sources sont dans Firestore, dans les collections `ingredients`, `recipes` et `sources`. L'app ne contient aucune copie : tout vient de Firestore (le cache de l'appareil prend le relais hors ligne). Chaque recette a une catégorie (`course` : entrée, plat, accompagnement, dessert, petit-déjeuner), une annotation `kashrut` (viande/lait/neutre, בשרי/חלבי/פרווה) qui doit correspondre à ses ingrédients (champ `kashrut` des ingrédients), et une `source` (id dans `sources` et lien vers la page de la recette). Tout compte connecté peut les lire, et seul le script d'import peut les modifier. Leur source est dans le dépôt, dans `catalog/ingredients.json`, `catalog/recipes.json` et `catalog/sources.json` :
   - pour ajouter ou corriger une recette ou un ingrédient, modifie ces fichiers et pousse ;
   - le workflow `.github/workflows/catalog.yml` vérifie le catalogue (`src/catalog.test.ts`), puis l'envoie dans Firestore ;
-  - l'app lit Firestore et suit les changements en direct. Après une modification de `firestore.rules`, publie les règles (console Firebase, onglet **Règles**).
+  - l'app lit Firestore et suit les changements en direct. Après une modification de `firestore.rules`, publie les règles (console Firebase, onglet **Règles**) **avant** de publier l'app qui en dépend.
 
   Pour une recette, `image` peut être un chemin du site ou une URL. Sans photo (`null`), l'app affiche un cadre provisoire.
 
