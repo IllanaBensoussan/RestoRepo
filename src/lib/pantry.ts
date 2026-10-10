@@ -2,6 +2,7 @@ import { getCatalog, ingredientById, type Recipe } from '../catalog';
 import type { Category } from '../data';
 import type { BadgeTone } from '../ds';
 import type { Lang, T } from '../i18n';
+import { matchIngredient, normalize } from './receipt';
 
 export interface PantryEntry {
   id: string;
@@ -44,13 +45,33 @@ export function expiry(e: PantryEntry, t: T, now = Date.now()): { tone: BadgeTon
   return { tone: 'fresh', label: t('fresh') };
 }
 
-export function entryName(e: { ingredientId: string | null; name?: string }, lang: Lang) {
-  const ing = e.ingredientId ? ingredientById(e.ingredientId) : undefined;
+/**
+ * The catalogue ingredient a typed name stands for: one of its names, in any language, or one of
+ * its keywords, then a keyword at the start of a word ("tomates bio" → tomato). Null when none fits.
+ */
+export function findIngredient(name: string): string | null {
+  const n = normalize(name).trim();
+  if (!n) return null;
+  const exact = getCatalog().ingredients.find((i) => [...Object.values(i.name), ...i.keywords].some((w) => normalize(w).trim() === n));
+  return exact?.id ?? matchIngredient(name);
+}
+
+type Named = { ingredientId: string | null; name?: string };
+
+/** The entry's ingredient key, also for entries saved by name only before the catalogue knew them. */
+export function entryIngredientId(e: Named) {
+  return e.ingredientId ?? (e.name ? findIngredient(e.name) : null);
+}
+
+export function entryName(e: Named, lang: Lang) {
+  const id = entryIngredientId(e);
+  const ing = id ? ingredientById(id) : undefined;
   return ing ? ing.name[lang] : e.name || '';
 }
 
 export function newEntry(ingredientId: string | null, opts: { name?: string; quantity?: string; source: 'receipt' | 'manual'; now?: number }): PantryEntry {
   const now = opts.now ?? Date.now();
+  if (!ingredientId && opts.name) ingredientId = findIngredient(opts.name);
   const ing = ingredientId ? ingredientById(ingredientId) : undefined;
   return {
     id: uid(),
@@ -68,9 +89,10 @@ export function newEntry(ingredientId: string | null, opts: { name?: string; qua
 export function available(pantry: PantryEntry[], now = Date.now()) {
   const have = new Set<string>();
   for (const e of pantry) {
-    if (!e.ingredientId || daysLeft(e, now) < 0) continue;
-    have.add(e.ingredientId);
-    const g = ingredientById(e.ingredientId)?.group;
+    const id = entryIngredientId(e);
+    if (!id || daysLeft(e, now) < 0) continue;
+    have.add(id);
+    const g = ingredientById(id)?.group;
     if (g) have.add(g);
   }
   return have;
@@ -92,9 +114,10 @@ export function matchRecipes(pantry: PantryEntry[], now = Date.now()): RecipeMat
     const m = refs.filter((i) => !have.has(i));
     let urgency = Infinity;
     for (const e of pantry) {
-      if (!e.ingredientId) continue;
-      const ing = ingredientById(e.ingredientId);
-      if (refs.includes(e.ingredientId) || (ing?.group && refs.includes(ing.group))) {
+      const id = entryIngredientId(e);
+      if (!id) continue;
+      const ing = ingredientById(id);
+      if (refs.includes(id) || (ing?.group && refs.includes(ing.group))) {
         const d = daysLeft(e, now);
         if (d >= 0) urgency = Math.min(urgency, d);
       }

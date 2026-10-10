@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Icon } from '../ds';
 import { useApp } from '../ctx';
-import { entryName, uid } from '../lib/pantry';
+import { entryName, findIngredient, uid } from '../lib/pantry';
 
 export function Shopping() {
   const { t, lang, data, update } = useApp();
@@ -12,7 +12,8 @@ export function Shopping() {
   const add = () => {
     const name = text.trim();
     if (!name) return;
-    update((d) => ({ ...d, shopping: [...d.shopping, { id: uid(), ingredientId: null, name, done: false }] }));
+    const ingredientId = findIngredient(name);
+    update((d) => ({ ...d, shopping: [...d.shopping, { id: uid(), ingredientId, name: ingredientId ? undefined : name, done: false }] }));
     setText('');
   };
 
