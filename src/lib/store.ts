@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { cloudAvailable, saveDiff, subscribeUserData } from './cloud';
+import { cloudAvailable, currentHouseholdId, legacyData, moveToOwnHousehold, saveDiff, subscribeHousehold, subscribeHouseholdId, type Household } from './cloud';
+import type { AppUser } from './firebase';
 import type { PantryEntry, ShoppingEntry } from './pantry';
 
 export interface UserData {
@@ -22,20 +23,27 @@ function load(uid: string): UserData {
 
 export type SyncStatus = 'loading' | 'ready' | 'error';
 type Update = (fn: (d: UserData) => UserData) => void;
+export interface UserStore {
+  data: UserData;
+  update: Update;
+  status: SyncStatus;
+  /** The shared household, for Google accounts once it has loaded. */
+  household: Household | null;
+}
 
 /**
- * The signed-in user's fridge, shopping list and last receipt date.
- * Google accounts are stored in Firestore (synced across devices, usable offline);
- * the demo account, or an app without Firebase keys, stays in this browser.
+ * The fridge, shopping list and last receipt date the user sees: their household's.
+ * Google accounts are stored in Firestore (shared live with the household, synced across devices,
+ * usable offline); the demo account, or an app without Firebase keys, stays in this browser.
  */
-export function useUserData(uid: string): readonly [UserData, Update, SyncStatus] {
-  const cloud = uid !== 'demo' && cloudAvailable();
-  const local = useLocalData(uid, !cloud);
-  const remote = useCloudData(uid, cloud);
+export function useUserData(user: AppUser): UserStore {
+  const cloud = !user.demo && cloudAvailable();
+  const local = useLocalData(user.uid, !cloud);
+  const remote = useCloudData(user, cloud);
   return cloud ? remote : local;
 }
 
-function useLocalData(uid: string, active: boolean): readonly [UserData, Update, SyncStatus] {
+function useLocalData(uid: string, active: boolean): UserStore {
   const [data, setData] = useState<UserData>(() => (active ? load(uid) : EMPTY));
   useEffect(() => {
     if (active) setData(load(uid));
@@ -53,37 +61,41 @@ function useLocalData(uid: string, active: boolean): readonly [UserData, Update,
       }),
     [uid],
   );
-  return [data, update, 'ready'] as const;
+  return { data, update, status: 'ready', household: null };
 }
 
-function useCloudData(uid: string, active: boolean): readonly [UserData, Update, SyncStatus] {
+function useCloudData(user: AppUser, active: boolean): UserStore {
+  const { uid } = user;
+  const [householdId, setHouseholdId] = useState<string | null>(null);
   const [data, setData] = useState<UserData>(EMPTY);
+  const [household, setHousehold] = useState<Household | null>(null);
   const [status, setStatus] = useState<SyncStatus>('loading');
   const current = useRef<UserData>(EMPTY);
+  const userRef = useRef(user);
+  userRef.current = user;
 
+  // Which household the user is in. A first sign-in gets their own, filled with what they had
+  // stored before households existed, or failing that with what this browser had.
   useEffect(() => {
     if (!active) return;
-    setStatus('loading');
-    let migrating = false;
-    // Offline on a device that never synced: stop waiting for the server and show the cache.
+    let creating = false;
+    // Offline on a device that never synced: show an empty app rather than wait forever.
     const giveUp = window.setTimeout(() => setStatus((st) => (st === 'loading' ? 'ready' : st)), 4000);
-    const unsub = subscribeUserData(
+    const unsub = subscribeHouseholdId(
       uid,
-      (d, fromCache) => {
-        if (d === null && !fromCache && !migrating) {
-          // First sign-in with Firestore: bring over what this browser already had.
+      (id) => {
+        if (id) return setHouseholdId(id);
+        if (creating) return;
+        creating = true;
+        void (async () => {
           const saved = load(uid);
-          if (saved.pantry.length || saved.shopping.length) {
-            migrating = true;
-            void saveDiff(uid, EMPTY, saved).then(() => {
-              try { localStorage.removeItem(keyFor(uid)); } catch { /* ignore */ }
-            });
-          }
-        }
-        if (d === null && fromCache) return; // wait for the server before showing an empty fridge
-        current.current = d ?? EMPTY;
-        setData(current.current);
-        setStatus('ready');
+          const seed = (await legacyData(uid)) ?? (saved.pantry.length || saved.shopping.length ? saved : undefined);
+          await moveToOwnHousehold(userRef.current, seed);
+          try { localStorage.removeItem(keyFor(uid)); } catch { /* ignore */ }
+        })().catch((err) => {
+          console.error(err);
+          setStatus('error');
+        });
       },
       (err) => {
         console.error(err);
@@ -96,20 +108,58 @@ function useCloudData(uid: string, active: boolean): readonly [UserData, Update,
     };
   }, [uid, active]);
 
+  useEffect(() => {
+    if (!householdId) return;
+    setStatus('loading');
+    // Offline on a device that never synced: stop waiting for the server and show the cache.
+    const giveUp = window.setTimeout(() => setStatus((st) => (st === 'loading' ? 'ready' : st)), 4000);
+    const unsub = subscribeHousehold(
+      householdId,
+      (d, h) => {
+        current.current = d;
+        setData(d);
+        setHousehold(h);
+        setStatus('ready');
+      },
+      (err) => {
+        if (err.code !== 'permission-denied') {
+          console.error(err);
+          setStatus('error');
+          return;
+        }
+        // Either the user is moving to another household (its id arrives next), or a member
+        // removed them: then they go back to their own household.
+        void currentHouseholdId(uid).then((id) => {
+          if (id !== householdId) return;
+          if (id === uid) throw err;
+          return moveToOwnHousehold(userRef.current, undefined, id);
+        }).catch((e) => {
+          console.error(e);
+          setStatus('error');
+        });
+      },
+    );
+    return () => {
+      window.clearTimeout(giveUp);
+      unsub();
+    };
+  }, [householdId, uid]);
+
   const update = useCallback<Update>(
     (fn) => {
+      if (!householdId) return;
       const prev = current.current;
       const next = fn(prev);
       current.current = next;
       setData(next);
-      saveDiff(uid, prev, next).catch((err) => {
+      saveDiff(householdId, prev, next).catch((err) => {
         console.error(err);
         setStatus('error');
       });
     },
-    [uid],
+    [householdId],
   );
-  return [data, update, status] as const;
+  return { data, update, status, household: household?.id === householdId ? household : null };
 }
 
 export function usePref<T extends string>(key: string, initial: T) {

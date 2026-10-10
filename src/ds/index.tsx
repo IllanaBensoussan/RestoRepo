@@ -22,6 +22,8 @@ const PATHS = {
   alert: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 7.5v5.5 M12 16.5v.01',
   // Added for the app: back navigation (mirrors in RTL).
   back: 'M15 5l-7 7 7 7',
+  // Sharing a recipe, the shopping list or a household invitation.
+  share: 'M12 3v12 M7.5 7.5L12 3l4.5 4.5 M6 11H5v9h14v-9h-1',
 } as const;
 
 export type IconName = keyof typeof PATHS;

@@ -24,7 +24,7 @@ export function Home() {
   }
 
   function addToList(id: string) {
-    update((d) => (d.shopping.some((s) => entryIngredientId(s) === id && !s.done) ? d : { ...d, shopping: [...d.shopping, { id: `${id}-${Date.now()}`, ingredientId: id, done: false }] }));
+    update((d) => (d.shopping.some((s) => entryIngredientId(s) === id && !s.done) ? d : { ...d, shopping: [...d.shopping, { id: `${id}-${Date.now()}`, ingredientId: id, done: false, addedBy: user.uid }] }));
     toast(t('addedToList', { name: ingredientName(id, lang) }));
   }
 

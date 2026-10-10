@@ -21,6 +21,8 @@ export interface ShoppingEntry {
   ingredientId: string | null;
   name?: string;
   done: boolean;
+  /** Who put it on the list, for a list shared with the household. */
+  addedBy?: string;
 }
 
 const DAY = 86_400_000;

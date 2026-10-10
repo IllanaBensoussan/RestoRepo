@@ -1,26 +1,73 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Each person can read and write only their own fridge and shopping list.
+    function signedIn() { return request.auth != null; }
+    function memberPath(hid) { return /databases/$(database)/documents/households/$(hid)/members/$(request.auth.uid); }
+    function isMember(hid) { return signedIn() && exists(memberPath(hid)); }
+    // State after the whole batch: lets a person join (or create) a household and write to it at once.
+    function isMemberAfter(hid) { return signedIn() && existsAfter(memberPath(hid)); }
+
+    // users/{uid} says which household the person belongs to. The data stored there before
+    // households existed stays readable so it can be brought over.
     match /users/{uid}/{document=**} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
+      allow read, write: if signedIn() && request.auth.uid == uid;
     }
+
+    // A household shares one fridge and one shopping list between its members. Each person
+    // owns at most one, whose id is their uid, so nobody can take someone else's id.
+    match /households/{hid} {
+      allow read: if isMember(hid);
+      allow create: if signedIn() && hid == request.auth.uid && request.resource.data.owner == request.auth.uid;
+      allow update: if isMemberAfter(hid) && request.resource.data.owner == resource.data.owner;
+
+      // One document per member. A person adds themself: the owner directly, anyone else with
+      // the household's current invitation code. The owner can remove anyone, and anyone can leave.
+      match /members/{uid} {
+        allow read: if isMember(hid);
+        allow create: if signedIn() && request.auth.uid == uid && (
+          getAfter(/databases/$(database)/documents/households/$(hid)).data.owner == uid ||
+          (request.resource.data.invite is string &&
+            get(/databases/$(database)/documents/invites/$(request.resource.data.invite)).data.householdId == hid));
+        allow update: if signedIn() && request.auth.uid == uid;
+        allow delete: if signedIn() && (request.auth.uid == uid
+          || get(/databases/$(database)/documents/households/$(hid)).data.owner == request.auth.uid);
+      }
+
+      match /pantry/{id} {
+        allow read: if isMember(hid);
+        allow write: if isMemberAfter(hid);
+      }
+      match /shopping/{id} {
+        allow read: if isMember(hid);
+        allow write: if isMemberAfter(hid);
+      }
+    }
+
+    // invites/{code} points to a household. Knowing the code is what lets someone join, so it can
+    // be read one at a time but never listed. Members create and withdraw their household's codes.
+    match /invites/{code} {
+      allow get: if signedIn();
+      allow list: if false;
+      allow create: if isMember(request.resource.data.householdId) && request.resource.data.by == request.auth.uid;
+      allow delete: if isMember(resource.data.householdId);
+    }
+
     // The shared catalogue: readable by anyone signed in, written only by the
     // seed script (scripts/seed-catalog.mjs, which uses an admin account).
     match /ingredients/{id} {
-      allow read: if request.auth != null;
+      allow read: if signedIn();
       allow write: if false;
     }
     match /recipes/{id} {
-      allow read: if request.auth != null;
+      allow read: if signedIn();
       allow write: if false;
     }
     match /sources/{id} {
-      allow read: if request.auth != null;
+      allow read: if signedIn();
       allow write: if false;
     }
     match /meta/{id} {
-      allow read: if request.auth != null;
+      allow read: if signedIn();
       allow write: if false;
     }
   }

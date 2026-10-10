@@ -13,8 +13,10 @@ function GoogleG() {
   );
 }
 
-export function Login({ t, lang, setLang, onSignedIn, onDemo }: {
+export function Login({ t, invited, lang, setLang, onSignedIn, onDemo }: {
   t: T;
+  /** Opened from a household invitation link. */
+  invited?: boolean;
   lang: Lang;
   setLang: (l: Lang) => void;
   onSignedIn: (r: SignInResult) => void;
@@ -59,7 +61,7 @@ export function Login({ t, lang, setLang, onSignedIn, onDemo }: {
 
         <div className="login-card">
           <h2 className="login-title">{signup ? t('signUpTitle') : t('signInTitle')}</h2>
-          <p className="login-hint">{signup ? t('signUpHint') : t('signInHint')}</p>
+          <p className="login-hint">{invited ? t('inviteSignIn') : signup ? t('signUpHint') : t('signInHint')}</p>
           <button type="button" className="gbtn" onClick={google} disabled={busy}>
             <GoogleG />
             <span>{busy ? t('loading') : signup ? t('signUpGoogle') : t('continueGoogle')}</span>

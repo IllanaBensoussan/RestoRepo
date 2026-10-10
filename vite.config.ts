@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  // Relative paths so the build works from any folder or host.
-  base: './',
+  // Absolute paths: shared links like /recette/{id} serve the same page from a deeper address.
+  base: '/',
   plugins: [react()],
 });
