@@ -16,8 +16,8 @@ describe('ingredients added by name', () => {
     expect(findIngredient('truc inconnu')).toBeNull();
   });
 
-  it('stores a typed name under its ingredient key, so recipes see it', () => {
-    const e = newEntry(null, { name: 'tomates', source: 'manual' });
+  it('stores an entry under its ingredient key, so recipes see it', () => {
+    const e = newEntry(findIngredient('tomates')!, { source: 'manual' });
     expect(e.ingredientId).toBe('tomato');
     expect(e.name).toBeUndefined();
     expect(available([e]).has('tomato')).toBe(true);

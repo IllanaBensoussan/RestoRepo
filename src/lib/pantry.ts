@@ -69,14 +69,13 @@ export function entryName(e: Named, lang: Lang) {
   return ing ? ing.name[lang] : e.name || '';
 }
 
-export function newEntry(ingredientId: string | null, opts: { name?: string; quantity?: string; source: 'receipt' | 'manual'; now?: number }): PantryEntry {
+/** A fridge entry for a catalogue ingredient. Products outside the catalogue are not stored. */
+export function newEntry(ingredientId: string, opts: { quantity?: string; source: 'receipt' | 'manual'; now?: number }): PantryEntry {
   const now = opts.now ?? Date.now();
-  if (!ingredientId && opts.name) ingredientId = findIngredient(opts.name);
-  const ing = ingredientId ? ingredientById(ingredientId) : undefined;
+  const ing = ingredientById(ingredientId);
   return {
     id: uid(),
     ingredientId,
-    name: ing ? undefined : opts.name,
     quantity: opts.quantity || ing?.defaultQty,
     category: ing?.category ?? 'grocery',
     source: opts.source,
