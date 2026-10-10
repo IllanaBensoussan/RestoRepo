@@ -12,7 +12,7 @@ Le filtre kasher est dans `scripts/themealdb/kosher.mjs`, et les contrôles avan
 
 ## Déjà dans le catalogue
 
-160 recettes TheMealDB (94 plats, 60 desserts, 4 accompagnements, 2 entrées) ont été choisies, vérifiées et traduites à la main, sans passer par le script. Elles sont dans `catalog/recipes.json` (identifiants `mealdb-<numéro>`) et notées `approved` dans `imports/themealdb/drafts.json` : le script ne les retraduit donc pas, et `--publish` les garde. Le travail de sélection et de traduction est dans `imports/themealdb/manual/`. Pour repartir de zéro, supprime `imports/themealdb/drafts.json` et les recettes `mealdb-` de `catalog/recipes.json`.
+331 recettes TheMealDB (100 plats, 100 desserts, 76 accompagnements, 40 entrées, 15 petits-déjeuners) ont été choisies, vérifiées et traduites à la main, sans passer par le script. Elles sont dans `catalog/recipes.json` (identifiants `mealdb-<numéro>`) et notées `approved` dans `imports/themealdb/drafts.json` : le script ne les retraduit donc pas, et `--publish` les garde. Le travail de sélection et de traduction est dans `imports/themealdb/manual/`. Pour repartir de zéro, supprime `imports/themealdb/drafts.json` et les recettes `mealdb-` de `catalog/recipes.json`.
 
 ## Ce qu'il faut
 
